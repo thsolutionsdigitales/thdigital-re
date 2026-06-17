@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T.H Digital – Conseil & Événementiel | La Réunion</title>
+  <meta name="description" content="T.H Digital – Accompagnement numérique pour TPE/PME et création d'événements sur mesure à La Réunion." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:    #080808;
+      --surface:  #111111;
+      --surface2: #161616;
+      --border:   rgba(255,255,255,0.07);
+      --white:    #f5f3ef;
+      --accent:   #5a5aff;
+      --accent2:  #7c7cff;
+      --gold:     #d4a855;
+      --gold2:    #e8c070;
+      --muted:    #888;
+      --radius:   16px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      background: rgba(8,8,8,0.88);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
+      color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .nav-logo .dot { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.875rem;
+      font-weight: 400; letter-spacing: 0.01em; transition: color 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-cta {
+      background: var(--accent); color: #fff; border: none;
+      padding: 0.55rem 1.35rem; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(90,90,255,0.3); }
+
+    /* ─── MOBILE NAV ─── */
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+      background: none; border: none; padding: 4px;
+    }
+    .nav-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px; transition: all 0.3s;
+    }
+    .mobile-menu {
+      display: none; position: fixed; top: 57px; left: 0; right: 0; z-index: 99;
+      background: rgba(8,8,8,0.97); backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem; flex-direction: column; gap: 1.25rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--white); text-decoration: none; font-size: 1.1rem;
+      font-weight: 500; padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu .mobile-cta {
+      background: var(--accent); text-align: center; padding: 0.85rem;
+      border-radius: 100px; border: none; margin-top: 0.5rem;
+    }
+
+    /* ─── PAGES ─── */
+    .page { display: none; padding-top: 60px; min-height: 100vh; }
+    .page.active { display: block; }
+
+    /* ─── SHARED HERO SHELL ─── */
+    .hero {
+      min-height: calc(100vh - 60px);
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 2.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+    }
+    .hero-bg.blue {
+      background:
+        radial-gradient(ellipse 65% 60% at 72% 38%, rgba(90,90,255,0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 50% at 18% 82%, rgba(90,90,255,0.07) 0%, transparent 70%);
+    }
+    .hero-bg.gold {
+      background:
+        radial-gradient(ellipse 65% 60% at 72% 38%, rgba(212,168,85,0.13) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 50% at 18% 82%, rgba(212,168,85,0.07) 0%, transparent 70%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 860px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
+      padding: 0.38rem 1rem; border-radius: 100px; margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+    .hero-badge.blue {
+      background: rgba(90,90,255,0.1); border: 1px solid rgba(90,90,255,0.25);
+      color: var(--accent2);
+    }
+    .hero-badge.gold {
+      background: rgba(212,168,85,0.1); border: 1px solid rgba(212,168,85,0.25);
+      color: var(--gold2);
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: currentColor; flex-shrink: 0;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1.0; letter-spacing: -0.04em;
+      color: var(--white); margin-bottom: 1.5rem;
+    }
+    h1 em.blue { font-style: normal; color: var(--accent); }
+    h1 em.gold { font-style: normal; color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.1rem; color: var(--muted); max-width: 520px;
+      line-height: 1.7; font-weight: 300; margin-bottom: 2.5rem;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    /* ─── BUTTONS ─── */
+    .btn-primary {
+      background: var(--accent); color: #fff; border: none;
+      padding: 0.85rem 2rem; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(90,90,255,0.35); }
+    .btn-primary.gold { background: var(--gold); }
+    .btn-primary.gold:hover { background: var(--gold2); box-shadow: 0 8px 32px rgba(212,168,85,0.3); }
+    .btn-ghost {
+      background: transparent; color: var(--white);
+      border: 1px solid var(--border); padding: 0.85rem 2rem; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 400;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.04); }
+
+    /* ─── ACTIVITY SPLIT (accueil) ─── */
+    .activity-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; padding: 0 2.5rem 5rem;
+    }
+    .activity-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2.5rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s;
+      cursor: pointer; text-decoration: none;
+    }
+    .activity-card:hover { transform: translateY(-4px); }
+    .activity-card.conseil:hover { border-color: rgba(90,90,255,0.4); }
+    .activity-card.events:hover  { border-color: rgba(212,168,85,0.4); }
+    .activity-card .card-glow {
+      position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      transition: opacity 0.3s; opacity: 0;
+    }
+    .activity-card.conseil .card-glow { background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(90,90,255,0.12) 0%, transparent 70%); }
+    .activity-card.events .card-glow  { background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(212,168,85,0.12) 0%, transparent 70%); }
+    .activity-card:hover .card-glow { opacity: 1; }
+    .activity-card-inner { position: relative; z-index: 1; }
+    .activity-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+    .activity-tag.blue { background: rgba(90,90,255,0.1); border: 1px solid rgba(90,90,255,0.25); color: var(--accent2); }
+    .activity-tag.gold { background: rgba(212,168,85,0.1); border: 1px solid rgba(212,168,85,0.25); color: var(--gold2); }
+    .activity-card h3 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.75rem; letter-spacing: -0.03em;
+      color: var(--white); margin-bottom: 0.75rem; line-height: 1.1;
+    }
+    .activity-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 2rem; }
+    .activity-card .card-services { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .card-chip {
+      font-size: 0.75rem; color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem; border-radius: 100px;
+    }
+    .card-arrow {
+      font-size: 0.85rem; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .activity-card.conseil .card-arrow { color: var(--accent2); }
+    .activity-card.events  .card-arrow { color: var(--gold2); }
+    .activity-card:hover .card-arrow { gap: 0.75rem; }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 5rem 2.5rem; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 0.85rem;
+    }
+    .section-label.blue { color: var(--accent); }
+    .section-label.gold { color: var(--gold); }
+    h2 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      letter-spacing: -0.03em; line-height: 1.15;
+      color: var(--white); margin-bottom: 0.85rem;
+    }
+    .section-desc { color: var(--muted); font-size: 1rem; max-width: 480px; line-height: 1.65; margin-bottom: 3rem; }
+
+    /* ─── SERVICE GRID ─── */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+    .service-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service-card:hover { transform: translateY(-3px); }
+    .service-card.blue:hover  { border-color: rgba(90,90,255,0.3); }
+    .service-card.gold:hover  { border-color: rgba(212,168,85,0.3); }
+    .service-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: 1.25rem;
+    }
+    .service-icon.blue { background: rgba(90,90,255,0.1); border: 1px solid rgba(90,90,255,0.2); }
+    .service-icon.gold { background: rgba(212,168,85,0.1); border: 1px solid rgba(212,168,85,0.2); }
+    .service-card h3 {
+      font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+    .service-card p { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
+
+    /* ─── PROCESS STEPS ─── */
+    .process-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; position: relative;
+    }
+    .process-step {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem; position: relative;
+      margin: 0.75rem;
+    }
+    .step-num {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem;
+      letter-spacing: -0.05em; opacity: 0.08; color: var(--white);
+      position: absolute; top: 1.25rem; right: 1.5rem;
+    }
+    .process-step h3 {
+      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
+      color: var(--white); margin-bottom: 0.5rem;
+    }
+    .process-step p { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      margin: 0 2.5rem 5rem; border-radius: 20px;
+      padding: 3.5rem 3rem; text-align: center;
+    }
+    .cta-band.blue {
+      background: linear-gradient(130deg, rgba(90,90,255,0.14) 0%, rgba(90,90,255,0.04) 100%);
+      border: 1px solid rgba(90,90,255,0.2);
+    }
+    .cta-band.gold {
+      background: linear-gradient(130deg, rgba(212,168,85,0.13) 0%, rgba(212,168,85,0.04) 100%);
+      border: 1px solid rgba(212,168,85,0.2);
+    }
+    .cta-band h2 { margin-bottom: 0.75rem; }
+    .cta-band p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
+    .cta-note {
+      margin-top: 1.25rem; font-size: 0.8rem; color: rgba(255,255,255,0.3);
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+    }
+
+    /* ─── CONTACT PAGE ─── */
+    .contact-layout {
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 4rem; padding: 4rem 2.5rem; max-width: 1000px; margin: 0 auto;
+    }
+    .contact-info .section-label { margin-bottom: 1rem; }
+    .contact-info h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+    .contact-info p { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 1rem 0; border-bottom: 1px solid var(--border);
+    }
+    .contact-item:first-of-type { border-top: 1px solid var(--border); }
+    .c-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(90,90,255,0.1); border: 1px solid rgba(90,90,255,0.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+    }
+    .c-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+    .c-value { font-size: 0.95rem; color: var(--white); margin-top: 0.15rem; }
+    .c-value a { color: var(--white); text-decoration: none; transition: color 0.2s; }
+    .c-value a:hover { color: var(--accent2); }
+
+    /* ─── CAL.COM EMBED ─── */
+    .cal-block {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden; min-height: 680px;
+      display: flex; flex-direction: column;
+    }
+    .cal-header {
+      padding: 1.75rem 2rem 1.25rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .cal-header .cal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+    .cal-header h2 { font-size: 1.2rem; }
+    .cal-header p { color: var(--muted); font-size: 0.8rem; margin-top: 0.15rem; }
+    .cal-embed {
+      flex: 1;
+    }
+    .cal-embed iframe {
+      width: 100%; height: 100%; min-height: 600px;
+      border: none; background: var(--surface);
+    }
+    /* Fallback si cal.com pas encore configuré */
+    .cal-placeholder {
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 3rem 2rem; text-align: center;
+    }
+    .cal-placeholder .cal-icon { font-size: 3rem; margin-bottom: 1.5rem; opacity: 0.5; }
+    .cal-placeholder h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.75rem; }
+    .cal-placeholder p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 2rem; }
+    .cal-open-btn {
+      background: var(--accent); color: #fff;
+      padding: 0.85rem 2rem; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .cal-open-btn:hover { background: var(--accent2); transform: translateY(-2px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border); padding: 2rem 2.5rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
+      color: var(--white); letter-spacing: -0.01em;
+    }
+    .footer-logo .dot { color: var(--accent); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { color: rgba(255,255,255,0.18); font-size: 0.75rem; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.6s ease forwards; }
+    .delay-1 { animation-delay: 0.1s; opacity: 0; }
+    .delay-2 { animation-delay: 0.22s; opacity: 0; }
+    .delay-3 { animation-delay: 0.35s; opacity: 0; }
+    .delay-4 { animation-delay: 0.5s; opacity: 0; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-cta { display: none; }
+      .hero { padding: 3rem 1.25rem 2.5rem; min-height: auto; }
+      section { padding: 3rem 1.25rem; }
+      .activity-split { grid-template-columns: 1fr; padding: 0 1.25rem 3rem; }
+      .activity-card h3 { font-size: 1.4rem; }
+      .cta-band { margin: 0 1.25rem 3rem; padding: 2.5rem 1.5rem; }
+      .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.25rem; }
+      .process-steps { grid-template-columns: 1fr; }
+      footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a class="nav-logo" href="#" onclick="showPage('home'); return false;">
+      T<span class="dot">.</span>H DIGITAL
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" onclick="showPage('home'); return false;" id="nav-home" class="active">Accueil</a></li>
+      <li><a href="#" onclick="showPage('conseil'); return false;" id="nav-conseil">Conseil Digital</a></li>
+      <li><a href="#" onclick="showPage('events'); return false;" id="nav-events">Événementiel</a></li>
+      <li><a href="#" onclick="showPage('rdv'); return false;" id="nav-rdv">RDV</a></li>
+    </ul>
+    <a class="nav-cta" href="#" onclick="showPage('rdv'); return false;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      RDV 30 min gratuit
+    </a>
+    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#" onclick="showPage('home'); toggleMenu(); return false;">Accueil</a>
+    <a href="#" onclick="showPage('conseil'); toggleMenu(); return false;">Conseil Digital</a>
+    <a href="#" onclick="showPage('events'); toggleMenu(); return false;">Événementiel</a>
+    <a href="#" onclick="showPage('rdv'); toggleMenu(); return false;" class="mobile-cta">Prendre RDV – 30 min gratuit →</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ PAGE : ACCUEIL ═══════════════════════════════════════════ -->
+  <div class="page active" id="page-home">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-bg blue"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-badge blue fade-up">Entrepreneur indépendant · La Réunion</div>
+        <h1 class="fade-up delay-1">
+          Votre vision,<br/>
+          <em class="blue">concrétisée.</em>
+        </h1>
+        <p class="hero-sub fade-up delay-2">
+          Conseil en transformation digitale pour les TPE/PME et création d'événements professionnels sur mesure.
+          Deux expertises, un seul interlocuteur.
+        </p>
+        <div class="hero-actions fade-up delay-3">
+          <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            RDV gratuit 30 min
+          </a>
+          <a class="btn-ghost" href="#" onclick="showPage('conseil'); return false;">Conseil Digital →</a>
+          <a class="btn-ghost" href="#" onclick="showPage('events'); return false;">Événementiel →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACTIVITÉS -->
+    <div class="activity-split">
+
+      <!-- CONSEIL DIGITAL -->
+      <a class="activity-card conseil" href="#" onclick="showPage('conseil'); return false;">
+        <div class="card-glow"></div>
+        <div class="activity-card-inner">
+          <div class="activity-tag blue">Conseil Digital</div>
+          <h3>Booster votre<br/>business avec le<br/>numérique.</h3>
+          <p>Audit complet de votre entreprise, mise en place des bons outils digitaux et accompagnement opérationnel pour TPE/PME.</p>
+          <div class="card-services">
+            <span class="card-chip">IA & Automatisation</span>
+            <span class="card-chip">Chatbot</span>
+            <span class="card-chip">Site web</span>
+            <span class="card-chip">Ads</span>
+            <span class="card-chip">Branding</span>
+            <span class="card-chip">Accompagnement</span>
+          </div>
+          <div class="card-arrow">Découvrir <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- ÉVÉNEMENTIEL -->
+      <a class="activity-card events" href="#" onclick="showPage('events'); return false;">
+        <div class="card-glow"></div>
+        <div class="activity-card-inner">
+          <div class="activity-tag gold">Événementiel</div>
+          <h3>Des événements<br/>qui marquent<br/>les esprits.</h3>
+          <p>Événements professionnels et privés sur mesure — DJ, photo/vidéo et service bar inclus pour une expérience complète.</p>
+          <div class="card-services">
+            <span class="card-chip">DJ</span>
+            <span class="card-chip">Photographie</span>
+            <span class="card-chip">Vidéo</span>
+            <span class="card-chip">Bar & Boissons</span>
+            <span class="card-chip">Clé en main</span>
+          </div>
+          <div class="card-arrow">Découvrir <span>→</span></div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- PROCESSUS -->
+    <section style="padding-top: 1rem;">
+      <p class="section-label blue">Comment ça marche</p>
+      <h2>Simple & sans engagement</h2>
+      <p class="section-desc">Toutes les prestations commencent par un échange de 30 minutes gratuit pour définir ensemble votre projet.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">01</div>
+          <div class="service-icon blue" style="margin-bottom:1rem;">📅</div>
+          <h3>RDV découverte</h3>
+          <p>30 minutes d'échange gratuit pour comprendre votre projet et vos objectifs.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">02</div>
+          <div class="service-icon blue" style="margin-bottom:1rem;">📋</div>
+          <h3>Devis sur mesure</h3>
+          <p>Un devis personnalisé établi selon vos besoins réels. Pas de package préconçu.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">03</div>
+          <div class="service-icon blue" style="margin-bottom:1rem;">🚀</div>
+          <h3>Mise en œuvre</h3>
+          <p>Réalisation complète du projet avec suivi régulier et points d'étape.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">04</div>
+          <div class="service-icon blue" style="margin-bottom:1rem;">✅</div>
+          <h3>Résultats concrets</h3>
+          <p>Livraison et accompagnement post-projet pour assurer la prise en main.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-band blue">
+      <h2>Prêt à passer à l'action ?</h2>
+      <p>Quel que soit votre projet — digital ou événementiel — tout commence par un échange.</p>
+      <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">Réserver mon RDV gratuit →</a>
+      <div class="cta-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Sans engagement · 30 minutes · 100% gratuit
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════ PAGE : CONSEIL DIGITAL ═══════════════════════════════════════════ -->
+  <div class="page" id="page-conseil">
+
+    <div class="hero" style="min-height: 55vh;">
+      <div class="hero-bg blue"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-badge blue fade-up">Conseil Digital</div>
+        <h1 class="fade-up delay-1">
+          Votre entreprise,<br/>
+          <em class="blue">optimisée.</em>
+        </h1>
+        <p class="hero-sub fade-up delay-2">
+          Audit de votre structure, déploiement des bons outils numériques et accompagnement commercial global pour les TPE/PME de La Réunion.
+        </p>
+        <div class="hero-actions fade-up delay-3">
+          <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">Demander un devis gratuit →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section>
+      <p class="section-label blue">Ce que je propose</p>
+      <h2>Mes services<br/>Conseil Digital</h2>
+      <p class="section-desc">Des interventions sur mesure, pensées pour les besoins réels de votre entreprise — pas des packages préconçus.</p>
+
+      <div class="services-grid">
+        <div class="service-card blue">
+          <div class="service-icon blue">🔍</div>
+          <h3>Audit d'entreprise</h3>
+          <p>Analyse complète de votre présence numérique, de vos process et de vos opportunités de croissance. Point de départ de toute intervention.</p>
+        </div>
+        <div class="service-card blue">
+          <div class="service-icon blue">🤖</div>
+          <h3>IA & Automatisation</h3>
+          <p>Identification et mise en place des outils d'intelligence artificielle adaptés à votre activité pour gagner du temps et optimiser vos opérations.</p>
+        </div>
+        <div class="service-card blue">
+          <div class="service-icon blue">💬</div>
+          <h3>Chatbot & Assistants</h3>
+          <p>Création et déploiement de chatbots personnalisés pour votre service client, vos prises de rendez-vous ou votre communication interne.</p>
+        </div>
+        <div class="service-card blue">
+          <div class="service-icon blue">🌐</div>
+          <h3>Site web</h3>
+          <p>Conception et réalisation de sites vitrines modernes, rapides et orientés conversion. De la maquette à la mise en ligne.</p>
+        </div>
+        <div class="service-card blue">
+          <div class="service-icon blue">🎯</div>
+          <h3>Publicité digitale</h3>
+          <p>Stratégie et gestion de campagnes Meta Ads, Google Ads pour générer des prospects qualifiés et des ventes concrètes.</p>
+        </div>
+        <div class="service-card blue">
+          <div class="service-icon blue">✏️</div>
+          <h3>Identité visuelle</h3>
+          <p>Création de logo, charte graphique et supports de communication. Une identité forte et cohérente pour vous différencier.</p>
+        </div>
+        <div class="service-card blue">
+          <div class="service-icon blue">📈</div>
+          <h3>Accompagnement commercial</h3>
+          <p>Structuration de votre démarche commerciale, scripts de vente, outils CRM et formation équipe pour booster vos résultats.</p>
+        </div>
+        <div class="service-card blue">
+          <div class="service-icon blue">🛠️</div>
+          <h3>Ingénierie projet</h3>
+          <p>Pilotage opérationnel de vos projets numériques de A à Z : cadrage, planification, coordination et livraison.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- POURQUOI -->
+    <section style="padding-top: 1rem;">
+      <p class="section-label blue">L'approche</p>
+      <h2>Sur mesure,<br/>pas en package.</h2>
+      <p class="section-desc">Chaque entreprise est unique. C'est pourquoi toutes mes prestations sont construites après un audit de votre situation réelle.</p>
+      <div class="process-steps">
+        <div class="process-step">
+          <div class="step-num">✦</div>
+          <h3>Diagnostic complet</h3>
+          <p>On commence toujours par comprendre votre business, vos forces et vos points de friction avant de proposer quoi que ce soit.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">✦</div>
+          <h3>Plan d'action ciblé</h3>
+          <p>Un plan d'action réaliste et priorisé, calibré sur votre budget et vos objectifs — sans sur-vente.</p>
+        </div>
+        <div class="process-step">
+          <div class="step-num">✦</div>
+          <h3>Réalisation ou formation</h3>
+          <p>Je peux réaliser moi-même ou vous former à utiliser les outils pour que vous soyez autonomes à terme.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-band blue">
+      <h2>Discutons de votre<br/>projet digital.</h2>
+      <p>Premier échange de 30 minutes offert. Sans engagement, sans frais.</p>
+      <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">Réserver mon RDV gratuit →</a>
+      <div class="cta-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Toutes les prestations font l'objet d'un devis personnalisé
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════ PAGE : ÉVÉNEMENTIEL ═══════════════════════════════════════════ -->
+  <div class="page" id="page-events">
+
+    <div class="hero" style="min-height: 55vh;">
+      <div class="hero-bg gold"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-badge gold fade-up">Événementiel</div>
+        <h1 class="fade-up delay-1">
+          Des moments<br/>
+          <em class="gold">inoubliables.</em>
+        </h1>
+        <p class="hero-sub fade-up delay-2">
+          Événements professionnels et privés sur mesure. DJ, photo/vidéo et service bar réunis pour une expérience clé en main à La Réunion.
+        </p>
+        <div class="hero-actions fade-up delay-3">
+          <a class="btn-primary gold" href="#" onclick="showPage('rdv'); return false;">Demander un devis →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <section>
+      <p class="section-label gold">Ce que j'offre</p>
+      <h2>Vos événements<br/>sur mesure</h2>
+      <p class="section-desc">Chaque événement est unique. Je construis votre expérience en fonction de votre vision, de votre public et de votre budget.</p>
+
+      <div class="services-grid">
+        <div class="service-card gold" style="grid-column: span 1;">
+          <div class="service-icon gold">🎧</div>
+          <h3>DJ & Ambiance</h3>
+          <p>Animation musicale professionnelle pour vos événements corporate, soirées privées, mariages et festivités. Matériel professionnel inclus, set adapté à votre public et à l'atmosphère souhaitée.</p>
+        </div>
+        <div class="service-card gold">
+          <div class="service-icon gold">📸</div>
+          <h3>Photographie</h3>
+          <p>Reportage photo professionnel de votre événement. Captation des moments clés, portraits et ambiances. Livraison de galerie numérique haute définition.</p>
+        </div>
+        <div class="service-card gold">
+          <div class="service-icon gold">🎬</div>
+          <h3>Vidéo & Film</h3>
+          <p>Captation vidéo cinématique de votre événement. Teaser courts formats pour les réseaux sociaux et film souvenir complet monté et étalonnée.</p>
+        </div>
+        <div class="service-card gold">
+          <div class="service-icon gold">🍹</div>
+          <h3>Bar & Boissons</h3>
+          <p>Service bar complet avec sélection de boissons adaptée à votre événement. Cocktails, softs et service traiteur léger sur mesure.</p>
+        </div>
+        <div class="service-card gold">
+          <div class="service-icon gold">🏆</div>
+          <h3>Clé en main</h3>
+          <p>Prise en charge complète de l'événement, de la conception au débrief. Un seul interlocuteur pour coordonner tous les prestataires.</p>
+        </div>
+        <div class="service-card gold">
+          <div class="service-icon gold">📋</div>
+          <h3>Conseil & Planification</h3>
+          <p>Aide à la conception de votre événement, sélection du lieu, programme détaillé et coordination logistique pour garantir le bon déroulé.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TYPES D'ÉVÉNEMENTS -->
+    <section style="padding-top: 1rem;">
+      <p class="section-label gold">Événements</p>
+      <h2>Pour tous vos projets</h2>
+      <p class="section-desc">Événements professionnels ou privés, petits ou grands formats — chaque projet mérite une attention sur mesure.</p>
+      <div class="services-grid">
+        <div class="service-card gold"><div class="service-icon gold">🏢</div><h3>Soirées d'entreprise</h3><p>Team building, séminaires, lancement de produit, anniversaire d'entreprise.</p></div>
+        <div class="service-card gold"><div class="service-icon gold">💍</div><h3>Mariages & Privé</h3><p>Mariages, anniversaires, baptêmes et célébrations familiales.</p></div>
+        <div class="service-card gold"><div class="service-icon gold">🎉</div><h3>Soirées & Fêtes</h3><p>Soirées thématiques, after-work, galas et événements associatifs.</p></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta-band gold">
+      <h2>Votre événement<br/>mérite le meilleur.</h2>
+      <p>Parlez-moi de votre projet et recevez un devis personnalisé sous 48h.</p>
+      <a class="btn-primary gold" href="#" onclick="showPage('rdv'); return false;">Réserver mon RDV gratuit →</a>
+      <div class="cta-note" style="color: rgba(212,168,85,0.4);">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Toutes les prestations font l'objet d'un devis personnalisé
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════════ PAGE : RDV ═══════════════════════════════════════════ -->
+  <div class="page" id="page-rdv">
+    <div class="contact-layout">
+
+      <!-- INFO -->
+      <div class="contact-info">
+        <p class="section-label blue">Premier contact</p>
+        <h1>Parlons de<br/><em class="blue">votre projet.</em></h1>
+        <p>
+          Réservez un créneau de 30 minutes pour qu'on puisse échanger librement sur votre projet. Gratuit, sans engagement.
+          Je reviens vers vous avec un devis sur mesure.
+        </p>
+
+        <div class="contact-item">
+          <div class="c-icon">📞</div>
+          <div>
+            <div class="c-label">Téléphone</div>
+            <div class="c-value"><a href="tel:+262693858198">+262 693 85 81 98</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">✉️</div>
+          <div>
+            <div class="c-label">Email</div>
+            <div class="c-value"><a href="mailto:th.solutionsdigitales@gmail.com">th.solutionsdigitales@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">📸</div>
+          <div>
+            <div class="c-label">Instagram</div>
+            <div class="c-value"><a href="https://instagram.com/thdigital.re" target="_blank">@thdigital.re</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="c-icon">👍</div>
+          <div>
+            <div class="c-label">Facebook</div>
+            <div class="c-value"><a href="https://facebook.com/thdigital.re" target="_blank">thdigital.re</a></div>
+          </div>
+        </div>
+
+        <div style="margin-top: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem;">
+          <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">Ce qu'on verra ensemble</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem;">
+            <li style="display: flex; gap: 0.65rem; color: var(--white); font-size: 0.9rem; align-items: flex-start;">
+              <span style="color: var(--accent); flex-shrink:0;">✦</span> Comprendre votre activité et vos objectifs
+            </li>
+            <li style="display: flex; gap: 0.65rem; color: var(--white); font-size: 0.9rem; align-items: flex-start;">
+              <span style="color: var(--accent); flex-shrink:0;">✦</span> Identifier les leviers prioritaires
+            </li>
+            <li style="display: flex; gap: 0.65rem; color: var(--white); font-size: 0.9rem; align-items: flex-start;">
+              <span style="color: var(--accent); flex-shrink:0;">✦</span> Vous proposer une approche sur mesure
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CAL.COM EMBED -->
+      <div class="cal-block" id="cal-block">
+        <div class="cal-header">
+          <div>
+            <div class="cal-dot"></div>
+          </div>
+          <div>
+            <h2>Choisissez un créneau</h2>
+            <p>Consultation découverte · 30 min · Visio ou téléphone · Gratuit</p>
+          </div>
+        </div>
+        <!--
+          INSTRUCTIONS : Remplacez CAL_USERNAME par votre nom d'utilisateur Cal.com
+          Exemple : https://cal.com/thdigital/30min
+          Pour créer votre compte : https://cal.com
+        -->
+        <div class="cal-placeholder" id="cal-placeholder">
+          <div class="cal-icon">📅</div>
+          <h3>Calendrier de prise de RDV</h3>
+          <p>
+            Créez votre compte Cal.com gratuit, puis remplacez le lien ci-dessous par votre lien de réservation personnel.
+            <br/><br/>
+            <small style="color: rgba(255,255,255,0.25);">Une fois configuré, le calendrier s'affichera ici directement.</small>
+          </p>
+          <!-- Remplacez ce lien par votre lien Cal.com -->
+          <a class="cal-open-btn" href="https://cal.com" target="_blank">
+            Créer mon Cal.com →
+          </a>
+        </div>
+        <!--
+          Décommentez et remplacez YOUR_USERNAME une fois Cal.com configuré :
+          <div class="cal-embed">
+            <iframe src="https://cal.com/YOUR_USERNAME/30min?embed=true&theme=dark" allowfullscreen></iframe>
+          </div>
+        -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="footer-logo">T<span class="dot">.</span>H DIGITAL</div>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('home'); return false;">Accueil</a>
+      <a href="#" onclick="showPage('conseil'); return false;">Conseil Digital</a>
+      <a href="#" onclick="showPage('events'); return false;">Événementiel</a>
+      <a href="#" onclick="showPage('rdv'); return false;">RDV Gratuit</a>
+    </div>
+    <div class="footer-copy">© 2026 T.H Digital · La Réunion</div>
+  </footer>
+
+  <script>
+    function showPage(id) {
+      // Masquer toutes les pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      // Désactiver tous les liens nav
+      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+      // Afficher la page cible
+      const page = document.getElementById('page-' + id);
+      if (page) page.classList.add('active');
+      // Activer le lien nav correspondant
+      const navLink = document.getElementById('nav-' + id);
+      if (navLink) navLink.classList.add('active');
+      // Remonter en haut
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // Fermer le menu mobile
+      document.getElementById('mobile-menu').classList.remove('open');
+    }
+
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('open');
+    }
+
+    // Fermer le menu mobile si clic en dehors
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('mobile-menu');
+      const hamburger = document.querySelector('.nav-hamburger');
+      if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
+  </script>
+
+</body>
+</html>
