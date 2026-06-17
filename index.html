@@ -32,72 +32,119 @@
       overflow-x: hidden;
     }
 
-    /* ─── NAV ─── */
+    /* ════════════════════════════════════
+       SPLASH SCREEN
+    ════════════════════════════════════ */
+    #splash {
+      position: fixed; inset: 0; z-index: 2000;
+      background: #000;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.75s ease;
+    }
+    #splash.exit { opacity: 0; pointer-events: none; }
+    .splash-logo {
+      width: min(220px, 55vw);
+      height: min(220px, 55vw);
+      border-radius: 50%;
+      object-fit: cover;
+      animation: splashIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .splash-hint {
+      margin-top: 2.5rem;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      animation: splashIn 1.4s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    @keyframes splashIn {
+      from { opacity: 0; transform: scale(0.8) translateY(16px); }
+      to   { opacity: 1; transform: scale(1)   translateY(0); }
+    }
+
+    /* ════════════════════════════════════
+       NAV — CENTERED GRID LAYOUT
+    ════════════════════════════════════ */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.1rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0.85rem 2rem;
       background: rgba(8,8,8,0.88);
       backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 700; font-size: 1.1rem; letter-spacing: 0;
-      color: var(--white); text-decoration: none; display: flex; align-items: center; gap: 0.65rem;
+    .nav-left {
+      display: flex; gap: 1.75rem; list-style: none;
+      justify-content: flex-end; align-items: center;
     }
-    .nav-logo .dot { color: var(--accent); }
+    .nav-center {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .nav-right {
+      display: flex; gap: 1.75rem; list-style: none;
+      justify-content: flex-start; align-items: center;
+    }
     .nav-logo-img {
-      width: 36px; height: 36px; border-radius: 50%;
-      object-fit: cover; flex-shrink: 0;
+      width: 48px; height: 48px; border-radius: 50%;
+      object-fit: cover; cursor: pointer;
+      transition: transform 0.25s;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
+    .nav-logo-img:hover { transform: scale(1.06); }
+    .nav-left a, .nav-right a {
       color: var(--muted); text-decoration: none; font-size: 0.875rem;
       font-weight: 400; letter-spacing: 0.01em; transition: color 0.2s;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--white); }
-    .nav-cta {
-      background: var(--accent); color: #fff; border: none;
-      padding: 0.55rem 1.35rem; border-radius: 100px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
-      cursor: pointer; text-decoration: none; transition: all 0.2s;
-      display: flex; align-items: center; gap: 0.4rem;
+    .nav-left a:hover, .nav-right a:hover,
+    .nav-left a.active, .nav-right a.active { color: var(--white); }
+
+    /* Nav pulse on Événementiel link */
+    @keyframes navPulse {
+      0%, 100% { opacity: 1; color: var(--gold2); }
+      50%       { opacity: 0.4; color: var(--gold); }
     }
-    .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(90,90,255,0.3); }
+    .nav-events-link { animation: navPulse 2.5s ease-in-out infinite; }
+    .nav-events-link.active { animation: none !important; color: var(--white) !important; }
 
     /* ─── MOBILE NAV ─── */
     .nav-hamburger {
       display: none; flex-direction: column; gap: 5px; cursor: pointer;
       background: none; border: none; padding: 4px;
+      position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
     }
     .nav-hamburger span {
       display: block; width: 22px; height: 2px;
       background: var(--white); border-radius: 2px; transition: all 0.3s;
     }
     .mobile-menu {
-      display: none; position: fixed; top: 57px; left: 0; right: 0; z-index: 99;
+      display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
       background: rgba(8,8,8,0.97); backdrop-filter: blur(24px);
       border-bottom: 1px solid var(--border);
       padding: 1.5rem 2rem; flex-direction: column; gap: 1.25rem;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      color: var(--white); text-decoration: none; font-size: 1.1rem;
+      color: var(--white); text-decoration: none; font-size: 1.05rem;
       font-weight: 500; padding: 0.5rem 0; border-bottom: 1px solid var(--border);
     }
     .mobile-menu .mobile-cta {
       background: var(--accent); text-align: center; padding: 0.85rem;
-      border-radius: 100px; border: none; margin-top: 0.5rem;
+      border-radius: 100px; border: none; margin-top: 0.5rem; color: #fff;
     }
 
-    /* ─── PAGES ─── */
-    .page { display: none; padding-top: 60px; min-height: 100vh; }
+    /* ════════════════════════════════════
+       PAGES
+    ════════════════════════════════════ */
+    .page { display: none; padding-top: 64px; min-height: 100vh; }
     .page.active { display: block; }
 
-    /* ─── SHARED HERO SHELL ─── */
+    /* ─── SHARED HERO ─── */
     .hero {
-      min-height: calc(100vh - 60px);
+      min-height: calc(100vh - 64px);
       display: flex; flex-direction: column; justify-content: center;
       padding: 5rem 2.5rem 4rem;
       position: relative; overflow: hidden;
@@ -142,6 +189,22 @@
       background: currentColor; flex-shrink: 0;
     }
 
+    /* Events hero — photo background */
+    .hero-events-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: url('./photo dj santi.jpg');
+      background-size: cover; background-position: center top;
+    }
+    .hero-events-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(8,8,8,0.96) 0%,
+        rgba(8,8,8,0.82) 55%,
+        rgba(8,8,8,0.45) 100%
+      );
+    }
+
     h1 {
       font-family: 'Syne', sans-serif; font-weight: 700;
       font-size: clamp(2.5rem, 5.5vw, 4.8rem);
@@ -177,7 +240,7 @@
     }
     .btn-ghost:hover { border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.04); }
 
-    /* ─── ACTIVITY SPLIT (accueil) ─── */
+    /* ─── ACTIVITY SPLIT ─── */
     .activity-split {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 1.5rem; padding: 0 2.5rem 5rem;
@@ -197,7 +260,7 @@
       transition: opacity 0.3s; opacity: 0;
     }
     .activity-card.conseil .card-glow { background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(90,90,255,0.12) 0%, transparent 70%); }
-    .activity-card.events .card-glow  { background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(212,168,85,0.12) 0%, transparent 70%); }
+    .activity-card.events  .card-glow { background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(212,168,85,0.12) 0%, transparent 70%); }
     .activity-card:hover .card-glow { opacity: 1; }
     .activity-card-inner { position: relative; z-index: 1; }
     .activity-tag {
@@ -312,6 +375,138 @@
       display: flex; align-items: center; justify-content: center; gap: 0.4rem;
     }
 
+    /* ════════════════════════════════════
+       MUSIC TICKER (stock market style)
+    ════════════════════════════════════ */
+    .ticker-section {
+      padding: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      background: rgba(212,168,85,0.03);
+    }
+    .ticker-outer {
+      overflow: hidden; padding: 1.1rem 0;
+      position: relative;
+    }
+    .ticker-outer::before,
+    .ticker-outer::after {
+      content: ''; position: absolute; top: 0; bottom: 0; z-index: 2; width: 80px; pointer-events: none;
+    }
+    .ticker-outer::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
+    .ticker-outer::after  { right: 0; background: linear-gradient(to left,  var(--black), transparent); }
+    .ticker-track {
+      display: flex; gap: 0.85rem; width: max-content;
+      animation: tickerScroll 22s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+    .ticker-tag {
+      background: rgba(212,168,85,0.1);
+      border: 1px solid rgba(212,168,85,0.3);
+      color: var(--gold2);
+      padding: 0.3rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.78rem; font-weight: 700;
+      white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .ticker-tag::before {
+      content: '▶'; font-size: 0.5rem; opacity: 0.5;
+    }
+
+    /* ════════════════════════════════════
+       DJ SANTI / OTK SECTION
+    ════════════════════════════════════ */
+    .dj-profile {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      padding: 4rem 2.5rem;
+    }
+    .dj-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2.5rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .dj-card:hover { border-color: rgba(212,168,85,0.35); transform: translateY(-3px); }
+    .dj-card-accent {
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(to right, var(--gold), transparent);
+    }
+    .dj-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.28rem 0.85rem; border-radius: 100px;
+      background: rgba(212,168,85,0.1); border: 1px solid rgba(212,168,85,0.25);
+      color: var(--gold2); margin-bottom: 1.5rem;
+    }
+    .dj-card h3 {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.55rem; letter-spacing: -0.01em;
+      color: var(--white); margin-bottom: 0.35rem; line-height: 1.15;
+    }
+    .dj-card .dj-role {
+      font-size: 0.82rem; color: var(--gold2); font-weight: 500;
+      letter-spacing: 0.05em; margin-bottom: 1.25rem;
+    }
+    .dj-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .dj-stats {
+      display: flex; gap: 2rem; margin-bottom: 1.5rem;
+    }
+    .dj-stat-num {
+      font-family: 'Syne', sans-serif; font-weight: 800;
+      font-size: 1.6rem; letter-spacing: -0.03em; color: var(--gold);
+    }
+    .dj-stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
+    .dj-ig-link {
+      display: inline-flex; align-items: center; gap: 0.55rem;
+      font-size: 0.82rem; font-weight: 500; color: var(--white);
+      text-decoration: none; padding: 0.55rem 1.1rem;
+      background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+      border-radius: 100px; transition: all 0.2s;
+    }
+    .dj-ig-link:hover {
+      background: rgba(225,48,108,0.15); border-color: rgba(225,48,108,0.4);
+      color: #f472b6;
+    }
+
+    /* ─── VENUES ─── */
+    .venues-row {
+      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;
+    }
+    .venue-chip {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.55rem 1.2rem; border-radius: 100px;
+      background: rgba(212,168,85,0.08); border: 1px solid rgba(212,168,85,0.22);
+      font-size: 0.85rem; font-weight: 500; color: var(--gold2);
+    }
+
+    /* ─── EQUIPMENT ─── */
+    .equip-row {
+      display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.25rem;
+    }
+    .equip-badge {
+      padding: 0.35rem 1rem; border-radius: 100px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── DIGITAL STRATEGY ─── */
+    .strat-card {
+      background: linear-gradient(135deg, rgba(212,168,85,0.1) 0%, rgba(212,168,85,0.03) 100%);
+      border: 1px solid rgba(212,168,85,0.2);
+      border-radius: 20px; padding: 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;
+    }
+    .strat-item { display: flex; flex-direction: column; gap: 0.5rem; }
+    .strat-icon { font-size: 1.6rem; margin-bottom: 0.35rem; }
+    .strat-item h4 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 0.95rem; color: var(--white);
+    }
+    .strat-item p { color: var(--muted); font-size: 0.8rem; line-height: 1.55; }
+
     /* ─── CONTACT PAGE ─── */
     .contact-layout {
       display: grid; grid-template-columns: 1fr 1.1fr;
@@ -348,30 +543,8 @@
     .cal-header .cal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
     .cal-header h2 { font-size: 1.2rem; }
     .cal-header p { color: var(--muted); font-size: 0.8rem; margin-top: 0.15rem; }
-    .cal-embed {
-      flex: 1;
-    }
-    .cal-embed iframe {
-      width: 100%; height: 100%; min-height: 600px;
-      border: none; background: var(--surface);
-    }
-    /* Fallback si cal.com pas encore configuré */
-    .cal-placeholder {
-      flex: 1; display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      padding: 3rem 2rem; text-align: center;
-    }
-    .cal-placeholder .cal-icon { font-size: 3rem; margin-bottom: 1.5rem; opacity: 0.5; }
-    .cal-placeholder h3 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.2rem; margin-bottom: 0.75rem; }
-    .cal-placeholder p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 2rem; }
-    .cal-open-btn {
-      background: var(--accent); color: #fff;
-      padding: 0.85rem 2rem; border-radius: 100px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
-      text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
-      transition: all 0.2s;
-    }
-    .cal-open-btn:hover { background: var(--accent2); transform: translateY(-2px); }
+    .cal-embed { flex: 1; }
+    .cal-embed iframe { width: 100%; height: 100%; min-height: 600px; border: none; background: var(--surface); }
 
     /* ─── FOOTER ─── */
     footer {
@@ -383,10 +556,23 @@
       color: var(--white); letter-spacing: -0.01em;
     }
     .footer-logo .dot { color: var(--accent); }
-    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--white); }
     .footer-copy { color: rgba(255,255,255,0.18); font-size: 0.75rem; }
+
+    /* ════════════════════════════════════
+       SCROLL REVEALS
+    ════════════════════════════════════ */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.18s; }
+    .reveal-delay-3 { transition-delay: 0.28s; }
+    .reveal-delay-4 { transition-delay: 0.38s; }
 
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
@@ -399,41 +585,85 @@
     .delay-3 { animation-delay: 0.35s; opacity: 0; }
     .delay-4 { animation-delay: 0.5s; opacity: 0; }
 
-    /* ─── RESPONSIVE ─── */
+    /* ════════════════════════════════════
+       RESPONSIVE — MOBILE FIRST
+    ════════════════════════════════════ */
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.25rem; }
-      .nav-links { display: none; }
+      nav {
+        display: flex; justify-content: center; align-items: center;
+        padding: 0.85rem 1.25rem; position: relative;
+      }
+      .nav-left, .nav-right { display: none; }
+      .nav-center { justify-content: center; }
       .nav-hamburger { display: flex; }
-      .nav-cta { display: none; }
+
       .hero { padding: 3rem 1.25rem 2.5rem; min-height: auto; }
       section { padding: 3rem 1.25rem; }
+
       .activity-split { grid-template-columns: 1fr; padding: 0 1.25rem 3rem; }
-      .activity-card h3 { font-size: 1.4rem; }
+      .activity-card h3 { font-size: 1.35rem; }
+
       .cta-band { margin: 0 1.25rem 3rem; padding: 2.5rem 1.5rem; }
       .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.25rem; }
       .process-steps { grid-template-columns: 1fr; }
+      .dj-profile { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
+      .strat-card { grid-template-columns: 1fr; }
       footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+
+      .dj-stats { gap: 1.25rem; }
+      .dj-stat-num { font-size: 1.35rem; }
+
+      h1 { font-size: clamp(2rem, 8vw, 3rem); }
+      h2 { font-size: clamp(1.5rem, 5.5vw, 2.2rem); }
+
+      .hero-events-bg::after {
+        background: linear-gradient(
+          to bottom,
+          rgba(8,8,8,0.92) 0%,
+          rgba(8,8,8,0.75) 50%,
+          rgba(8,8,8,0.85) 100%
+        );
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-ghost { text-align: center; justify-content: center; }
+      .venues-row { gap: 0.5rem; }
+      .venue-chip { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ─── NAV ─── -->
+  <!-- ════════════════════════════════════
+       SPLASH SCREEN
+  ════════════════════════════════════ -->
+  <div id="splash" onclick="exitSplash()">
+    <img src="./logo.jpeg" alt="TH DIGITAL" class="splash-logo" />
+    <div class="splash-hint">Toucher pour entrer</div>
+  </div>
+
+  <!-- ════════════════════════════════════
+       NAV
+  ════════════════════════════════════ -->
   <nav>
-    <a class="nav-logo" href="#" onclick="showPage('home'); return false;">
-      <img src="./logo.jpeg" alt="TH DIGITAL" class="nav-logo-img" />
-      T<span class="dot">.</span>H DIGITAL
-    </a>
-    <ul class="nav-links">
+    <!-- Left links -->
+    <ul class="nav-left">
       <li><a href="#" onclick="showPage('home'); return false;" id="nav-home" class="active">Accueil</a></li>
       <li><a href="#" onclick="showPage('conseil'); return false;" id="nav-conseil">Conseil Digital</a></li>
-      <li><a href="#" onclick="showPage('events'); return false;" id="nav-events">Événementiel</a></li>
+    </ul>
+    <!-- Center logo -->
+    <div class="nav-center">
+      <img src="./logo.jpeg" alt="TH DIGITAL" class="nav-logo-img" onclick="showPage('home')" />
+    </div>
+    <!-- Right links -->
+    <ul class="nav-right">
+      <li><a href="#" onclick="showPage('events'); return false;" id="nav-events" class="nav-events-link">Événementiel</a></li>
       <li><a href="#" onclick="showPage('rdv'); return false;" id="nav-rdv">RDV</a></li>
     </ul>
-    <a class="nav-cta" href="#" onclick="showPage('rdv'); return false;">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      RDV 30 min gratuit
-    </a>
+    <!-- Hamburger (mobile) -->
     <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -447,7 +677,9 @@
     <a href="#" onclick="showPage('rdv'); toggleMenu(); return false;" class="mobile-cta">Prendre RDV – 30 min gratuit →</a>
   </div>
 
-  <!-- ═══════════════════════════════════════════ PAGE : ACCUEIL ═══════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════
+       PAGE : ACCUEIL
+  ═══════════════════════════════════════════ -->
   <div class="page active" id="page-home">
 
     <!-- HERO -->
@@ -479,7 +711,7 @@
     <div class="activity-split">
 
       <!-- CONSEIL DIGITAL -->
-      <a class="activity-card conseil" href="#" onclick="showPage('conseil'); return false;">
+      <a class="activity-card conseil reveal" href="#" onclick="showPage('conseil'); return false;">
         <div class="card-glow"></div>
         <div class="activity-card-inner">
           <div class="activity-tag blue">Conseil Digital</div>
@@ -498,17 +730,16 @@
       </a>
 
       <!-- ÉVÉNEMENTIEL -->
-      <a class="activity-card events" href="#" onclick="showPage('events'); return false;">
+      <a class="activity-card events reveal reveal-delay-2" href="#" onclick="showPage('events'); return false;">
         <div class="card-glow"></div>
         <div class="activity-card-inner">
           <div class="activity-tag gold">Événementiel</div>
           <h3>Des événements<br/>qui marquent<br/>les esprits.</h3>
-          <p>Événements professionnels et privés sur mesure — DJ, photo/vidéo et service bar inclus pour une expérience complète.</p>
+          <p>Nuit, soirée, festival — DJ professionnel, photos & vidéos 4K, stratégie digitale. Une expérience complète, clé en main.</p>
           <div class="card-services">
             <span class="card-chip">DJ</span>
-            <span class="card-chip">Photographie</span>
-            <span class="card-chip">Vidéo</span>
-            <span class="card-chip">Bar & Boissons</span>
+            <span class="card-chip">Photos & Vidéos</span>
+            <span class="card-chip">Stratégie digitale</span>
             <span class="card-chip">Clé en main</span>
           </div>
           <div class="card-arrow">Découvrir <span>→</span></div>
@@ -519,29 +750,29 @@
 
     <!-- PROCESSUS -->
     <section style="padding-top: 1rem;">
-      <p class="section-label blue">Comment ça marche</p>
-      <h2>Simple & sans engagement</h2>
-      <p class="section-desc">Toutes les prestations commencent par un échange de 30 minutes gratuit pour définir ensemble votre projet.</p>
+      <p class="section-label blue reveal">Comment ça marche</p>
+      <h2 class="reveal">Simple & sans engagement</h2>
+      <p class="section-desc reveal">Toutes les prestations commencent par un échange de 30 minutes gratuit pour définir ensemble votre projet.</p>
       <div class="process-steps">
-        <div class="process-step">
+        <div class="process-step reveal">
           <div class="step-num">01</div>
           <div class="service-icon blue" style="margin-bottom:1rem;">📅</div>
           <h3>RDV découverte</h3>
           <p>30 minutes d'échange gratuit pour comprendre votre projet et vos objectifs.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step reveal reveal-delay-1">
           <div class="step-num">02</div>
           <div class="service-icon blue" style="margin-bottom:1rem;">📋</div>
           <h3>Devis sur mesure</h3>
           <p>Un devis personnalisé établi selon vos besoins réels. Pas de package préconçu.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step reveal reveal-delay-2">
           <div class="step-num">03</div>
           <div class="service-icon blue" style="margin-bottom:1rem;">🚀</div>
           <h3>Mise en œuvre</h3>
           <p>Réalisation complète du projet avec suivi régulier et points d'étape.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step reveal reveal-delay-3">
           <div class="step-num">04</div>
           <div class="service-icon blue" style="margin-bottom:1rem;">✅</div>
           <h3>Résultats concrets</h3>
@@ -551,7 +782,7 @@
     </section>
 
     <!-- CTA -->
-    <div class="cta-band blue">
+    <div class="cta-band blue reveal">
       <h2>Prêt à passer à l'action ?</h2>
       <p>Quel que soit votre projet — digital ou événementiel — tout commence par un échange.</p>
       <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">Réserver mon RDV gratuit →</a>
@@ -563,7 +794,9 @@
 
   </div>
 
-  <!-- ═══════════════════════════════════════════ PAGE : CONSEIL DIGITAL ═══════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════
+       PAGE : CONSEIL DIGITAL
+  ═══════════════════════════════════════════ -->
   <div class="page" id="page-conseil">
 
     <div class="hero" style="min-height: 55vh;">
@@ -586,47 +819,47 @@
 
     <!-- SERVICES -->
     <section>
-      <p class="section-label blue">Ce que je propose</p>
-      <h2>Mes services<br/>Conseil Digital</h2>
-      <p class="section-desc">Des interventions sur mesure, pensées pour les besoins réels de votre entreprise — pas des packages préconçus.</p>
+      <p class="section-label blue reveal">Ce que je propose</p>
+      <h2 class="reveal">Mes services<br/>Conseil Digital</h2>
+      <p class="section-desc reveal">Des interventions sur mesure, pensées pour les besoins réels de votre entreprise — pas des packages préconçus.</p>
 
       <div class="services-grid">
-        <div class="service-card blue">
+        <div class="service-card blue reveal">
           <div class="service-icon blue">🔍</div>
           <h3>Audit d'entreprise</h3>
           <p>Analyse complète de votre présence numérique, de vos process et de vos opportunités de croissance. Point de départ de toute intervention.</p>
         </div>
-        <div class="service-card blue">
+        <div class="service-card blue reveal reveal-delay-1">
           <div class="service-icon blue">🤖</div>
           <h3>IA & Automatisation</h3>
           <p>Identification et mise en place des outils d'intelligence artificielle adaptés à votre activité pour gagner du temps et optimiser vos opérations.</p>
         </div>
-        <div class="service-card blue">
+        <div class="service-card blue reveal reveal-delay-2">
           <div class="service-icon blue">💬</div>
           <h3>Chatbot & Assistants</h3>
           <p>Création et déploiement de chatbots personnalisés pour votre service client, vos prises de rendez-vous ou votre communication interne.</p>
         </div>
-        <div class="service-card blue">
+        <div class="service-card blue reveal">
           <div class="service-icon blue">🌐</div>
           <h3>Site web</h3>
           <p>Conception et réalisation de sites vitrines modernes, rapides et orientés conversion. De la maquette à la mise en ligne.</p>
         </div>
-        <div class="service-card blue">
+        <div class="service-card blue reveal reveal-delay-1">
           <div class="service-icon blue">🎯</div>
           <h3>Publicité digitale</h3>
           <p>Stratégie et gestion de campagnes Meta Ads, Google Ads pour générer des prospects qualifiés et des ventes concrètes.</p>
         </div>
-        <div class="service-card blue">
+        <div class="service-card blue reveal reveal-delay-2">
           <div class="service-icon blue">✏️</div>
           <h3>Identité visuelle</h3>
           <p>Création de logo, charte graphique et supports de communication. Une identité forte et cohérente pour vous différencier.</p>
         </div>
-        <div class="service-card blue">
+        <div class="service-card blue reveal">
           <div class="service-icon blue">📈</div>
           <h3>Accompagnement commercial</h3>
           <p>Structuration de votre démarche commerciale, scripts de vente, outils CRM et formation équipe pour booster vos résultats.</p>
         </div>
-        <div class="service-card blue">
+        <div class="service-card blue reveal reveal-delay-1">
           <div class="service-icon blue">🛠️</div>
           <h3>Ingénierie projet</h3>
           <p>Pilotage opérationnel de vos projets numériques de A à Z : cadrage, planification, coordination et livraison.</p>
@@ -634,23 +867,23 @@
       </div>
     </section>
 
-    <!-- POURQUOI -->
+    <!-- APPROCHE -->
     <section style="padding-top: 1rem;">
-      <p class="section-label blue">L'approche</p>
-      <h2>Sur mesure,<br/>pas en package.</h2>
-      <p class="section-desc">Chaque entreprise est unique. C'est pourquoi toutes mes prestations sont construites après un audit de votre situation réelle.</p>
+      <p class="section-label blue reveal">L'approche</p>
+      <h2 class="reveal">Sur mesure,<br/>pas en package.</h2>
+      <p class="section-desc reveal">Chaque entreprise est unique. C'est pourquoi toutes mes prestations sont construites après un audit de votre situation réelle.</p>
       <div class="process-steps">
-        <div class="process-step">
+        <div class="process-step reveal">
           <div class="step-num">✦</div>
           <h3>Diagnostic complet</h3>
           <p>On commence toujours par comprendre votre business, vos forces et vos points de friction avant de proposer quoi que ce soit.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step reveal reveal-delay-1">
           <div class="step-num">✦</div>
           <h3>Plan d'action ciblé</h3>
           <p>Un plan d'action réaliste et priorisé, calibré sur votre budget et vos objectifs — sans sur-vente.</p>
         </div>
-        <div class="process-step">
+        <div class="process-step reveal reveal-delay-2">
           <div class="step-num">✦</div>
           <h3>Réalisation ou formation</h3>
           <p>Je peux réaliser moi-même ou vous former à utiliser les outils pour que vous soyez autonomes à terme.</p>
@@ -659,7 +892,7 @@
     </section>
 
     <!-- CTA -->
-    <div class="cta-band blue">
+    <div class="cta-band blue reveal">
       <h2>Discutons de votre<br/>projet digital.</h2>
       <p>Premier échange de 30 minutes offert. Sans engagement, sans frais.</p>
       <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">Réserver mon RDV gratuit →</a>
@@ -671,81 +904,211 @@
 
   </div>
 
-  <!-- ═══════════════════════════════════════════ PAGE : ÉVÉNEMENTIEL ═══════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════
+       PAGE : ÉVÉNEMENTIEL
+  ═══════════════════════════════════════════ -->
   <div class="page" id="page-events">
 
-    <div class="hero" style="min-height: 55vh;">
-      <div class="hero-bg gold"></div>
-      <div class="hero-grid"></div>
+    <!-- HERO AVEC PHOTO DJ SANTI -->
+    <div class="hero" style="min-height: 65vh;">
+      <div class="hero-events-bg"></div>
       <div class="hero-content">
-        <div class="hero-badge gold fade-up">Événementiel</div>
+        <div class="hero-badge gold fade-up">Événementiel · La Réunion</div>
         <h1 class="fade-up delay-1">
-          Des moments<br/>
-          <em class="gold">inoubliables.</em>
+          Des nuits qui<br/>
+          <em class="gold">font vibrer.</em>
         </h1>
         <p class="hero-sub fade-up delay-2">
-          Événements professionnels et privés sur mesure. DJ, photo/vidéo et service bar réunis pour une expérience clé en main à La Réunion.
+          Night-clubs, bars, restaurants, associations, entreprises — DJ professionnel, matériel haut de gamme et stratégie digitale pour des événements qui marquent.
         </p>
         <div class="hero-actions fade-up delay-3">
           <a class="btn-primary gold" href="#" onclick="showPage('rdv'); return false;">Demander un devis →</a>
+          <a class="btn-ghost" href="https://www.instagram.com/djsanti_musicrew/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Suivre l'actualité
+          </a>
         </div>
       </div>
     </div>
 
+    <!-- MUSIC TICKER -->
+    <div class="ticker-section">
+      <div class="ticker-outer">
+        <div class="ticker-track">
+          <!-- Set 1 -->
+          <span class="ticker-tag">House</span>
+          <span class="ticker-tag">Afro-House</span>
+          <span class="ticker-tag">Deep House</span>
+          <span class="ticker-tag">Électro</span>
+          <span class="ticker-tag">Melodic Techno</span>
+          <span class="ticker-tag">Techno</span>
+          <span class="ticker-tag">House</span>
+          <span class="ticker-tag">Afro-House</span>
+          <span class="ticker-tag">Deep House</span>
+          <span class="ticker-tag">Électro</span>
+          <span class="ticker-tag">Melodic Techno</span>
+          <span class="ticker-tag">Techno</span>
+          <!-- Set 2 (duplicate for infinite loop) -->
+          <span class="ticker-tag">House</span>
+          <span class="ticker-tag">Afro-House</span>
+          <span class="ticker-tag">Deep House</span>
+          <span class="ticker-tag">Électro</span>
+          <span class="ticker-tag">Melodic Techno</span>
+          <span class="ticker-tag">Techno</span>
+          <span class="ticker-tag">House</span>
+          <span class="ticker-tag">Afro-House</span>
+          <span class="ticker-tag">Deep House</span>
+          <span class="ticker-tag">Électro</span>
+          <span class="ticker-tag">Melodic Techno</span>
+          <span class="ticker-tag">Techno</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DJ SANTI + OTK -->
+    <div class="dj-profile">
+
+      <!-- DJ SANTI -->
+      <div class="dj-card reveal">
+        <div class="dj-card-accent"></div>
+        <div class="dj-tag">DJ résidant</div>
+        <h3>DJ SANTI</h3>
+        <div class="dj-role">DJ · Producteur · Organisateur</div>
+        <p>
+          Sets construits avec précision, énergie maîtrisée et lecture de la foule.
+          House, Afro-House, Deep, Électro, Melodic Techno — chaque set est une expérience.
+          Disponible pour soirées privées, résidences, festivals et événements professionnels.
+        </p>
+        <div class="dj-stats">
+          <div>
+            <div class="dj-stat-num">30+</div>
+            <div class="dj-stat-label">dates jouées</div>
+          </div>
+          <div>
+            <div class="dj-stat-num">1000s</div>
+            <div class="dj-stat-label">personnes animées</div>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/djsanti_musicrew/" target="_blank" rel="noopener" class="dj-ig-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @djsanti_musicrew
+        </a>
+      </div>
+
+      <!-- OTK COLLECTIF -->
+      <div class="dj-card reveal reveal-delay-2">
+        <div class="dj-card-accent" style="background: linear-gradient(to right, #7c7cff, transparent);"></div>
+        <div class="dj-tag" style="background: rgba(90,90,255,0.1); border-color: rgba(90,90,255,0.25); color: var(--accent2);">Collectif</div>
+        <h3>O.T.K</h3>
+        <div class="dj-role" style="color: var(--accent2);">Fondé en 2024 · La Réunion</div>
+        <p>
+          Le collectif O.T.K réunit des DJs sélectionnés selon des critères artistiques rigoureux.
+          Fondé à La Réunion en 2024, le collectif a déjà fait vibrer des milliers de personnes
+          à travers plus de 30 dates sur l'île. Chaque artiste apporte sa sensibilité,
+          une énergie commune les réunit.
+        </p>
+        <div class="dj-stats">
+          <div>
+            <div class="dj-stat-num">2024</div>
+            <div class="dj-stat-label">année de création</div>
+          </div>
+          <div>
+            <div class="dj-stat-num">🇷🇪</div>
+            <div class="dj-stat-label">La Réunion</div>
+          </div>
+        </div>
+        <a href="https://www.instagram.com/otkmusicrecords/" target="_blank" rel="noopener" class="dj-ig-link">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          @otkmusicrecords
+        </a>
+      </div>
+
+    </div>
+
+    <!-- POUR QUI -->
+    <section style="padding-top: 0;">
+      <p class="section-label gold reveal">Pour qui</p>
+      <h2 class="reveal">Lieux & établissements</h2>
+      <p class="section-desc reveal">Nous intervenons dans tous les lieux accueillant du public, avec une approche adaptée à chaque contexte.</p>
+      <div class="venues-row reveal">
+        <div class="venue-chip">🏟️ Night-Club</div>
+        <div class="venue-chip">🍸 Bar</div>
+        <div class="venue-chip">🍽️ Restaurant</div>
+        <div class="venue-chip">🤝 Association</div>
+        <div class="venue-chip">🏢 Entreprise</div>
+      </div>
+    </section>
+
     <!-- SERVICES -->
-    <section>
-      <p class="section-label gold">Ce que j'offre</p>
-      <h2>Vos événements<br/>sur mesure</h2>
-      <p class="section-desc">Chaque événement est unique. Je construis votre expérience en fonction de votre vision, de votre public et de votre budget.</p>
+    <section style="padding-top: 2rem;">
+      <p class="section-label gold reveal">Ce que j'offre</p>
+      <h2 class="reveal">Prestations<br/>événementielles</h2>
+      <p class="section-desc reveal">Du son au visuel, tout est géré avec des professionnels et du matériel de scène.</p>
 
       <div class="services-grid">
-        <div class="service-card gold" style="grid-column: span 1;">
+        <div class="service-card gold reveal">
           <div class="service-icon gold">🎧</div>
           <h3>DJ & Ambiance</h3>
-          <p>Animation musicale professionnelle pour vos événements corporate, soirées privées, mariages et festivités. Matériel professionnel inclus, set adapté à votre public et à l'atmosphère souhaitée.</p>
+          <p>Sets House, Afro-House, Deep, Électro, Melodic Techno & Techno. Lecture de la foule, énergie progressive, expérience sonore de A à Z.</p>
         </div>
-        <div class="service-card gold">
+        <div class="service-card gold reveal reveal-delay-1">
           <div class="service-icon gold">📸</div>
-          <h3>Photographie</h3>
-          <p>Reportage photo professionnel de votre événement. Captation des moments clés, portraits et ambiances. Livraison de galerie numérique haute définition.</p>
+          <h3>Photos & Vidéos</h3>
+          <p>Captation photo et vidéo 4K de vos événements. Montage sur mesure, formats réseaux sociaux inclus. Un souvenir professionnel qui donne envie de revenir.</p>
         </div>
-        <div class="service-card gold">
-          <div class="service-icon gold">🎬</div>
-          <h3>Vidéo & Film</h3>
-          <p>Captation vidéo cinématique de votre événement. Teaser courts formats pour les réseaux sociaux et film souvenir complet monté et étalonnée.</p>
-        </div>
-        <div class="service-card gold">
-          <div class="service-icon gold">🍹</div>
-          <h3>Bar & Boissons</h3>
-          <p>Service bar complet avec sélection de boissons adaptée à votre événement. Cocktails, softs et service traiteur léger sur mesure.</p>
-        </div>
-        <div class="service-card gold">
+        <div class="service-card gold reveal reveal-delay-2">
           <div class="service-icon gold">🏆</div>
           <h3>Clé en main</h3>
-          <p>Prise en charge complète de l'événement, de la conception au débrief. Un seul interlocuteur pour coordonner tous les prestataires.</p>
+          <p>Prise en charge complète : son, lumières, coordination des intervenants. Un seul contact pour un événement sans stress.</p>
         </div>
-        <div class="service-card gold">
+        <div class="service-card gold reveal">
           <div class="service-icon gold">📋</div>
           <h3>Conseil & Planification</h3>
-          <p>Aide à la conception de votre événement, sélection du lieu, programme détaillé et coordination logistique pour garantir le bon déroulé.</p>
+          <p>Conception du programme, sélection du lieu, coordination logistique et suivi pré-événement pour garantir le bon déroulé.</p>
         </div>
       </div>
     </section>
 
-    <!-- TYPES D'ÉVÉNEMENTS -->
-    <section style="padding-top: 1rem;">
-      <p class="section-label gold">Événements</p>
-      <h2>Pour tous vos projets</h2>
-      <p class="section-desc">Événements professionnels ou privés, petits ou grands formats — chaque projet mérite une attention sur mesure.</p>
-      <div class="services-grid">
-        <div class="service-card gold"><div class="service-icon gold">🏢</div><h3>Soirées d'entreprise</h3><p>Team building, séminaires, lancement de produit, anniversaire d'entreprise.</p></div>
-        <div class="service-card gold"><div class="service-icon gold">💍</div><h3>Mariages & Privé</h3><p>Mariages, anniversaires, baptêmes et célébrations familiales.</p></div>
-        <div class="service-card gold"><div class="service-icon gold">🎉</div><h3>Soirées & Fêtes</h3><p>Soirées thématiques, after-work, galas et événements associatifs.</p></div>
+    <!-- MATÉRIEL PRO -->
+    <section style="padding-top: 0;">
+      <p class="section-label gold reveal">Équipement</p>
+      <h2 class="reveal">Matériel<br/>professionnel</h2>
+      <p class="section-desc reveal">Nous travaillons exclusivement avec des marques reconnues dans l'industrie du son et du live.</p>
+      <div class="equip-row reveal">
+        <div class="equip-badge">Pioneer DJ</div>
+        <div class="equip-badge">RCF</div>
+        <div class="equip-badge">Sennheiser</div>
+        <div class="equip-badge">DB Technologies</div>
+      </div>
+    </section>
+
+    <!-- STRATÉGIE DIGITALE -->
+    <section style="padding-top: 0;">
+      <p class="section-label gold reveal">En option</p>
+      <h2 class="reveal">Stratégie digitale<br/>pour votre événement</h2>
+      <p class="section-desc reveal">En complément de la prestation live, une offre digitale complète est disponible sur demande.</p>
+
+      <div class="strat-card reveal">
+        <div class="strat-item">
+          <div class="strat-icon">🎨</div>
+          <h4>Création d'affiche</h4>
+          <p>Affiche événementielle professionnelle déclinée en tous formats — print, stories, post, bannière.</p>
+        </div>
+        <div class="strat-item">
+          <div class="strat-icon">🎬</div>
+          <h4>Vidéo de teasing</h4>
+          <p>Courte vidéo de teasing pour créer l'attente et booster la communication avant l'événement.</p>
+        </div>
+        <div class="strat-item">
+          <div class="strat-icon">🎟️</div>
+          <h4>Billetterie en ligne</h4>
+          <p>Mise en place d'une billetterie digitale simple et efficace pour vendre vos places en ligne.</p>
+        </div>
       </div>
     </section>
 
     <!-- CTA -->
-    <div class="cta-band gold">
+    <div class="cta-band gold reveal">
       <h2>Votre événement<br/>mérite le meilleur.</h2>
       <p>Parlez-moi de votre projet et recevez un devis personnalisé sous 48h.</p>
       <a class="btn-primary gold" href="#" onclick="showPage('rdv'); return false;">Réserver mon RDV gratuit →</a>
@@ -757,7 +1120,9 @@
 
   </div>
 
-  <!-- ═══════════════════════════════════════════ PAGE : RDV ═══════════════════════════════════════════ -->
+  <!-- ═══════════════════════════════════════════
+       PAGE : RDV
+  ═══════════════════════════════════════════ -->
   <div class="page" id="page-rdv">
     <div class="contact-layout">
 
@@ -819,9 +1184,7 @@
       <!-- CAL.COM EMBED -->
       <div class="cal-block" id="cal-block">
         <div class="cal-header">
-          <div>
-            <div class="cal-dot"></div>
-          </div>
+          <div><div class="cal-dot"></div></div>
           <div>
             <h2>Choisissez un créneau</h2>
             <p>Consultation découverte · 30 min · Visio ou téléphone · Gratuit</p>
@@ -848,28 +1211,31 @@
   </footer>
 
   <script>
-    function showPage(id) {
-      // Masquer toutes les pages
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      // Désactiver tous les liens nav
-      document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-      // Afficher la page cible
-      const page = document.getElementById('page-' + id);
-      if (page) page.classList.add('active');
-      // Activer le lien nav correspondant
-      const navLink = document.getElementById('nav-' + id);
-      if (navLink) navLink.classList.add('active');
-      // Remonter en haut
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      // Fermer le menu mobile
-      document.getElementById('mobile-menu').classList.remove('open');
+    /* ─── SPLASH ─── */
+    function exitSplash() {
+      const splash = document.getElementById('splash');
+      splash.classList.add('exit');
+      setTimeout(() => { splash.style.display = 'none'; }, 800);
     }
 
+    /* ─── PAGE ROUTING ─── */
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.nav-left a, .nav-right a').forEach(a => a.classList.remove('active'));
+      const page = document.getElementById('page-' + id);
+      if (page) page.classList.add('active');
+      const navLink = document.getElementById('nav-' + id);
+      if (navLink) navLink.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.getElementById('mobile-menu').classList.remove('open');
+      // Trigger reveals for the newly shown page
+      setTimeout(checkReveals, 80);
+    }
+
+    /* ─── MOBILE MENU ─── */
     function toggleMenu() {
       document.getElementById('mobile-menu').classList.toggle('open');
     }
-
-    // Fermer le menu mobile si clic en dehors
     document.addEventListener('click', function(e) {
       const menu = document.getElementById('mobile-menu');
       const hamburger = document.querySelector('.nav-hamburger');
@@ -877,6 +1243,20 @@
         menu.classList.remove('open');
       }
     });
+
+    /* ─── SCROLL REVEALS ─── */
+    function checkReveals() {
+      const threshold = window.innerHeight * 0.92;
+      document.querySelectorAll('.page.active .reveal').forEach(el => {
+        if (el.getBoundingClientRect().top < threshold) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', checkReveals, { passive: true });
+    // On load, trigger for initial active page
+    window.addEventListener('load', checkReveals);
+    setTimeout(checkReveals, 200);
   </script>
 
 </body>
