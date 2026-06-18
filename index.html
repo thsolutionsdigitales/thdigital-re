@@ -99,15 +99,24 @@
       justify-content: flex-start; align-items: center;
       padding-left: 2rem;
     }
+    @keyframes logoRingPulse {
+      0%, 100% {
+        box-shadow: 0 0 0 3px rgba(255,255,255,0.75), 0 0 0 7px rgba(255,255,255,0.12), 0 0 20px rgba(255,255,255,0.10);
+      }
+      50% {
+        box-shadow: 0 0 0 5px rgba(255,255,255,1), 0 0 0 12px rgba(255,255,255,0.28), 0 0 34px rgba(255,255,255,0.20);
+      }
+    }
     .nav-logo-img {
       width: 62px; height: 62px; border-radius: 50%;
       object-fit: cover; cursor: pointer;
-      transition: transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 0 2px rgba(90,90,255,0.2), 0 0 20px rgba(90,90,255,0.15);
+      transition: transform 0.3s;
+      animation: logoRingPulse 2.4s ease-in-out infinite;
     }
     .nav-logo-img:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 0 2px rgba(124,124,255,0.4), 0 0 28px rgba(90,90,255,0.35);
+      animation-play-state: paused;
+      box-shadow: 0 0 0 5px rgba(255,255,255,0.98), 0 0 0 12px rgba(255,255,255,0.28), 0 0 36px rgba(255,255,255,0.22);
     }
     .nav-left a, .nav-right a {
       color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.9rem;
@@ -685,6 +694,166 @@
       .venues-row { gap: 0.5rem; }
       .venue-chip { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
     }
+
+    /* ════════════════════════════════════
+       HERO VIDEO BACKGROUND
+    ════════════════════════════════════ */
+    .hero-video-bg {
+      position: absolute; inset: 0; z-index: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; pointer-events: none;
+    }
+    .hero-video-overlay {
+      position: absolute; inset: 0; z-index: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(8,8,8,0.88) 0%,
+        rgba(8,8,8,0.68) 55%,
+        rgba(8,8,8,0.42) 100%
+      );
+    }
+
+    /* ════════════════════════════════════
+       ZOOM FOCUS EFFECT (hover group)
+    ════════════════════════════════════ */
+    .activity-card {
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, opacity 0.28s !important;
+    }
+    .activity-split:hover .activity-card:not(:hover) {
+      transform: scale(0.97) !important;
+      opacity: 0.80;
+    }
+    .activity-split:hover .activity-card:hover {
+      transform: scale(1.04) translateY(-5px) !important;
+      opacity: 1;
+    }
+    .service-card {
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, opacity 0.28s !important;
+    }
+    .services-grid:hover .service-card:not(:hover) {
+      transform: scale(0.97) !important;
+      opacity: 0.80;
+    }
+    .services-grid:hover .service-card:hover {
+      transform: scale(1.045) translateY(-4px) !important;
+      opacity: 1;
+    }
+    .dj-card {
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, opacity 0.28s !important;
+    }
+    .dj-profile:hover .dj-card:not(:hover) {
+      transform: scale(0.97) !important;
+      opacity: 0.80;
+    }
+    .dj-profile:hover .dj-card:hover {
+      transform: scale(1.04) translateY(-4px) !important;
+      opacity: 1;
+    }
+
+    /* Zoom focus — process-steps (Approche / Comment ça marche) */
+    .process-steps .process-step {
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.28s, border-color 0.25s, box-shadow 0.28s;
+    }
+    .process-steps:hover .process-step:not(:hover) {
+      transform: scale(0.97);
+      opacity: 0.78;
+    }
+    .process-steps:hover .process-step:hover {
+      transform: scale(1.04) translateY(-4px);
+      opacity: 1;
+      border-color: rgba(90,90,255,0.3);
+      box-shadow: 0 0 18px rgba(90,90,255,0.14), 0 8px 28px rgba(0,0,0,0.4);
+    }
+
+    /* Zoom focus — strat-items (Stratégie digitale événement) */
+    .strat-card .strat-item {
+      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.28s;
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin: -1.25rem;
+    }
+    .strat-card:hover .strat-item:not(:hover) {
+      transform: scale(0.96);
+      opacity: 0.72;
+    }
+    .strat-card:hover .strat-item:hover {
+      transform: scale(1.04);
+      opacity: 1;
+    }
+
+    /* ════════════════════════════════════
+       CONTACT PAGE TABS
+    ════════════════════════════════════ */
+    .contact-tabs-bar {
+      display: flex; border-bottom: 1px solid var(--border);
+    }
+    .contact-tab {
+      flex: 1; padding: 1.1rem 1.25rem; cursor: pointer;
+      font-size: 0.88rem; font-weight: 500; color: var(--muted);
+      border: none; border-bottom: 2px solid transparent; margin-bottom: -1px;
+      background: none; font-family: 'DM Sans', sans-serif;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-tab.active { color: var(--white); border-bottom-color: var(--accent); }
+    .contact-tab-content { display: none; }
+    .contact-tab-content.active { display: block; }
+
+    /* ════════════════════════════════════
+       CONTACT FORM
+    ════════════════════════════════════ */
+    .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
+    .form-group label {
+      font-size: 0.82rem; font-weight: 500;
+      color: rgba(255,255,255,0.72); letter-spacing: 0.01em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 12px; padding: 0.78rem 1rem;
+      color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      transition: border-color 0.2s, background 0.2s; outline: none;
+      -webkit-appearance: none; appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.22); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(90,90,255,0.5); background: rgba(90,90,255,0.05);
+    }
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    .form-group select option { background: #1a1a2e; color: var(--white); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+    .form-submit-btn {
+      background: var(--accent); color: #fff; border: none;
+      padding: 0.88rem 2rem; border-radius: 100px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
+      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+      transition: all 0.2s; width: 100%; margin-top: 0.25rem;
+    }
+    .form-submit-btn:hover:not(:disabled) { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(90,90,255,0.35); }
+    .form-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-success {
+      display: none; background: rgba(90,90,255,0.08); border: 1px solid rgba(90,90,255,0.25);
+      border-radius: 14px; padding: 2.5rem 1.5rem; text-align: center;
+      color: var(--white); line-height: 1.65;
+    }
+    .form-success.show { display: block; }
+    .form-error {
+      display: none; background: rgba(255,80,80,0.08); border: 1px solid rgba(255,80,80,0.25);
+      border-radius: 10px; padding: 0.85rem 1rem;
+      color: #ff8888; font-size: 0.85rem;
+    }
+    .form-error.show { display: block; }
+    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -713,7 +882,7 @@
     <!-- Right links -->
     <ul class="nav-right">
       <li><a href="#" onclick="showPage('events'); return false;" id="nav-events" class="nav-events-link">Événementiel</a></li>
-      <li><a href="#" onclick="showPage('rdv'); return false;" id="nav-rdv">RDV</a></li>
+      <li><a href="#" onclick="showPage('contact'); return false;" id="nav-contact">Contact</a></li>
     </ul>
     <!-- Hamburger (mobile) -->
     <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
@@ -726,7 +895,7 @@
     <a href="#" onclick="showPage('home'); toggleMenu(); return false;">Accueil</a>
     <a href="#" onclick="showPage('conseil'); toggleMenu(); return false;">Conseil Digital</a>
     <a href="#" onclick="showPage('events'); toggleMenu(); return false;">Événementiel</a>
-    <a href="#" onclick="showPage('rdv'); toggleMenu(); return false;" class="mobile-cta">Prendre RDV – 30 min gratuit →</a>
+    <a href="#" onclick="showPage('contact'); toggleMenu(); return false;" class="mobile-cta">Contact →</a>
   </div>
 
   <!-- ═══════════════════════════════════════════
@@ -736,8 +905,10 @@
 
     <!-- HERO -->
     <div class="hero">
-      <div class="hero-bg blue"></div>
-      <div class="hero-grid"></div>
+      <video class="hero-video-bg" autoplay muted loop playsinline>
+        <source src="./video accueil.mp4" type="video/mp4">
+      </video>
+      <div class="hero-video-overlay"></div>
       <div class="hero-content">
         <div class="hero-badge blue fade-up">Entrepreneur indépendant · La Réunion</div>
         <h1 class="fade-up delay-1">
@@ -749,9 +920,9 @@
           Deux expertises, un seul interlocuteur.
         </p>
         <div class="hero-actions fade-up delay-3">
-          <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            RDV gratuit 30 min
+          <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Nous contacter
           </a>
           <a class="btn-ghost" href="#" onclick="showPage('conseil'); return false;">Conseil Digital →</a>
           <a class="btn-ghost" href="#" onclick="showPage('events'); return false;">Événementiel →</a>
@@ -837,7 +1008,7 @@
     <div class="cta-band blue reveal">
       <h2>Prêt à passer à l'action ?</h2>
       <p>Quel que soit votre projet — digital ou événementiel — tout commence par un échange.</p>
-      <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">Réserver mon RDV gratuit →</a>
+      <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">Réserver mon RDV gratuit →</a>
       <div class="cta-note">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Sans engagement · 30 minutes · 100% gratuit
@@ -863,7 +1034,7 @@
           Audit de votre structure, déploiement des bons outils numériques et accompagnement commercial global pour les TPE/PME de La Réunion.
         </p>
         <div class="hero-actions fade-up delay-3">
-          <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">Demander un devis gratuit →</a>
+          <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">Demander un devis gratuit →</a>
         </div>
       </div>
     </div>
@@ -946,7 +1117,7 @@
     <div class="cta-band blue reveal">
       <h2>Discutons de votre<br/>projet digital.</h2>
       <p>Premier échange de 30 minutes offert. Sans engagement, sans frais.</p>
-      <a class="btn-primary" href="#" onclick="showPage('rdv'); return false;">Réserver mon RDV gratuit →</a>
+      <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">Réserver mon RDV gratuit →</a>
       <div class="cta-note">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Toutes les prestations font l'objet d'un devis personnalisé
@@ -973,7 +1144,7 @@
           Night-clubs, bars, restaurants, associations, entreprises — DJ professionnel, matériel haut de gamme et stratégie digitale pour des événements qui marquent.
         </p>
         <div class="hero-actions fade-up delay-3">
-          <a class="btn-primary gold" href="#" onclick="showPage('rdv'); return false;">Demander un devis →</a>
+          <a class="btn-primary gold" href="#" onclick="showPage('contact'); return false;">Demander un devis →</a>
           <a class="btn-ghost" href="https://www.instagram.com/djsanti_musicrew/" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             Suivre l'actualité
@@ -1162,7 +1333,7 @@
     <div class="cta-band gold reveal">
       <h2>Votre événement<br/>mérite le meilleur.</h2>
       <p>Parlez-moi de votre projet et recevez un devis personnalisé sous 48h.</p>
-      <a class="btn-primary gold" href="#" onclick="showPage('rdv'); return false;">Réserver mon RDV gratuit →</a>
+      <a class="btn-primary gold" href="#" onclick="showPage('contact'); return false;">Réserver mon RDV gratuit →</a>
       <div class="cta-note" style="color: rgba(212,168,85,0.4);">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         Toutes les prestations font l'objet d'un devis personnalisé
@@ -1172,9 +1343,9 @@
   </div>
 
   <!-- ═══════════════════════════════════════════
-       PAGE : RDV
+       PAGE : CONTACT
   ═══════════════════════════════════════════ -->
-  <div class="page" id="page-rdv">
+  <div class="page" id="page-contact">
     <div class="contact-layout">
 
       <!-- INFO -->
@@ -1182,7 +1353,7 @@
         <p class="section-label blue">Premier contact</p>
         <h1>Parlons de<br/><em class="blue">votre projet.</em></h1>
         <p>
-          Réservez un créneau de 30 minutes pour qu'on puisse échanger librement sur votre projet. Gratuit, sans engagement.
+          Envoyez-nous un message ou réservez un créneau de 30 minutes. Gratuit, sans engagement.
           Je reviens vers vous avec un devis sur mesure.
         </p>
 
@@ -1232,18 +1403,102 @@
         </div>
       </div>
 
-      <!-- CAL.COM EMBED -->
-      <div class="cal-block" id="cal-block">
-        <div class="cal-header">
-          <div><div class="cal-dot"></div></div>
-          <div>
-            <h2>Choisissez un créneau</h2>
-            <p>Consultation découverte · 30 min · Visio ou téléphone · Gratuit</p>
+      <!-- DROITE : ONGLETS Message / RDV -->
+      <div class="cal-block" id="contact-block">
+
+        <!-- ONGLETS -->
+        <div class="contact-tabs-bar">
+          <button class="contact-tab active" id="tab-btn-form" onclick="switchContactTab('form')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Envoyer un message
+          </button>
+          <button class="contact-tab" id="tab-btn-cal" onclick="switchContactTab('cal')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            RDV Gratuit
+          </button>
+        </div>
+
+        <!-- ONGLET FORMULAIRE -->
+        <div class="contact-tab-content active" id="tab-form" style="padding: 1.75rem 2rem 2rem; overflow-y: auto; max-height: 720px;">
+          <!--
+            ═══════════════════════════════════════════
+            ACTIVATION DU FORMULAIRE (2 min)
+            ───────────────────────────────────────────
+            1. Allez sur https://web3forms.com
+               → Entrez th.solutionsdigitales@gmail.com
+               → Copiez votre clé et remplacez VOTRE_CLE_WEB3FORMS ci-dessous
+            2. (Optionnel) Anti-bot Cloudflare Turnstile :
+               → https://dash.cloudflare.com/turnstile
+               → Créez un site → remplacez VOTRE_CLE_TURNSTILE ci-dessous
+               → Décommentez le script Turnstile dans <head>
+            ═══════════════════════════════════════════
+          -->
+          <form id="contact-form" class="contact-form" novalidate>
+            <!-- Honeypot anti-spam (ne pas supprimer) -->
+            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+            <!-- Web3Forms -->
+            <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS">
+            <input type="hidden" name="subject" value="Nouveau message depuis thdigital.re">
+            <input type="hidden" name="from_name" value="T.H Digital Website">
+            <input type="hidden" name="replyto" id="replyto-field" value="">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="prenom" placeholder="Jean" required>
+              </div>
+              <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="nom" placeholder="Dupont" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email-field" name="email" placeholder="jean.dupont@exemple.fr" required>
+            </div>
+            <div class="form-group">
+              <label for="sujet">Sujet</label>
+              <select id="sujet" name="sujet" required>
+                <option value="" disabled selected>Sélectionnez un sujet</option>
+                <option value="Conseil Digital">Conseil Digital</option>
+                <option value="Événementiel">Événementiel</option>
+                <option value="Demande de devis">Demande de devis</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Décrivez votre demande..." required></textarea>
+            </div>
+
+            <!-- Cloudflare Turnstile (décommenter le script dans <head> après avoir configuré la clé) -->
+            <div class="cf-turnstile" data-sitekey="VOTRE_CLE_TURNSTILE" data-theme="dark" data-size="flexible"></div>
+
+            <div id="form-error" class="form-error"></div>
+
+            <button type="submit" class="form-submit-btn" id="form-submit-btn">
+              Envoyer le message
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
+
+          <div id="form-success" class="form-success">
+            <div style="font-size: 2.5rem; margin-bottom: 1rem;">✉️</div>
+            <strong style="font-size: 1.1rem; display: block; color: var(--white); margin-bottom: 0.5rem;">Message envoyé !</strong>
+            Merci pour votre message. Je vous répondrai dans les meilleurs délais.
           </div>
         </div>
-        <div class="cal-embed">
-          <iframe src="https://cal.com/th-digital-re/30min?embed=true&theme=dark" allowfullscreen></iframe>
+
+        <!-- ONGLET CAL.COM -->
+        <div class="contact-tab-content" id="tab-cal">
+          <div style="padding: 1.25rem 2rem 0.75rem; border-bottom: 1px solid var(--border);">
+            <p style="font-size: 0.83rem; color: var(--muted);">Consultation découverte · 30 min · Visio ou téléphone · Gratuit</p>
+          </div>
+          <div class="cal-embed">
+            <iframe src="https://cal.com/th-digital-re/30min?embed=true&theme=dark" allowfullscreen></iframe>
+          </div>
         </div>
+
       </div>
 
     </div>
@@ -1256,7 +1511,7 @@
       <a href="#" onclick="showPage('home'); return false;">Accueil</a>
       <a href="#" onclick="showPage('conseil'); return false;">Conseil Digital</a>
       <a href="#" onclick="showPage('events'); return false;">Événementiel</a>
-      <a href="#" onclick="showPage('rdv'); return false;">RDV Gratuit</a>
+      <a href="#" onclick="showPage('contact'); return false;">Contact</a>
     </div>
     <div class="footer-copy">© 2026 T.H Digital · La Réunion</div>
   </footer>
@@ -1294,6 +1549,87 @@
         menu.classList.remove('open');
       }
     });
+
+    /* ─── CONTACT TABS ─── */
+    function switchContactTab(tab) {
+      document.querySelectorAll('.contact-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.contact-tab-content').forEach(c => c.classList.remove('active'));
+      const btn = document.getElementById('tab-btn-' + tab);
+      const content = document.getElementById('tab-' + tab);
+      if (btn) btn.classList.add('active');
+      if (content) content.classList.add('active');
+    }
+
+    /* ─── CONTACT FORM ─── */
+    (function() {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+
+      // Sync replyto field with email input
+      const emailField = document.getElementById('email-field');
+      if (emailField) {
+        emailField.addEventListener('input', function() {
+          const rf = document.getElementById('replyto-field');
+          if (rf) rf.value = emailField.value;
+        });
+      }
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = document.getElementById('form-submit-btn');
+        const successDiv = document.getElementById('form-success');
+        const errorDiv = document.getElementById('form-error');
+
+        // Reset
+        errorDiv.classList.remove('show');
+        errorDiv.textContent = '';
+
+        // Validate required
+        const fields = form.querySelectorAll('[required]');
+        let valid = true;
+        fields.forEach(function(f) {
+          if (!f.value.trim()) {
+            valid = false;
+            f.style.borderColor = 'rgba(255,80,80,0.6)';
+          } else {
+            f.style.borderColor = '';
+          }
+        });
+        if (!valid) {
+          errorDiv.textContent = 'Veuillez remplir tous les champs obligatoires.';
+          errorDiv.classList.add('show');
+          return;
+        }
+
+        btn.disabled = true;
+        btn.innerHTML = 'Envoi en cours… <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+
+        try {
+          const data = new FormData(form);
+          const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
+          const json = await res.json();
+
+          if (json.success) {
+            form.style.display = 'none';
+            successDiv.classList.add('show');
+          } else {
+            let msg = json.message || 'Une erreur est survenue. Veuillez réessayer.';
+            if (msg.toLowerCase().includes('access_key') || msg.toLowerCase().includes('key')) {
+              msg = '⚠️ Formulaire non configuré. Remplacez VOTRE_CLE_WEB3FORMS dans le code (voir commentaire dans index.html).';
+            }
+            errorDiv.textContent = msg;
+            errorDiv.classList.add('show');
+            btn.disabled = false;
+            btn.innerHTML = 'Envoyer le message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+          }
+        } catch (err) {
+          errorDiv.textContent = 'Erreur réseau. Vérifiez votre connexion et réessayez.';
+          errorDiv.classList.add('show');
+          btn.disabled = false;
+          btn.innerHTML = 'Envoyer le message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
+        }
+      });
+    })();
 
     /* ─── SCROLL REVEALS ─── */
     function checkReveals() {
