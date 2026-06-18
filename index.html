@@ -1426,7 +1426,7 @@
             ───────────────────────────────────────────
             1. Allez sur https://web3forms.com
                → Entrez th.solutionsdigitales@gmail.com
-               → Copiez votre clé et remplacez VOTRE_CLE_WEB3FORMS ci-dessous
+               → Copiez votre clé et remplacez dc0a43b8-7a42-444b-84bb-228f5fffcd33 ci-dessous
             2. (Optionnel) Anti-bot Cloudflare Turnstile :
                → https://dash.cloudflare.com/turnstile
                → Créez un site → remplacez VOTRE_CLE_TURNSTILE ci-dessous
@@ -1437,7 +1437,7 @@
             <!-- Honeypot anti-spam (ne pas supprimer) -->
             <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
             <!-- Web3Forms -->
-            <input type="hidden" name="access_key" value="VOTRE_CLE_WEB3FORMS">
+            <input type="hidden" name="access_key" value="dc0a43b8-7a42-444b-84bb-228f5fffcd33">
             <input type="hidden" name="subject" value="Nouveau message depuis thdigital.re">
             <input type="hidden" name="from_name" value="T.H Digital Website">
             <input type="hidden" name="replyto" id="replyto-field" value="">
@@ -1615,7 +1615,7 @@
           } else {
             let msg = json.message || 'Une erreur est survenue. Veuillez réessayer.';
             if (msg.toLowerCase().includes('access_key') || msg.toLowerCase().includes('key')) {
-              msg = '⚠️ Formulaire non configuré. Remplacez VOTRE_CLE_WEB3FORMS dans le code (voir commentaire dans index.html).';
+              msg = '⚠️ Formulaire non configuré. Remplacez dc0a43b8-7a42-444b-84bb-228f5fffcd33 dans le code (voir commentaire dans index.html).';
             }
             errorDiv.textContent = msg;
             errorDiv.classList.add('show');
