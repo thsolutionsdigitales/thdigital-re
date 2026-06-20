@@ -854,6 +854,132 @@
     }
     .form-error.show { display: block; }
     @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
+
+    /* ════════════════════════════════════
+       QUI SUIS-JE PAGE
+    ════════════════════════════════════ */
+    .qsn-section { padding: 3rem 2.5rem 5rem; }
+    .qsn-layout {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 4rem;
+      max-width: 1080px;
+      margin: 0 auto;
+      align-items: start;
+    }
+    .qsn-photo-wrapper { position: relative; display: block; }
+    .qsn-photo {
+      width: 100%; height: auto;
+      border-radius: 20px; display: block; object-fit: cover;
+    }
+    /* Pin pulsant sur le médaillon */
+    @keyframes pinPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.8); }
+      70%  { box-shadow: 0 0 0 14px rgba(255,255,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+    }
+    .pin-overlay {
+      position: absolute;
+      top: 40%; left: 66%;
+      transform: translate(-50%, -50%);
+      z-index: 3; cursor: pointer; text-decoration: none;
+    }
+    .pin-dot {
+      width: 14px; height: 14px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.9);
+      animation: pinPulse 2s ease-in-out infinite;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pin-overlay:hover .pin-dot {
+      background: var(--accent);
+      border-color: var(--accent2);
+      transform: scale(1.3);
+    }
+    .pin-tooltip {
+      position: absolute;
+      bottom: 145%; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(8,8,8,0.92);
+      color: #fff;
+      font-size: 0.72rem; font-weight: 600;
+      padding: 0.38rem 0.9rem;
+      border-radius: 100px;
+      white-space: nowrap;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s;
+      letter-spacing: 0.03em;
+      border: 1px solid rgba(90,90,255,0.3);
+    }
+    .pin-tooltip::after {
+      content: '';
+      position: absolute; top: 100%; left: 50%;
+      transform: translateX(-50%);
+      border: 5px solid transparent;
+      border-top-color: rgba(8,8,8,0.92);
+    }
+    .pin-overlay:hover .pin-tooltip { opacity: 1; }
+    .qsn-social-links {
+      display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.5rem;
+    }
+    .qsn-social-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.55rem 1.1rem; border-radius: 100px;
+      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+      color: var(--white); text-decoration: none;
+      font-size: 0.82rem; font-weight: 500; transition: all 0.2s;
+    }
+    .qsn-social-link:hover {
+      background: rgba(90,90,255,0.12); border-color: rgba(90,90,255,0.35); color: var(--accent2);
+    }
+    .qsn-social-link.linkedin:hover {
+      background: rgba(10,102,194,0.15); border-color: rgba(10,102,194,0.4); color: #4a9fd4;
+    }
+    .qsn-bio-side h2 {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      letter-spacing: -0.02em; color: var(--white); margin-bottom: 0.65rem; line-height: 1.2;
+    }
+    .qsn-bio-intro {
+      font-size: 1rem; color: var(--muted); line-height: 1.75; margin-bottom: 2rem;
+    }
+    .qsn-block {
+      margin-bottom: 1.75rem; padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .qsn-block:last-of-type { border-bottom: none; margin-bottom: 0; }
+    .qsn-block-label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
+    }
+    .qsn-block p {
+      color: var(--muted); font-size: 0.9rem; line-height: 1.75;
+    }
+    .qsn-block p strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+    .qsn-block p a { color: var(--accent2); text-decoration: none; }
+    .qsn-block p a:hover { text-decoration: underline; }
+    .qsn-chips {
+      display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem;
+    }
+    .qsn-chip {
+      font-size: 0.73rem; color: rgba(255,255,255,0.55);
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      padding: 0.22rem 0.7rem; border-radius: 100px;
+    }
+    .qsn-philosophy {
+      background: linear-gradient(135deg, rgba(90,90,255,0.08) 0%, rgba(90,90,255,0.02) 100%);
+      border: 1px solid rgba(90,90,255,0.18);
+      border-radius: 16px; padding: 1.5rem 1.75rem; margin-top: 1.5rem;
+    }
+    .qsn-philosophy p {
+      color: var(--white) !important; font-size: 1.05rem !important;
+      line-height: 1.65 !important; font-style: italic;
+    }
+    @media (max-width: 768px) {
+      .qsn-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+      .qsn-section { padding: 2rem 1.25rem 3rem; }
+    }
   </style>
 </head>
 <body>
@@ -874,6 +1000,7 @@
     <ul class="nav-left">
       <li><a href="#" onclick="showPage('home'); return false;" id="nav-home" class="active">Accueil</a></li>
       <li><a href="#" onclick="showPage('conseil'); return false;" id="nav-conseil">Conseil Digital</a></li>
+      <li><a href="#" onclick="showPage('qui-suis-je'); return false;" id="nav-qui-suis-je">Qui suis-je</a></li>
     </ul>
     <!-- Center logo -->
     <div class="nav-center">
@@ -895,6 +1022,7 @@
     <a href="#" onclick="showPage('home'); toggleMenu(); return false;">Accueil</a>
     <a href="#" onclick="showPage('conseil'); toggleMenu(); return false;">Conseil Digital</a>
     <a href="#" onclick="showPage('events'); toggleMenu(); return false;">Événementiel</a>
+    <a href="#" onclick="showPage('qui-suis-je'); toggleMenu(); return false;">Qui suis-je</a>
     <a href="#" onclick="showPage('contact'); toggleMenu(); return false;" class="mobile-cta">Contact →</a>
   </div>
 
@@ -906,18 +1034,17 @@
     <!-- HERO -->
     <div class="hero">
       <video class="hero-video-bg" autoplay muted loop playsinline>
-        <source src="./video accueil.mp4" type="video/mp4">
+        <source src="./video accueil 3.mp4" type="video/mp4">
       </video>
       <div class="hero-video-overlay"></div>
       <div class="hero-content">
-        <div class="hero-badge blue fade-up">Entrepreneur indépendant · La Réunion</div>
+        <div class="hero-badge blue fade-up">Aide au lancement · Conseil Digital · Événementiel</div>
         <h1 class="fade-up delay-1">
-          Votre vision,<br/>
-          <em class="blue">concrétisée.</em>
+          Bienvenu, c'est ici que<br/>
+          <em class="blue">nous commençons.</em>
         </h1>
         <p class="hero-sub fade-up delay-2">
-          Conseil en transformation digitale pour les TPE/PME et création d'événements professionnels sur mesure.
-          Deux expertises, un seul interlocuteur.
+          Ici commence peut-être une nouvelle aventure. Profitez de l'expérience de Léo pour vous accompagner dans votre projet entrepreneurial — en toute <strong style="color: rgba(255,255,255,0.75); font-weight: 400;">confidentialité</strong>.
         </p>
         <div class="hero-actions fade-up delay-3">
           <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">
@@ -1211,10 +1338,19 @@
             <div class="dj-stat-label">personnes animées</div>
           </div>
         </div>
-        <a href="https://www.instagram.com/djsanti_musicrew/" target="_blank" rel="noopener" class="dj-ig-link">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          @djsanti_musicrew
-        </a>
+        <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
+          <a href="https://www.instagram.com/djsanti_musicrew/" target="_blank" rel="noopener" class="dj-ig-link">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.facebook.com/djsantimusicrew" target="_blank" rel="noopener" class="dj-ig-link" style="--hover-bg: rgba(24,119,242,0.15);">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            Facebook
+          </a>
+          <a href="https://linktr.ee/DJSANTI_musicrew?utm_source=linktree_profile_share&ltsid=79040d04-6c72-4e24-8453-a2370c5b6373" target="_blank" rel="noopener" class="dj-ig-link">
+            🔗 Sorties musicales
+          </a>
+        </div>
       </div>
 
       <!-- OTK COLLECTIF -->
@@ -1504,6 +1640,110 @@
     </div>
   </div>
 
+  <!-- ═══════════════════════════════════════════
+       PAGE : QUI SUIS-JE
+  ═══════════════════════════════════════════ -->
+  <div class="page" id="page-qui-suis-je">
+
+    <!-- HERO -->
+    <div class="hero" style="min-height: 36vh; padding-bottom: 2rem;">
+      <div class="hero-bg blue"></div>
+      <div class="hero-grid"></div>
+      <div class="hero-content">
+        <div class="hero-badge blue fade-up">À propos</div>
+        <h1 class="fade-up delay-1">Léo <em class="blue">SANTI</em></h1>
+        <p class="hero-sub fade-up delay-2">Entrepreneur · Stratège commercial · Créateur de projets · La Réunion</p>
+      </div>
+    </div>
+
+    <!-- BIO -->
+    <section class="qsn-section">
+      <div class="qsn-layout">
+
+        <!-- COLONNE GAUCHE : Photo + liens -->
+        <div>
+          <div class="qsn-photo-wrapper">
+            <img src="./photo2 qsn.png" alt="Léo Santi — TH DIGITAL" class="qsn-photo" />
+            <!-- Pin cliquable sur le médaillon Zanimokèr -->
+            <a href="https://www.zanimoker.re" target="_blank" rel="noopener" class="pin-overlay">
+              <div class="pin-dot"></div>
+              <div class="pin-tooltip">🐾 Découvrir Zanimokèr →</div>
+            </a>
+          </div>
+          <div class="qsn-social-links">
+            <a href="https://www.linkedin.com/in/léosanti" target="_blank" rel="noopener" class="qsn-social-link linkedin">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://linktr.ee/zanimoker?utm_source=linktree_profile_share&ltsid=505089fd-f488-403c-a6c2-34a642152f61" target="_blank" rel="noopener" class="qsn-social-link">
+              🐾 Zanimokèr
+            </a>
+            <a href="https://www.instagram.com/leoridewithme/" target="_blank" rel="noopener" class="qsn-social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              VTT 🚵
+            </a>
+          </div>
+        </div>
+
+        <!-- COLONNE DROITE : Bio -->
+        <div class="qsn-bio-side">
+          <h2>Réunionnais, <em class="blue">entrepreneur</em><br/>depuis plus de 10 ans.</h2>
+          <p class="qsn-bio-intro">
+            Entrepreneur passionné par l'innovation, le commerce et la création, j'évolue depuis plus de 10 ans dans des environnements où vision, performance et exécution font la différence.
+          </p>
+
+          <div class="qsn-block">
+            <div class="qsn-block-label">Parcours commercial</div>
+            <p>Mon expérience en commerce B2B et B2C m'a amené à collaborer avec des acteurs de référence — <strong>Decathlon, GBH / Comptoir Océan Indien, Momentum Electric</strong> — et des marques internationales comme <strong>SCOTT, KTM, MALOSSI, POLINI, MOTUL, MOTOREX</strong>. J'ai piloté des activités représentant des chiffres d'affaires pouvant dépasser <strong>6 millions d'euros annuels</strong>, en mettant en place des méthodes commerciales et opérationnelles orientées performance.</p>
+          </div>
+
+          <div class="qsn-block">
+            <div class="qsn-block-label">TH DIGITAL</div>
+            <p>À travers TH DIGITAL, j'accompagne des porteurs de projets dans la structuration, le développement et la concrétisation de leurs ambitions — digitales, entrepreneuriales ou événementielles.<br/><br/>Son nom s'inspire du proverbe créole <em>« Ti ash i koup gro bwa »</em> : ne jamais sous-estimer ce qu'un seul homme déterminé peut accomplir.</p>
+          </div>
+
+          <div class="qsn-block">
+            <div class="qsn-block-label">Zanimokèr — Startup réunionnaise</div>
+            <p>Je suis directeur et cofondateur de <a href="https://www.zanimoker.re" target="_blank" rel="noopener">Zanimokèr</a>, startup réunionnaise créée en 2025, spécialisée dans des solutions innovantes pour les animaux de compagnie — avec déjà plusieurs centaines de clients à travers l'Europe.</p>
+            <div style="margin-top: 0.9rem;">
+              <a href="https://linktr.ee/zanimoker?utm_source=linktree_profile_share&ltsid=505089fd-f488-403c-a6c2-34a642152f61" target="_blank" rel="noopener" class="dj-ig-link" style="font-size: 0.8rem;">
+                🔗 Suivre l'actualité Zanimokèr
+              </a>
+            </div>
+          </div>
+
+          <div class="qsn-block">
+            <div class="qsn-block-label">DJ SANTI</div>
+            <p>Je produis et mixe depuis plus de <strong>15 ans</strong> sous le nom DJ SANTI, avec une approche exigeante et créative de la musique électronique.</p>
+          </div>
+
+          <div class="qsn-block">
+            <div class="qsn-block-label">Sport & Discipline</div>
+            <p>Moniteur de VTT diplômé d'État et ancien sportif de haut niveau en VTT enduro et descente — avec de nombreux podiums en compétitions nationales. Le sport m'a transmis des valeurs qui guident encore chacune de mes actions.</p>
+            <div class="qsn-chips">
+              <span class="qsn-chip">🚵 VTT Enduro</span>
+              <span class="qsn-chip">⛰️ Descente</span>
+              <span class="qsn-chip">🏆 Podiums nationaux</span>
+              <span class="qsn-chip">📜 Moniteur diplômé d'État</span>
+            </div>
+            <div style="margin-top: 0.9rem;">
+              <a href="https://www.instagram.com/leoridewithme/" target="_blank" rel="noopener" class="dj-ig-link" style="font-size: 0.8rem;">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                @leoridewithme
+              </a>
+            </div>
+          </div>
+
+          <div class="qsn-philosophy">
+            <p>« Comprendre vite, structurer efficacement et exécuter avec exigence. »</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
   <!-- ─── FOOTER ─── -->
   <footer>
     <div class="footer-logo">T<span class="dot">.</span>H DIGITAL</div>
@@ -1512,6 +1752,7 @@
       <a href="#" onclick="showPage('conseil'); return false;">Conseil Digital</a>
       <a href="#" onclick="showPage('events'); return false;">Événementiel</a>
       <a href="#" onclick="showPage('contact'); return false;">Contact</a>
+      <a href="#" onclick="showPage('qui-suis-je'); return false;">Qui suis-je</a>
     </div>
     <div class="footer-copy">© 2026 T.H Digital · La Réunion</div>
   </footer>
