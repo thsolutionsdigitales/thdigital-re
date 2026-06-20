@@ -475,6 +475,13 @@
     .ticker-tag::before {
       content: '▶'; font-size: 0.5rem; opacity: 0.5;
     }
+    .ticker-section.blue { background: rgba(90,90,255,0.03); }
+    .ticker-tag.blue {
+      background: rgba(90,90,255,0.1);
+      border: 1px solid rgba(90,90,255,0.28);
+      color: var(--accent2);
+    }
+    .ticker-tag.blue::before { content: '◆'; }
 
     /* ════════════════════════════════════
        DJ SANTI / OTK SECTION
@@ -1000,7 +1007,6 @@
     <ul class="nav-left">
       <li><a href="#" onclick="showPage('home'); return false;" id="nav-home" class="active">Accueil</a></li>
       <li><a href="#" onclick="showPage('conseil'); return false;" id="nav-conseil">Conseil Digital</a></li>
-      <li><a href="#" onclick="showPage('qui-suis-je'); return false;" id="nav-qui-suis-je">Qui suis-je</a></li>
     </ul>
     <!-- Center logo -->
     <div class="nav-center">
@@ -1022,7 +1028,6 @@
     <a href="#" onclick="showPage('home'); toggleMenu(); return false;">Accueil</a>
     <a href="#" onclick="showPage('conseil'); toggleMenu(); return false;">Conseil Digital</a>
     <a href="#" onclick="showPage('events'); toggleMenu(); return false;">Événementiel</a>
-    <a href="#" onclick="showPage('qui-suis-je'); toggleMenu(); return false;">Qui suis-je</a>
     <a href="#" onclick="showPage('contact'); toggleMenu(); return false;" class="mobile-cta">Contact →</a>
   </div>
 
@@ -1039,12 +1044,11 @@
       <div class="hero-video-overlay"></div>
       <div class="hero-content">
         <div class="hero-badge blue fade-up">Aide au lancement · Conseil Digital · Événementiel</div>
-        <h1 class="fade-up delay-1">
-          Bienvenu, c'est ici que<br/>
-          <em class="blue">nous commençons.</em>
+        <h1 class="fade-up delay-1" style="line-height: 1.1;">
+          Bienvenu,<br/><em class="blue">c'est ici que nous commençons.</em>
         </h1>
         <p class="hero-sub fade-up delay-2">
-          Ici commence peut-être une nouvelle aventure. Profitez de l'expérience de Léo pour vous accompagner dans votre projet entrepreneurial — en toute <strong style="color: rgba(255,255,255,0.75); font-weight: 400;">confidentialité</strong>.
+          Ici commence peut-être une nouvelle aventure. Profitez de l'expérience de <a href="#" onclick="showPage('qui-suis-je'); return false;" style="color:#fff; font-weight:700; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.45); padding-bottom:1px;">Léo</a> pour vous accompagner dans votre projet entrepreneurial — en toute <strong style="color: rgba(255,255,255,0.75); font-weight: 400;">confidentialité</strong>.
         </p>
         <div class="hero-actions fade-up delay-3">
           <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">
@@ -1056,6 +1060,25 @@
         </div>
       </div>
     </div>
+
+    <!-- AIDE AU LANCEMENT -->
+    <section style="padding: 3rem 2.5rem 1rem;">
+      <div class="reveal" style="background: linear-gradient(135deg, rgba(90,90,255,0.09) 0%, rgba(90,90,255,0.02) 100%); border: 1px solid rgba(90,90,255,0.2); border-radius: 24px; padding: 2.8rem 3rem; max-width: 760px; margin: 0 auto; text-align: center;">
+        <p class="section-label blue" style="justify-content: center; margin-bottom: 0.75rem; font-size: 0.75rem; letter-spacing: 0.1em;">Axe 1 · Aide au lancement</p>
+        <h2 style="margin-bottom: 0.85rem; font-size: clamp(1.45rem, 2.8vw, 1.9rem);">Vous avez un projet ?<br/><em style="color: var(--accent2); font-style: normal;">On en parle.</em></h2>
+        <p style="color: var(--muted); font-size: 0.97rem; line-height: 1.75; max-width: 490px; margin: 0 auto 1.8rem;">
+          Idée, concept ou activité naissante — bénéficiez d'un regard expert pour structurer, valider et lancer votre projet. Accompagnement personnalisé, confidentiel et sans engagement.
+        </p>
+        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem;">
+          <span class="card-chip">💡 Idéation</span>
+          <span class="card-chip">📋 Business plan</span>
+          <span class="card-chip">🎯 Stratégie commerciale</span>
+          <span class="card-chip">🚀 Lancement</span>
+          <span class="card-chip">🔒 Confidentiel</span>
+        </div>
+        <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">Discutons de votre projet →</a>
+      </div>
+    </section>
 
     <!-- ACTIVITÉS -->
     <div class="activity-split">
@@ -1166,6 +1189,38 @@
       </div>
     </div>
 
+    <!-- TICKER CONSEIL -->
+    <div class="ticker-section blue">
+      <div class="ticker-outer">
+        <div class="ticker-track">
+          <span class="ticker-tag blue">IA & Automatisation</span>
+          <span class="ticker-tag blue">Chatbot</span>
+          <span class="ticker-tag blue">Site web</span>
+          <span class="ticker-tag blue">Publicité digitale</span>
+          <span class="ticker-tag blue">Branding</span>
+          <span class="ticker-tag blue">CRM</span>
+          <span class="ticker-tag blue">SEO</span>
+          <span class="ticker-tag blue">Audit Digital</span>
+          <span class="ticker-tag blue">E-commerce</span>
+          <span class="ticker-tag blue">Réseaux sociaux</span>
+          <span class="ticker-tag blue">Stratégie numérique</span>
+          <span class="ticker-tag blue">Formation</span>
+          <span class="ticker-tag blue">IA & Automatisation</span>
+          <span class="ticker-tag blue">Chatbot</span>
+          <span class="ticker-tag blue">Site web</span>
+          <span class="ticker-tag blue">Publicité digitale</span>
+          <span class="ticker-tag blue">Branding</span>
+          <span class="ticker-tag blue">CRM</span>
+          <span class="ticker-tag blue">SEO</span>
+          <span class="ticker-tag blue">Audit Digital</span>
+          <span class="ticker-tag blue">E-commerce</span>
+          <span class="ticker-tag blue">Réseaux sociaux</span>
+          <span class="ticker-tag blue">Stratégie numérique</span>
+          <span class="ticker-tag blue">Formation</span>
+        </div>
+      </div>
+    </div>
+
     <!-- SERVICES -->
     <section>
       <p class="section-label blue reveal">Ce que je propose</p>
@@ -1264,8 +1319,8 @@
       <div class="hero-content">
         <div class="hero-badge gold fade-up">Événementiel · La Réunion</div>
         <h1 class="fade-up delay-1">
-          Des nuits qui<br/>
-          <em class="gold">font vibrer.</em>
+          Le temps d'un instant,<br/>
+          <em class="gold">inoubliable.</em>
         </h1>
         <p class="hero-sub fade-up delay-2">
           Night-clubs, bars, restaurants, associations, entreprises — DJ professionnel, matériel haut de gamme et stratégie digitale pour des événements qui marquent.
@@ -1394,8 +1449,20 @@
         <div class="venue-chip">🍽️ Restaurant</div>
         <div class="venue-chip">🤝 Association</div>
         <div class="venue-chip">🏢 Entreprise</div>
+        <div class="venue-chip">🥂 Soirées privées</div>
+        <div class="venue-chip">🏖️ Villa</div>
       </div>
     </section>
+
+    <!-- DIRECTION ARTISTIQUE -->
+    <div class="reveal" style="max-width: 760px; margin: 0 auto; padding: 0 2.5rem 2rem;">
+      <div style="padding: 1.1rem 1.5rem; border-radius: 14px; background: rgba(212,168,85,0.05); border: 1px solid rgba(212,168,85,0.2); display: flex; align-items: flex-start; gap: 0.85rem;">
+        <span style="font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem;">🎨</span>
+        <p style="color: var(--muted); font-size: 0.84rem; line-height: 1.65; margin: 0;">
+          <strong style="color: rgba(255,255,255,0.75);">Direction artistique</strong> — Chaque prestation est conçue dans le respect de l'univers musical et de l'identité artistique de DJ SANTI. Les événements doivent s'inscrire dans cette direction pour être réalisés.
+        </p>
+      </div>
+    </div>
 
     <!-- SERVICES -->
     <section style="padding-top: 2rem;">
@@ -1752,7 +1819,11 @@
       <a href="#" onclick="showPage('conseil'); return false;">Conseil Digital</a>
       <a href="#" onclick="showPage('events'); return false;">Événementiel</a>
       <a href="#" onclick="showPage('contact'); return false;">Contact</a>
-      <a href="#" onclick="showPage('qui-suis-je'); return false;">Qui suis-je</a>
+    </div>
+    <div style="margin: 1.5rem 0;">
+      <a href="#" onclick="showPage('qui-suis-je'); return false;" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent2); font-weight: 600; font-size: 0.9rem; text-decoration: none; border: 1px solid rgba(90,90,255,0.35); padding: 0.55rem 1.4rem; border-radius: 100px; transition: background 0.2s, border-color 0.2s; letter-spacing: 0.02em;">
+        <span style="font-size: 0.7rem;">✦</span> Qui suis-je ?
+      </a>
     </div>
     <div class="footer-copy">© 2026 T.H Digital · La Réunion</div>
   </footer>
