@@ -616,6 +616,21 @@
     }
     .footer-back a:hover { color: rgba(255,255,255,0.55); }
 
+    /* BOOK ME mobile (centré sur la photo) */
+    .bookme-btn-mobile {
+      display: none;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 5;
+      pointer-events: all;
+      white-space: nowrap;
+    }
+    @media (max-width: 900px) {
+      .hero-center { display: none; }
+      .bookme-btn-mobile { display: inline-block; }
+    }
+
     /* BOOK ME button */
     @keyframes bookBlink {
       0%, 100% { border-color: rgba(255,255,255,0.85); color: rgba(255,255,255,0.9); box-shadow: 0 0 18px rgba(255,255,255,0.15), 0 4px 30px rgba(0,0,0,0.5); }
@@ -815,11 +830,13 @@
               <span class="hero-genre-chip">Deep</span>
             </div>
           </div>
+          <!-- BOOK ME mobile only -->
+          <a href="#booking" class="bookme-btn bookme-btn-mobile" onclick="event.preventDefault(); scrollToBooking();">BOOK ME</a>
         </div>
 
-        <!-- Center CTA overlay -->
+        <!-- Center CTA overlay (desktop only) -->
         <div class="hero-center">
-          <a href="#booking" class="bookme-btn" onclick="event.preventDefault(); document.getElementById('main-scroll').scrollTo({top: document.getElementById('booking').offsetTop, behavior:'smooth'});">
+          <a href="#booking" class="bookme-btn" onclick="event.preventDefault(); scrollToBooking();">
             BOOK ME
           </a>
         </div>
@@ -1190,6 +1207,18 @@
       });
     }, { threshold: 0.1, root: document.getElementById('main-scroll'), rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── SCROLL TO BOOKING (mobile + desktop) ── */
+    function scrollToBooking() {
+      const el = document.getElementById('booking');
+      if (!el) return;
+      const scroller = document.getElementById('main-scroll');
+      if (scroller && scroller.scrollHeight > scroller.clientHeight) {
+        scroller.scrollTo({ top: el.offsetTop, behavior: 'smooth' });
+      } else {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
 
     /* ── YOUTUBE IFRAME API ── */
     var ytPlayer;
