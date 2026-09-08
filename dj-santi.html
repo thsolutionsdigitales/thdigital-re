@@ -187,9 +187,26 @@
       transform: scale(1.04);
     }
     .hero-panel-left img { filter: grayscale(100%) brightness(0.55); }
-    .hero-panel-right video { filter: brightness(0.4) saturate(0.5); }
     .hero-panel:hover img { filter: grayscale(50%) brightness(0.6); }
-    .hero-panel-right:hover video { filter: brightness(0.55) saturate(0.7); }
+    /* YouTube iframe cover */
+    #yt-player-wrapper {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      overflow: hidden;
+      filter: brightness(0.4) saturate(0.5);
+      transition: filter 0.4s ease;
+      pointer-events: none;
+    }
+    .hero-panel-right:hover #yt-player-wrapper { filter: brightness(0.55) saturate(0.7); }
+    #yt-player-wrapper iframe {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 100%;
+      height: 300%;
+      min-width: 177.78%;
+      transform: translate(-50%, -50%);
+      border: none;
+    }
 
     .hero-panel-label {
       position: absolute;
@@ -804,9 +821,9 @@
 
         <!-- Right panel: aftermovie video -->
         <div class="hero-panel hero-panel-right" id="video-panel">
-          <video autoplay muted loop playsinline id="hero-video">
-            <source src="./aftermovie.mp4" type="video/mp4"/>
-          </video>
+          <div id="yt-player-wrapper">
+            <div id="yt-player"></div>
+          </div>
           <!-- Sound toggle -->
           <button class="sound-btn" id="sound-btn" onclick="toggleSound(event)" title="Activer le son">
             <svg id="icon-muted" viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
@@ -836,7 +853,7 @@
           <span class="en">The right music<br/>at the right time.</span>
         </h2>
         <p class="section-desc reveal reveal-d2" style="margin-left:auto;margin-right:auto;">
-          <span class="fr">L'univers sonore évolue au fil de la nuit. Chaque crìneau horaire correspond à une sélection pensée pour l'énergie du moment.</span>
+          <span class="fr">L'univers sonore évolue au fil de la nuit. Chaque créneau horaire correspond à une sélection pensée pour l'énergie du moment.</span>
           <span class="en">The sound evolves throughout the night. Each slot is curated for the energy of that moment.</span>
         </p>
         <div class="reveal reveal-d2">
@@ -923,7 +940,7 @@
               </div>
             </div>
             <p class="bio-text reveal reveal-d2">
-              <span class="fr"><strong>DJ SANTI</strong> compose et produit ses morceaux via le collectif <strong>OTK</strong>, un espace artistique fondé à La Réunion on 2024. Le collectif réunit des DJs sélectionnés selon des critères artistiques rigoureux, animés par une énergie commune : apporter quelque chose de différent, pointu, où le son est au cœur de l'expérience.<br/><br/>En plus de 15 ans dans la musique et l'organisation d'événements, DJ SANTI a fait vibrer des milliers de personnes à travers plus de 20 dates sur l'île.</span>
+              <span class="fr"><strong>DJ SANTI</strong> compose et produit ses morceaux via le collectif <strong>OTK</strong>, un espace artistique fondé à La Réunion en 2024. Le collectif réunit des DJs sélectionnés selon des critères artistiques rigoureux, animés par une énergie commune : apporter quelque chose de différent, pointu, où le son est au cœur de l'expérience.<br/><br/>En plus de 15 ans dans la musique et l'organisation d'événements, DJ SANTI a fait vibrer des milliers de personnes à travers plus de 20 dates sur l'île.</span>
               <span class="en"><strong>DJ SANTI</strong> composes and produces through the <strong>OTK</strong> collective, an artistic space he founded in Réunion Island in 2024. With 15+ years in music and 20+ dates on the island, his world is electronic music, total immersion, uncompromising energy.</span>
             </p>
             <blockquote class="bio-quote reveal reveal-d3">
@@ -1004,7 +1021,7 @@
               <span class="en">Club, festival, private party, villa. Every request is considered carefully. Events must align with DJ SANTI's artistic direction.</span>
             </p>
             <div class="booking-info-item reveal reveal-d2">
-              <span style="opacity:.4;">��</span>
+              <span style="opacity:.4;">📍</span>
               <span><span class="fr">La Réunion · France</span><span class="en">Réunion Island · France</span></span>
             </div>
             <div class="booking-info-item reveal reveal-d2">
@@ -1051,7 +1068,7 @@
                 </div>
               </div>
               <div class="fg">
-                <label><span class="fr">Budget estimé èr)</span><span class="en">Estimated budget (€)</span></label>
+                <label><span class="fr">Budget estimé (€)</span><span class="en">Estimated budget (€)</span></label>
                 <select name="budget">
                   <option value="">Sélectionner...</option>
                   <option value="&lt;500€">&lt; 500€</option>
@@ -1063,7 +1080,7 @@
               </div>
               <div class="fg">
                 <label><span class="fr">Message</span><span class="en">Message</span></label>
-                <textarea name="message" placeholder="Décrivez votre projet, vos attentes, le format souhaité…�"></textarea>
+                <textarea name="message" placeholder="Décrivez votre projet, vos attentes, le format souhaité…"></textarea>
               </div>
               <button type="submit" class="form-submit" id="submit-btn">
                 <span class="fr">Envoyer la demande →</span>
@@ -1169,21 +1186,43 @@
     }, { threshold: 0.1, root: document.getElementById('main-scroll'), rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    /* ── YOUTUBE IFRAME API ── */
+    var ytPlayer;
+    function onYouTubeIframeAPIReady() {
+      ytPlayer = new YT.Player('yt-player', {
+        videoId: '2rux9G5o4XU',
+        playerVars: {
+          autoplay: 1, mute: 1, loop: 1, playlist: '2rux9G5o4XU',
+          controls: 0, modestbranding: 1, playsinline: 1, rel: 0, showinfo: 0
+        },
+        events: { onReady: function(e) { e.target.playVideo(); } }
+      });
+    }
+    var ytApiLoaded = false;
+    function loadYTApi() {
+      if (ytApiLoaded) return;
+      ytApiLoaded = true;
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.head.appendChild(tag);
+    }
+    document.addEventListener('DOMContentLoaded', loadYTApi);
+
     /* ── VIDEO SOUND TOGGLE ── */
     function toggleSound(e) {
       e.stopPropagation();
-      const video = document.getElementById('hero-video');
       const btn = document.getElementById('sound-btn');
       const iconMuted = document.getElementById('icon-muted');
       const iconSound = document.getElementById('icon-sound');
-      if (video.muted) {
-        video.muted = false;
-        video.volume = 0.6;
+      if (!ytPlayer || typeof ytPlayer.isMuted !== 'function') return;
+      if (ytPlayer.isMuted()) {
+        ytPlayer.unMute();
+        ytPlayer.setVolume(60);
         btn.classList.add('active');
         iconMuted.style.display = 'none';
         iconSound.style.display = 'block';
       } else {
-        video.muted = true;
+        ytPlayer.mute();
         btn.classList.remove('active');
         iconMuted.style.display = 'block';
         iconSound.style.display = 'none';
