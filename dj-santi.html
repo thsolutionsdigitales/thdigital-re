@@ -237,7 +237,7 @@
     }
     /* Book Me centré dans le panneau gauche sur mobile */
     .bookme-panel-btn {
-      display: none;
+      display: none !important;
       position: absolute;
       top: 50%; left: 50%;
       transform: translate(-50%, -50%);
@@ -247,7 +247,7 @@
     }
     @media (max-width: 900px) {
       .hero-center { display: none; }
-      .bookme-panel-btn { display: inline-block; }
+      .bookme-panel-btn { display: inline-block !important; }
     }
     .hero-center-logo {
       width: clamp(120px, 15vw, 200px);
