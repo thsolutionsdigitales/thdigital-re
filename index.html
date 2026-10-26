@@ -63,7 +63,7 @@ nav.links a:hover{color:var(--fg)}
 
 /* Hero */
 .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
-.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(150,170,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(150,170,255,.07) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(80% 70% at 70% 35%,#000 20%,transparent 75%);mask-image:radial-gradient(80% 70% at 70% 35%,#000 20%,transparent 75%);pointer-events:none}
+.hero::before{content:"";position:absolute;inset:auto 0 0;height:1px;background:linear-gradient(90deg,transparent,rgba(56,225,255,.35),transparent);pointer-events:none}
 .hero::after{content:"";position:absolute;width:560px;height:560px;right:-160px;top:40px;background:radial-gradient(circle,rgba(79,107,255,.32),transparent 65%);pointer-events:none}
 .hero-grid{position:relative;z-index:1;display:grid;gap:8px;padding-top:44px}
 .hero h1{font-size:clamp(2rem,7.4vw,3.6rem);font-weight:800;margin-top:18px;max-width:15ch}
@@ -228,7 +228,7 @@ footer{padding-block:36px 110px;border-top:1px solid var(--line);font-size:.85re
 .d-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
 .d-back{display:inline-flex;align-items:center;gap:8px;background:none;border:0;color:var(--fg);font:600 .92rem var(--body);cursor:pointer;padding:8px 0}
 .d-hero{position:relative;padding-block:48px 36px;border-bottom:1px solid var(--line);overflow:hidden}
-.d-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(150,170,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(150,170,255,.07) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(70% 80% at 80% 20%,#000 10%,transparent 70%);mask-image:radial-gradient(70% 80% at 80% 20%,#000 10%,transparent 70%)}
+.d-hero::before{content:"";position:absolute;width:520px;height:520px;right:-180px;top:-200px;background:radial-gradient(circle,rgba(79,107,255,.28),transparent 65%);pointer-events:none}
 .d-hero .wrap{position:relative}
 .d-hero h2{font-size:clamp(2rem,7vw,3.4rem);font-weight:800;margin-top:14px}
 .d-hero .lead{margin-top:16px;color:#c3cae0;font-size:1.06rem;max-width:58ch}
@@ -316,6 +316,16 @@ header.scrolled{box-shadow:0 10px 30px -18px rgba(0,0,0,.9);background:rgba(5,7,
 .nda{display:flex;gap:12px;align-items:flex-start;margin-top:16px;padding:14px 16px;border-radius:14px;border:1px solid rgba(56,225,255,.25);background:rgba(56,225,255,.05);max-width:640px;font-size:.92rem;color:#c3cae0}
 .nda svg{flex:none;width:20px;height:20px;stroke:var(--neon);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
 .nda b{color:var(--fg);font-weight:600}
+
+/* Mots-clés en filigrane dans le hero */
+.words{position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:min(330px,85vw);gap:clamp(6px,1.4vw,14px);overflow:hidden;pointer-events:none;-webkit-mask-image:radial-gradient(75% 45% at 50% 78%,#000 20%,transparent 85%);mask-image:radial-gradient(75% 45% at 50% 78%,#000 20%,transparent 85%)}
+.w-row{display:flex;width:max-content;animation:drift var(--d,90s) linear infinite}
+.w-row.rev{animation-direction:reverse}
+.w-row span{font-family:var(--display);font-weight:800;font-size:clamp(2.6rem,8vw,6.2rem);line-height:1.05;letter-spacing:-.03em;white-space:nowrap;color:transparent;-webkit-text-stroke:1px rgba(150,170,255,.085);padding-right:.5em}
+.w-row span b{font-weight:800;-webkit-text-stroke:0;color:rgba(56,225,255,.055)}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero-grid{z-index:1}
+@media (min-width:860px){.words{justify-content:center;padding-bottom:0;-webkit-mask-image:radial-gradient(48% 75% at 74% 52%,#000 25%,transparent 90%);mask-image:radial-gradient(48% 75% at 74% 52%,#000 25%,transparent 90%)}}
 @media (min-width:860px){
   nav.links{display:flex}
   .hero-grid{grid-template-columns:1.15fr .85fr;align-items:end;gap:40px;padding-top:72px}
@@ -354,6 +364,12 @@ header.scrolled{box-shadow:0 10px 30px -18px rgba(0,0,0,.9);background:rgba(5,7,
 
 <main id="top">
   <div class="hero">
+    <div class="words" aria-hidden="true">
+      <div class="w-row " style="--d:95s"><span>Business · <b>Stratégie</b> · Vente · Performance · Croissance · </span><span>Business · <b>Stratégie</b> · Vente · Performance · Croissance · </span></div>
+      <div class="w-row rev" style="--d:120s"><span>Intelligence artificielle · <b>Agents IA</b> · Automatisation · Claude Code · </span><span>Intelligence artificielle · <b>Agents IA</b> · Automatisation · Claude Code · </span></div>
+      <div class="w-row " style="--d:105s"><span>Image de marque · UX · SEO · <b>KPI</b> · CRM · Data · </span><span>Image de marque · UX · SEO · <b>KPI</b> · CRM · Data · </span></div>
+      <div class="w-row rev" style="--d:130s"><span>Applications · Conseil · <b>Innovation</b> · Organisation · </span><span>Applications · Conseil · <b>Innovation</b> · Organisation · </span></div>
+    </div>
     <div class="wrap hero-grid">
       <div class="hero-text">
         <p class="eyebrow rise">Léo Santi · TH DIGITAL · La Réunion</p>
