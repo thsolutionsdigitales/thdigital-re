@@ -1,1962 +1,819 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>T.H Digital – Conseil & Événementiel | La Réunion</title>
-  <meta name="description" content="T.H Digital – Accompagnement numérique pour TPE/PME et création d'événements sur mesure à La Réunion." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --black:    #080808;
-      --surface:  #111111;
-      --surface2: #161616;
-      --border:   rgba(255,255,255,0.07);
-      --white:    #f5f3ef;
-      --accent:   #5a5aff;
-      --accent2:  #7c7cff;
-      --gold:     #d4a855;
-      --gold2:    #e8c070;
-      --muted:    #888;
-      --radius:   16px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#05070f">
+<link rel="icon" href="logo.jpeg">
+<meta property="og:title" content="TH DIGITAL · Léo Santi">
+<meta property="og:description" content="Utilisez la technologie pour booster le business de demain. Conseil commercial, applications et agents IA pour TPE/PME à La Réunion.">
+<meta property="og:image" content="https://www.thdigital.re/logo.jpeg">
+<meta property="og:url" content="https://www.thdigital.re">
+<title>TH DIGITAL · Léo Santi · Business, applications &amp; IA · La Réunion</title>
+<meta name="description" content="TH DIGITAL, Léo Santi. Conseil commercial, applications et automatisation IA pour TPE/PME à La Réunion.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout : une colonne sur mobile, 2 colonnes à partir de 860px. Bleu nuit corporate, bleu électrique TH, cyan néon du logo pour les touches "tech". */
+:root{
+  --bg:#05070f;
+  --surface:#0b1020;
+  --surface2:#111832;
+  --line:rgba(150,170,255,.11);
+  --fg:#eef2fb;
+  --muted:#8b93ab;
+  --accent:#4f6bff;
+  --accent-2:#93a5ff;
+  --neon:#38e1ff;
+  --display:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --r:18px;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0;text-wrap:balance;letter-spacing:-.02em}
+p{margin:0}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--neon);display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:18px;height:1px;background:currentColor}
+:focus-visible{outline:2px solid var(--neon);outline-offset:3px;border-radius:6px}
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--black);
-      color: var(--white);
-      overflow-x: hidden;
-    }
+/* Header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(5,7,15,.8);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;letter-spacing:.02em;font-size:1rem}
+.brand img{width:34px;height:34px;border-radius:50%;display:block;box-shadow:0 0 0 1px rgba(56,225,255,.35),0 0 18px rgba(56,225,255,.25)}
+nav.links{display:none;gap:28px;font-size:.9rem;color:var(--muted)}
+nav.links a{text-decoration:none;transition:color .2s}
+nav.links a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 22px;border-radius:12px;font-weight:600;font-size:.95rem;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:var(--body);transition:background .2s,border-color .2s,transform .2s,box-shadow .2s}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px -10px rgba(79,107,255,.8)}
+.btn-primary:hover{background:#6079ff;box-shadow:0 10px 30px -8px rgba(79,107,255,.9)}
+.btn-ghost{border-color:rgba(150,170,255,.25);color:var(--fg);background:rgba(255,255,255,.02)}
+.btn-ghost:hover{border-color:var(--accent-2)}
+.btn-sm{min-height:38px;padding:0 16px;font-size:.85rem;border-radius:10px}
 
-    /* ════════════════════════════════════
-       SPLASH SCREEN
-    ════════════════════════════════════ */
-    #splash {
-      position: fixed; inset: 0; z-index: 2000;
-      background: #000;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      cursor: pointer;
-      transition: opacity 0.75s ease;
-    }
-    #splash.exit { opacity: 0; pointer-events: none; }
-    .splash-logo {
-      width: min(220px, 55vw);
-      height: min(220px, 55vw);
-      border-radius: 50%;
-      object-fit: cover;
-      animation: splashIn 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-    }
-    .splash-hint {
-      margin-top: 2.5rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
-      animation: splashIn 1.4s 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
-    }
-    @keyframes splashIn {
-      from { opacity: 0; transform: scale(0.8) translateY(16px); }
-      to   { opacity: 1; transform: scale(1)   translateY(0); }
-    }
+/* Hero */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(150,170,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(150,170,255,.07) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(80% 70% at 70% 35%,#000 20%,transparent 75%);mask-image:radial-gradient(80% 70% at 70% 35%,#000 20%,transparent 75%);pointer-events:none}
+.hero::after{content:"";position:absolute;width:560px;height:560px;right:-160px;top:40px;background:radial-gradient(circle,rgba(79,107,255,.32),transparent 65%);pointer-events:none}
+.hero-grid{position:relative;z-index:1;display:grid;gap:8px;padding-top:44px}
+.hero h1{font-size:clamp(2rem,7.4vw,3.6rem);font-weight:800;margin-top:18px;max-width:15ch}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,var(--accent-2),var(--neon));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{margin-top:18px;max-width:46ch;color:var(--muted);font-size:1.05rem}
+.hero .lead strong{color:var(--fg);font-weight:600}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:30px;max-width:520px}
+.pillars a{display:block;padding:12px 12px 14px;border:1px solid var(--line);border-radius:12px;text-decoration:none;background:rgba(11,16,32,.7);transition:border-color .2s}
+.pillars a:hover{border-color:var(--accent)}
+.pillars b{display:block;font-family:var(--display);font-size:.95rem}
+.pillars span{font-size:.75rem;color:var(--muted);line-height:1.3;display:block;margin-top:2px}
+.portrait{position:relative;justify-self:center;width:min(300px,78vw);max-width:100%;aspect-ratio:440/772;margin-top:20px}
+.portrait .ring{position:absolute;left:50%;top:4%;width:96%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;border:1px solid rgba(56,225,255,.45);box-shadow:0 0 40px rgba(56,225,255,.18),inset 0 0 40px rgba(79,107,255,.25);background:radial-gradient(circle at 50% 45%,rgba(79,107,255,.35),rgba(5,7,15,0) 70%)}
+.portrait .ring::after{content:"";position:absolute;inset:-14px;border-radius:50%;border:1px dashed rgba(150,170,255,.18)}
+.portrait img{position:absolute;left:0;right:0;bottom:0;width:100%;height:auto;display:block;filter:drop-shadow(0 0 22px rgba(56,225,255,.16)) saturate(.92) contrast(1.04);-webkit-mask-image:linear-gradient(#000 70%,transparent 99%);mask-image:linear-gradient(#000 70%,transparent 99%)}
+.badge{position:absolute;z-index:2;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;padding:7px 10px;border-radius:10px;background:rgba(11,16,32,.85);border:1px solid var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);white-space:nowrap}
+.badge b{color:var(--neon);font-weight:500}
+.badge.b1{left:-2%;top:30%}
+.badge.b2{right:-2%;top:52%}
+.badge.b3{left:4%;bottom:14%}
 
-    /* ════════════════════════════════════
-       NAV — CENTERED GRID LAYOUT
-    ════════════════════════════════════ */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      padding: 1rem 3rem;
-      background: linear-gradient(
-        90deg,
-        rgba(6,6,16,0.95) 0%,
-        rgba(18,10,45,0.93) 30%,
-        rgba(28,15,70,0.92) 50%,
-        rgba(18,10,45,0.93) 70%,
-        rgba(6,6,16,0.95) 100%
-      );
-      backdrop-filter: blur(28px);
-      border-bottom: 1px solid rgba(90,90,255,0.15);
-    }
-    .nav-left {
-      display: flex; gap: 2.5rem; list-style: none;
-      justify-content: flex-end; align-items: center;
-      padding-right: 2rem;
-    }
-    .nav-center {
-      display: flex; justify-content: center; align-items: center;
-      padding: 0 0.5rem;
-    }
-    .nav-right {
-      display: flex; gap: 2.5rem; list-style: none;
-      justify-content: flex-start; align-items: center;
-      padding-left: 2rem;
-    }
-    @keyframes logoRingPulse {
-      0%, 100% {
-        box-shadow: 0 0 0 3px rgba(255,255,255,0.75), 0 0 0 7px rgba(255,255,255,0.12), 0 0 20px rgba(255,255,255,0.10);
-      }
-      50% {
-        box-shadow: 0 0 0 5px rgba(255,255,255,1), 0 0 0 12px rgba(255,255,255,0.28), 0 0 34px rgba(255,255,255,0.20);
-      }
-    }
-    .nav-logo-img {
-      width: 62px; height: 62px; border-radius: 50%;
-      object-fit: cover; cursor: pointer;
-      transition: transform 0.3s;
-      animation: logoRingPulse 2.4s ease-in-out infinite;
-    }
-    .nav-logo-img:hover {
-      transform: scale(1.08);
-      animation-play-state: paused;
-      box-shadow: 0 0 0 5px rgba(255,255,255,0.98), 0 0 0 12px rgba(255,255,255,0.28), 0 0 36px rgba(255,255,255,0.22);
-    }
-    .nav-left a, .nav-right a {
-      color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.9rem;
-      font-weight: 400; letter-spacing: 0.02em; transition: color 0.2s;
-    }
-    .nav-left a:hover, .nav-right a:hover,
-    .nav-left a.active, .nav-right a.active { color: var(--white); }
+section{padding-block:64px}
+.sec-head{display:grid;gap:12px;margin-bottom:32px;max-width:660px}
+.sec-head h2{font-size:clamp(1.65rem,5.2vw,2.4rem);font-weight:800}
+.sec-head p{color:var(--muted)}
 
-    /* Nav pulse on Événementiel link */
-    @keyframes navPulse {
-      0%, 100% { opacity: 1; color: var(--gold2); }
-      50%       { opacity: 0.4; color: var(--gold); }
-    }
-    .nav-events-link { animation: navPulse 2.5s ease-in-out infinite; }
-    .nav-events-link.active { animation: none !important; color: var(--white) !important; }
+/* Profil */
+.facts{display:grid;gap:12px}
+.fact{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:grid;gap:10px;min-width:0}
+.fact .k{font-family:var(--display);font-weight:800;font-size:1.9rem;line-height:1;letter-spacing:-.02em}
+.fact .k small{display:block;font-family:var(--mono);font-weight:400;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.fact h3{font-size:1.02rem;font-weight:700}
+.fact p{color:var(--muted);font-size:.93rem}
+.brands{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:4px;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:#c3cae0;text-transform:uppercase}
 
-    /* ─── MOBILE NAV ─── */
-    .nav-hamburger {
-      display: none; flex-direction: column; gap: 5px; cursor: pointer;
-      background: none; border: none; padding: 4px;
-      position: absolute; right: 1.25rem; top: 50%; transform: translateY(-50%);
-    }
-    .nav-hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--white); border-radius: 2px; transition: all 0.3s;
-    }
-    .mobile-menu {
-      display: none; position: fixed; top: 80px; left: 0; right: 0; z-index: 99;
-      background: rgba(8,8,8,0.97); backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border);
-      padding: 1.5rem 2rem; flex-direction: column; gap: 1.25rem;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      color: var(--white); text-decoration: none; font-size: 1.05rem;
-      font-weight: 500; padding: 0.5rem 0; border-bottom: 1px solid var(--border);
-    }
-    .mobile-menu .mobile-cta {
-      background: var(--accent); text-align: center; padding: 0.85rem;
-      border-radius: 100px; border: none; margin-top: 0.5rem; color: #fff;
-    }
+/* Philosophie */
+.philo{position:relative;padding-block:72px;background:linear-gradient(180deg,var(--surface),var(--bg));border-block:1px solid var(--line);overflow:hidden}
+.philo::before{content:"";position:absolute;left:-120px;top:-120px;width:420px;height:420px;background:radial-gradient(circle,rgba(56,225,255,.14),transparent 65%);pointer-events:none}
+.philo .wrap{position:relative}
+.philo-statement{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,6vw,3.1rem);line-height:1.12;letter-spacing:-.02em;max-width:22ch;margin-top:18px;text-wrap:balance}
+.philo-statement mark{background:none;color:var(--neon)}
+.philo-body{display:grid;gap:16px;margin-top:26px;max-width:640px;color:#c3cae0;font-size:1.04rem}
+.global{margin-top:34px;padding-top:28px;border-top:1px solid var(--line);max-width:760px}
+.global h3{font-size:1.15rem;font-weight:700}
+.global p{color:#c3cae0;margin-top:8px;max-width:640px}
+.sum{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:20px}
+.sum span{font-family:var(--mono);font-size:.76rem;letter-spacing:.04em;padding:8px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface2)}
+.sum i{font-style:normal;font-family:var(--mono);color:var(--muted)}
+.sum .res{color:#05070f;background:var(--neon);border-color:var(--neon);font-weight:500}
+.philo-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.philo-tags span{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;padding:7px 12px;border-radius:999px;border:1px solid rgba(56,225,255,.3);color:var(--neon)}
 
-    /* ════════════════════════════════════
-       PAGES
-    ════════════════════════════════════ */
-    .page { display: none; padding-top: 80px; min-height: 100vh; }
-    .page.active { display: block; }
+/* Apps */
+.apps{display:grid;gap:14px}
+.app{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:grid;gap:14px;align-content:start;min-width:0}
+.app-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.tag{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.tag.live{color:var(--neon);border-color:rgba(56,225,255,.35)}
+.app h3{font-size:1.25rem;font-weight:700}
+.app p{color:var(--muted);font-size:.94rem}
+.app ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:.9rem}
+.app li{display:flex;gap:10px}
+.app li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--accent-2);margin-top:9px}
+.app a.more{font-size:.88rem;font-weight:600;color:var(--accent-2);text-decoration:none}
+.app a.more:hover{text-decoration:underline}
+.app.custom{background:transparent;border-style:dashed;border-color:rgba(150,170,255,.2)}
+.app .ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--surface2);border:1px solid var(--line)}
+.app .ico svg{width:22px;height:22px;stroke:var(--fg);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-    /* ─── SHARED HERO ─── */
-    .hero {
-      min-height: calc(100vh - 80px);
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 5rem 2.5rem 4rem;
-      position: relative; overflow: hidden;
-    }
-    .hero-bg {
-      position: absolute; inset: 0; z-index: 0;
-    }
-    .hero-bg.blue {
-      background:
-        radial-gradient(ellipse 65% 60% at 72% 38%, rgba(90,90,255,0.14) 0%, transparent 70%),
-        radial-gradient(ellipse 45% 50% at 18% 82%, rgba(90,90,255,0.07) 0%, transparent 70%);
-    }
-    .hero-bg.gold {
-      background:
-        radial-gradient(ellipse 65% 60% at 72% 38%, rgba(212,168,85,0.13) 0%, transparent 70%),
-        radial-gradient(ellipse 45% 50% at 18% 82%, rgba(212,168,85,0.07) 0%, transparent 70%);
-    }
-    .hero-grid {
-      position: absolute; inset: 0; z-index: 0;
-      background:
-        radial-gradient(ellipse 50% 40% at 50% 0%, rgba(255,255,255,0.03) 0%, transparent 70%),
-        radial-gradient(ellipse 30% 30% at 90% 50%, rgba(90,90,255,0.04) 0%, transparent 70%),
-        radial-gradient(ellipse 25% 25% at 10% 80%, rgba(90,90,255,0.03) 0%, transparent 70%);
-    }
-    .hero-content { position: relative; z-index: 1; max-width: 860px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em;
-      padding: 0.38rem 1rem; border-radius: 100px; margin-bottom: 2rem;
-      text-transform: uppercase;
-    }
-    .hero-badge.blue {
-      background: rgba(90,90,255,0.1); border: 1px solid rgba(90,90,255,0.25);
-      color: var(--accent2);
-    }
-    .hero-badge.gold {
-      background: rgba(212,168,85,0.1); border: 1px solid rgba(212,168,85,0.25);
-      color: var(--gold2);
-    }
-    .hero-badge::before {
-      content: ''; width: 6px; height: 6px; border-radius: 50%;
-      background: currentColor; flex-shrink: 0;
-    }
+/* Convictions */
+.conv{background:var(--surface);border-block:1px solid var(--line)}
+.flow{border:1px solid var(--line);border-radius:var(--r);background:var(--bg);padding:18px;min-width:0}
+.flow-title{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 10px}
+.flow-title b{color:var(--neon);font-weight:500}
+.steps{display:grid;gap:8px;list-style:none;margin:0;padding:0}
+.step{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center;padding:12px 14px;border-radius:12px;background:var(--surface2);font-size:.92rem}
+.step time{font-family:var(--mono);font-size:.75rem;color:var(--muted)}
+.step.ai{background:rgba(79,107,255,.12);border:1px solid rgba(79,107,255,.35)}
+.step.ai time{color:var(--neon)}
+.flow-foot{margin-top:14px;font-size:.85rem;color:var(--muted)}
+.flow-foot strong{color:var(--fg)}
+.beliefs{display:grid;gap:20px}
+.belief h3{font-size:1.06rem;font-weight:700;margin-bottom:4px}
+.belief p{color:var(--muted);font-size:.94rem}
+.conv-grid{display:grid;gap:36px}
+.quote{margin-top:44px;padding-top:32px;border-top:1px solid var(--line)}
+.quote blockquote{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(1.55rem,5.6vw,2.7rem);line-height:1.15;letter-spacing:-.02em;max-width:22ch;text-wrap:balance}
+.quote blockquote span{color:var(--neon)}
+.quote cite{display:block;margin-top:14px;font-style:normal;font-family:var(--mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 
-    /* Conseil hero — photo background */
-    .hero-conseil-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background-image: url('./photo leo conseil digital.png');
-      background-size: cover; background-position: center center;
-    }
-    .hero-conseil-bg::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(8,8,8,0.96) 0%,
-        rgba(8,8,8,0.80) 50%,
-        rgba(8,8,8,0.45) 100%
-      );
-    }
+/* Compétences */
+.skills{display:grid;gap:12px}
+.skill{border:1px solid var(--line);border-radius:var(--r);padding:20px;min-width:0;background:rgba(11,16,32,.5)}
+.skill h3{font-size:1.03rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.skill h3 i{width:8px;height:8px;border-radius:2px;background:var(--accent);display:inline-block}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-size:.84rem;padding:6px 12px;border-radius:8px;background:var(--surface2);color:#d6dbea}
+.sectors{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline;font-size:.92rem;color:var(--muted)}
+.sectors b{font-family:var(--mono);font-weight:400;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2)}
 
-    /* Events hero — photo background */
-    .hero-events-bg {
-      position: absolute; inset: 0; z-index: 0;
-      background-image: url('./photo dj santi.jpg');
-      background-size: cover; background-position: center top;
-    }
-    .hero-events-bg::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(8,8,8,0.96) 0%,
-        rgba(8,8,8,0.82) 55%,
-        rgba(8,8,8,0.45) 100%
-      );
-    }
+/* Expertise / boîte à outils */
+.stack{border-top:1px solid var(--line)}
+.stack-grid{display:grid;gap:12px}
+.spec{border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:0}
+.spec h3{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--neon);padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(56,225,255,.04)}
+.spec ul{list-style:none;margin:0;padding:6px 0}
+.spec li{display:flex;justify-content:space-between;gap:12px;padding:8px 16px;font-size:.9rem}
+.spec li span:last-child{color:var(--muted);font-size:.8rem;text-align:right}
+.claude-code{margin-top:12px;display:grid;gap:16px;padding:22px;border-radius:var(--r);border:1px solid rgba(79,107,255,.35);background:linear-gradient(135deg,rgba(79,107,255,.16),rgba(56,225,255,.04));min-width:0}
+.claude-code .term{font-family:var(--mono);font-size:.8rem;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px 16px;color:#c3cae0;overflow-x:auto;white-space:pre;line-height:1.7}
+.claude-code .term .p{color:var(--neon)}
+.claude-code .term .ok{color:#7ee2a8}
+.claude-code h3{font-size:1.2rem;font-weight:700}
+.claude-code p{color:#c3cae0;font-size:.95rem}
 
-    h1 {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: clamp(2.5rem, 5.5vw, 4.8rem);
-      line-height: 1.1; letter-spacing: -0.015em;
-      color: var(--white); margin-bottom: 1.5rem;
-    }
-    h1 em.blue { font-style: normal; color: var(--accent); }
-    h1 em.gold { font-style: normal; color: var(--gold); }
+/* Contact */
+.contact-card{border-radius:24px;padding:28px 22px;background:linear-gradient(160deg,rgba(79,107,255,.24),rgba(79,107,255,.04) 60%),var(--surface);border:1px solid rgba(79,107,255,.32);display:grid;gap:28px}
+.contact-card h2{font-size:clamp(1.75rem,5.6vw,2.6rem);font-weight:800}
+.contact-card .lead{color:var(--muted);margin-top:12px;max-width:40ch}
+.direct{display:grid;gap:8px;margin-top:20px;font-size:.92rem}
+.direct div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.direct span{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);width:72px}
+.direct a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25)}
+form{display:grid;gap:10px}
+label{font-size:.8rem;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;color:var(--fg);background:rgba(5,7,15,.6);border:1px solid rgba(150,170,255,.18);border-radius:12px;padding:12px 14px}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--neon)}
+.form-note{font-size:.78rem;color:var(--muted)}
+.form-ok{font-size:.9rem;color:var(--neon)}
 
-    .hero-sub {
-      font-size: 1.1rem; color: var(--muted); max-width: 520px;
-      line-height: 1.7; font-weight: 300; margin-bottom: 2.5rem;
-    }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+footer{padding-block:36px 110px;border-top:1px solid var(--line);font-size:.85rem;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px}
+.foot nav{display:flex;gap:18px;flex-wrap:wrap}
+.foot a{text-decoration:none}
+.foot a:hover{color:var(--fg)}
+.foot em{font-style:normal;color:var(--fg)}
 
-    /* ─── BUTTONS ─── */
-    .btn-primary {
-      background: var(--accent); color: #fff; border: none;
-      padding: 0.85rem 2rem; border-radius: 100px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
-      cursor: pointer; text-decoration: none; transition: all 0.2s;
-      display: inline-flex; align-items: center; gap: 0.45rem;
-    }
-    .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(90,90,255,0.35); }
-    .btn-primary.gold { background: var(--gold); }
-    .btn-primary.gold:hover { background: var(--gold2); box-shadow: 0 8px 32px rgba(212,168,85,0.3); }
-    .btn-ghost {
-      background: transparent; color: var(--white);
-      border: 1px solid var(--border); padding: 0.85rem 2rem; border-radius: 100px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 400;
-      cursor: pointer; text-decoration: none; transition: all 0.2s;
-      display: inline-flex; align-items: center; gap: 0.45rem;
-    }
-    .btn-ghost:hover { border-color: rgba(255,255,255,0.22); background: rgba(255,255,255,0.04); }
+.mobile-cta{position:fixed;left:0;right:0;bottom:0;z-index:55;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(5,7,15,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;gap:8px}
+.mobile-cta .btn{flex:1}
 
-    /* ─── ACTIVITY SPLIT ─── */
-    .activity-split {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 1.5rem; padding: 0 2.5rem 5rem;
-    }
-    .activity-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 2.5rem;
-      position: relative; overflow: hidden;
-      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s;
-      cursor: pointer; text-decoration: none;
-    }
-    .activity-card:hover { transform: scale(1.03) translateY(-5px); }
-    .activity-card.conseil:hover { animation: glowBlue 1.6s ease-in-out infinite; }
-    .activity-card.events:hover  { animation: glowGold 1.6s ease-in-out infinite; }
-    .activity-card .card-glow {
-      position: absolute; inset: 0; z-index: 0; pointer-events: none;
-      transition: opacity 0.3s; opacity: 0;
-    }
-    .activity-card.conseil .card-glow { background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(90,90,255,0.12) 0%, transparent 70%); }
-    .activity-card.events  .card-glow { background: radial-gradient(ellipse 60% 60% at 80% 20%, rgba(212,168,85,0.12) 0%, transparent 70%); }
-    .activity-card:hover .card-glow { opacity: 1; }
-    .activity-card-inner { position: relative; z-index: 1; }
-    .activity-tag {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 0.3rem 0.85rem; border-radius: 100px;
-      margin-bottom: 1.5rem;
-    }
-    .activity-tag.blue { background: rgba(90,90,255,0.1); border: 1px solid rgba(90,90,255,0.25); color: var(--accent2); }
-    .activity-tag.gold { background: rgba(212,168,85,0.1); border: 1px solid rgba(212,168,85,0.25); color: var(--gold2); }
-    .activity-card h3 {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 1.65rem; letter-spacing: -0.01em;
-      color: var(--white); margin-bottom: 0.75rem; line-height: 1.2;
-    }
-    .activity-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 2rem; }
-    .activity-card .card-services { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
-    .card-chip {
-      font-size: 0.75rem; color: rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      padding: 0.25rem 0.7rem; border-radius: 100px;
-    }
-    .card-arrow {
-      font-size: 0.85rem; font-weight: 500;
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      transition: gap 0.2s;
-    }
-    .activity-card.conseil .card-arrow { color: var(--accent2); }
-    .activity-card.events  .card-arrow { color: var(--gold2); }
-    .activity-card:hover .card-arrow { gap: 0.75rem; }
+.rise{animation:rise .7s cubic-bezier(.2,.8,.2,1) both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.16s}.rise.d3{animation-delay:.24s}
+@keyframes rise{from{transform:translateY(14px);opacity:.001}to{transform:none;opacity:1}}
+.ring{animation:pulse 6s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 60px rgba(56,225,255,.28),inset 0 0 50px rgba(79,107,255,.35)}}
 
-    /* ─── SECTIONS ─── */
-    section { padding: 5rem 2.5rem; }
-    .section-label {
-      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; margin-bottom: 0.85rem;
-    }
-    .section-label.blue { color: var(--accent); }
-    .section-label.gold { color: var(--gold); }
-    h2 {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      letter-spacing: -0.03em; line-height: 1.15;
-      color: var(--white); margin-bottom: 0.85rem;
-    }
-    .section-desc { color: var(--muted); font-size: 1rem; max-width: 480px; line-height: 1.65; margin-bottom: 3rem; }
 
-    /* ─── SHIMMER GLOW KEYFRAMES ─── */
-    @keyframes glowBlue {
-      0%, 100% {
-        box-shadow: 0 0 18px rgba(90,90,255,0.25), 0 0 40px rgba(90,90,255,0.1), 0 12px 40px rgba(0,0,0,0.5);
-        border-color: rgba(90,90,255,0.4);
-      }
-      50% {
-        box-shadow: 0 0 28px rgba(124,124,255,0.45), 0 0 60px rgba(90,90,255,0.2), 0 12px 40px rgba(0,0,0,0.5);
-        border-color: rgba(124,124,255,0.65);
-      }
-    }
-    @keyframes glowGold {
-      0%, 100% {
-        box-shadow: 0 0 18px rgba(212,168,85,0.28), 0 0 40px rgba(212,168,85,0.12), 0 12px 40px rgba(0,0,0,0.5);
-        border-color: rgba(212,168,85,0.45);
-      }
-      50% {
-        box-shadow: 0 0 28px rgba(232,192,112,0.5), 0 0 60px rgba(212,168,85,0.22), 0 12px 40px rgba(0,0,0,0.5);
-        border-color: rgba(232,192,112,0.7);
-      }
-    }
+/* Cartes cliquables */
+.app.link{cursor:pointer;transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .25s,box-shadow .35s}
+.app.link:hover,.app.link:focus-visible{transform:translateY(-4px) scale(1.03);border-color:rgba(56,225,255,.45);box-shadow:0 24px 60px -24px rgba(79,107,255,.7)}
+.app .open{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-top:14px;border-top:1px solid var(--line);font-size:.88rem;font-weight:600;color:var(--accent-2)}
+.app .open b{font-family:var(--mono);font-weight:400;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.app.link:hover .open{color:var(--neon)}
+.tag.beta{color:#ffcf6b;border-color:rgba(255,207,107,.35)}
 
-    /* ─── SERVICE GRID ─── */
-    .services-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.25rem;
-    }
-    .service-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2rem;
-      transition: border-color 0.25s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .service-card:hover { transform: scale(1.045) translateY(-4px); }
-    .service-card.blue:hover { animation: glowBlue 1.6s ease-in-out infinite; }
-    .service-card.gold:hover { animation: glowGold 1.6s ease-in-out infinite; }
-    .service-icon {
-      width: 44px; height: 44px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; margin-bottom: 1.25rem;
-    }
-    .service-icon.blue { background: rgba(90,90,255,0.1); border: 1px solid rgba(90,90,255,0.2); }
-    .service-icon.gold { background: rgba(212,168,85,0.1); border: 1px solid rgba(212,168,85,0.2); }
-    .service-card h3 {
-      font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700;
-      color: var(--white); margin-bottom: 0.5rem;
-    }
-    .service-card p { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
+/* Pages projet */
+.detail{position:fixed;inset:0;z-index:80;background:var(--bg);overflow-y:auto;-webkit-overflow-scrolling:touch;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);animation:dIn .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes dIn{from{opacity:.001;transform:scale(.98)}to{opacity:1;transform:none}}
+.d-bar{position:sticky;top:0;z-index:2;background:rgba(5,7,15,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.d-bar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
+.d-back{display:inline-flex;align-items:center;gap:8px;background:none;border:0;color:var(--fg);font:600 .92rem var(--body);cursor:pointer;padding:8px 0}
+.d-hero{position:relative;padding-block:48px 36px;border-bottom:1px solid var(--line);overflow:hidden}
+.d-hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(150,170,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(150,170,255,.07) 1px,transparent 1px);background-size:44px 44px;-webkit-mask-image:radial-gradient(70% 80% at 80% 20%,#000 10%,transparent 70%);mask-image:radial-gradient(70% 80% at 80% 20%,#000 10%,transparent 70%)}
+.d-hero .wrap{position:relative}
+.d-hero h2{font-size:clamp(2rem,7vw,3.4rem);font-weight:800;margin-top:14px}
+.d-hero .lead{margin-top:16px;color:#c3cae0;font-size:1.06rem;max-width:58ch}
+.d-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.d-meta span{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;padding:7px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface)}
+.d-meta span b{color:var(--neon);font-weight:500}
+.d-body{display:grid;gap:40px;padding-block:44px 64px}
+.d-block h3{font-size:1.25rem;font-weight:700;margin-bottom:16px}
+.d-block>p{color:var(--muted);max-width:62ch}
+.how{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.how li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+.how li::before{content:counter(s);width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-size:.8rem;color:var(--neon);border:1px solid rgba(56,225,255,.35)}
+.how b{display:block;font-family:var(--display);font-size:.98rem}
+.how span{color:var(--muted);font-size:.92rem}
+.feats{display:grid;gap:10px}
+.feat{padding:16px;border-radius:14px;border:1px solid var(--line);background:rgba(11,16,32,.5)}
+.feat b{display:block;font-family:var(--display);font-size:.98rem;margin-bottom:2px}
+.feat span{color:var(--muted);font-size:.9rem}
+.tools{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.tool{padding:14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);min-width:0}
+.tool b{display:block;font-size:.95rem}
+.tool span{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.d-cta{display:flex;flex-wrap:wrap;gap:10px;padding:24px;border-radius:var(--r);border:1px solid rgba(79,107,255,.32);background:linear-gradient(160deg,rgba(79,107,255,.2),rgba(79,107,255,.03) 60%),var(--surface);align-items:center;justify-content:space-between}
+.d-cta p{font-family:var(--display);font-weight:700;font-size:1.15rem}
+@media (min-width:860px){
+  .d-hero{padding-block:72px 52px}
+  .d-body{grid-template-columns:1fr 1fr;column-gap:56px}
+  .d-block.full{grid-column:1/-1}
+  .feats{grid-template-columns:1fr 1fr}
+  .tools{grid-template-columns:repeat(4,1fr)}
+}
 
-    /* ─── PROCESS STEPS ─── */
-    .process-steps {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 0; position: relative;
-    }
-    .process-step {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2rem; position: relative;
-      margin: 0.75rem;
-    }
-    .step-num {
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 3rem;
-      letter-spacing: -0.05em; opacity: 0.08; color: var(--white);
-      position: absolute; top: 1.25rem; right: 1.5rem;
-    }
-    .process-step h3 {
-      font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem;
-      color: var(--white); margin-bottom: 0.5rem;
-    }
-    .process-step p { color: var(--muted); font-size: 0.875rem; line-height: 1.6; }
+/* Titre : reflet lumineux à l'ouverture */
+.hero h1{background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.95) 49%,rgba(190,240,255,.9) 51%,transparent 60%) 160% 0/250% 100% no-repeat,linear-gradient(var(--fg),var(--fg));-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise .7s cubic-bezier(.2,.8,.2,1) .08s both,shine 2.6s cubic-bezier(.45,0,.2,1) .7s both}
+.hero h1 em{background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.95) 49%,rgba(190,240,255,.9) 51%,transparent 60%) 160% 0/250% 100% no-repeat,linear-gradient(90deg,var(--accent-2),var(--neon));-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 2.6s cubic-bezier(.45,0,.2,1) .7s both}
+@keyframes shine{0%{background-position:160% 0,0 0;filter:none}45%{filter:drop-shadow(0 0 14px rgba(56,225,255,.45))}100%{background-position:-60% 0,0 0;filter:none}}
 
-    /* ─── CTA BAND ─── */
-    .cta-band {
-      margin: 0 2.5rem 5rem; border-radius: 20px;
-      padding: 3.5rem 3rem; text-align: center;
-    }
-    .cta-band.blue {
-      background: linear-gradient(130deg, rgba(90,90,255,0.14) 0%, rgba(90,90,255,0.04) 100%);
-      border: 1px solid rgba(90,90,255,0.2);
-    }
-    .cta-band.gold {
-      background: linear-gradient(130deg, rgba(212,168,85,0.13) 0%, rgba(212,168,85,0.04) 100%);
-      border: 1px solid rgba(212,168,85,0.2);
-    }
-    .cta-band h2 { margin-bottom: 0.75rem; }
-    .cta-band p { color: var(--muted); margin-bottom: 2rem; font-size: 1rem; }
-    .cta-note {
-      margin-top: 1.25rem; font-size: 0.8rem; color: rgba(255,255,255,0.3);
-      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
-    }
+/* Texte tapé à la machine */
+.typed .ch{opacity:0}
+.typed .ch.on{opacity:1}
+.caret{display:inline-block;width:2px;height:1.05em;background:var(--neon);vertical-align:-.15em;margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
 
-    /* ════════════════════════════════════
-       MUSIC TICKER (stock market style)
-    ════════════════════════════════════ */
-    .ticker-section {
-      padding: 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      background: rgba(212,168,85,0.03);
-    }
-    .ticker-outer {
-      overflow: hidden; padding: 1.1rem 0;
-      position: relative;
-    }
-    .ticker-outer::before,
-    .ticker-outer::after {
-      content: ''; position: absolute; top: 0; bottom: 0; z-index: 2; width: 80px; pointer-events: none;
-    }
-    .ticker-outer::before { left: 0; background: linear-gradient(to right, var(--black), transparent); }
-    .ticker-outer::after  { right: 0; background: linear-gradient(to left,  var(--black), transparent); }
-    .ticker-track {
-      display: flex; gap: 0.85rem; width: max-content;
-      animation: tickerScroll 22s linear infinite;
-    }
-    .ticker-track:hover { animation-play-state: paused; }
-    @keyframes tickerScroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-    .ticker-tag {
-      background: rgba(212,168,85,0.1);
-      border: 1px solid rgba(212,168,85,0.3);
-      color: var(--gold2);
-      padding: 0.3rem 1.1rem;
-      border-radius: 100px;
-      font-size: 0.78rem; font-weight: 700;
-      white-space: nowrap; letter-spacing: 0.06em; text-transform: uppercase;
-      display: flex; align-items: center; gap: 0.5rem;
-    }
-    .ticker-tag::before {
-      content: '▶'; font-size: 0.5rem; opacity: 0.5;
-    }
-    .ticker-section.blue { background: rgba(90,90,255,0.03); }
-    .ticker-tag.blue {
-      background: rgba(90,90,255,0.1);
-      border: 1px solid rgba(90,90,255,0.28);
-      color: var(--accent2);
-    }
-    .ticker-tag.blue::before { content: '◆'; }
+/* Carte "Votre application" qui pulse */
+.app.custom{animation:glow 2.4s ease-in-out infinite;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.app.custom:hover{transform:translateY(-4px) scale(1.03);animation-play-state:paused;border-color:var(--neon)}
+@keyframes glow{0%,100%{border-color:rgba(150,170,255,.2);box-shadow:0 0 0 0 rgba(56,225,255,0)}50%{border-color:rgba(56,225,255,.75);box-shadow:0 0 34px -4px rgba(56,225,255,.45),inset 0 0 24px rgba(56,225,255,.08)}}
+.app.custom .tag{animation:tagb 2.4s ease-in-out infinite}
+@keyframes tagb{50%{color:var(--neon);border-color:rgba(56,225,255,.5)}}
 
-    /* ════════════════════════════════════
-       DJ SANTI / OTK SECTION
-    ════════════════════════════════════ */
-    .dj-profile {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
-      padding: 4rem 2.5rem;
-    }
-    .dj-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; padding: 2.5rem;
-      position: relative; overflow: hidden;
-      transition: border-color 0.25s, transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .dj-card:hover { transform: scale(1.03) translateY(-4px); animation: glowGold 1.6s ease-in-out infinite; }
-    .dj-card-accent {
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
-      background: linear-gradient(to right, var(--gold), transparent);
-    }
-    .dj-tag {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
-      text-transform: uppercase; padding: 0.28rem 0.85rem; border-radius: 100px;
-      background: rgba(212,168,85,0.1); border: 1px solid rgba(212,168,85,0.25);
-      color: var(--gold2); margin-bottom: 1.5rem;
-    }
-    .dj-card h3 {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 1.55rem; letter-spacing: -0.01em;
-      color: var(--white); margin-bottom: 0.35rem; line-height: 1.15;
-    }
-    .dj-card .dj-role {
-      font-size: 0.82rem; color: var(--gold2); font-weight: 500;
-      letter-spacing: 0.05em; margin-bottom: 1.25rem;
-    }
-    .dj-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
-    .dj-stats {
-      display: flex; gap: 2rem; margin-bottom: 1.5rem;
-    }
-    .dj-stat-num {
-      font-family: 'Syne', sans-serif; font-weight: 800;
-      font-size: 1.6rem; letter-spacing: -0.03em; color: var(--gold);
-    }
-    .dj-stat-label { font-size: 0.75rem; color: var(--muted); margin-top: 0.15rem; }
-    .dj-ig-link {
-      display: inline-flex; align-items: center; gap: 0.55rem;
-      font-size: 0.82rem; font-weight: 500; color: var(--white);
-      text-decoration: none; padding: 0.55rem 1.1rem;
-      background: rgba(255,255,255,0.06); border: 1px solid var(--border);
-      border-radius: 100px; transition: all 0.2s;
-    }
-    .dj-ig-link:hover {
-      background: rgba(225,48,108,0.15); border-color: rgba(225,48,108,0.4);
-      color: #f472b6;
-    }
+/* Formulaire : origine du contact */
+fieldset{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+legend{font-size:.8rem;color:var(--muted);padding:0;margin-bottom:8px}
+.radios{display:flex;flex-wrap:wrap;gap:6px}
+.radios label{display:inline-flex;flex-direction:row;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;border:1px solid rgba(150,170,255,.18);background:rgba(5,7,15,.6);color:var(--fg);font-size:.85rem;cursor:pointer;transition:border-color .2s,background .2s}
+.radios input{width:auto;accent-color:var(--neon);margin:0;padding:0}
+.radios label:has(input:checked){border-color:var(--neon);background:rgba(56,225,255,.08)}
+.referral{animation:rise .35s ease both}
+.sum .end{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;padding:0;border:0;background:none;border-radius:0}
 
-    /* ─── VENUES ─── */
-    .venues-row {
-      display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem;
-    }
-    .venue-chip {
-      display: flex; align-items: center; gap: 0.5rem;
-      padding: 0.55rem 1.2rem; border-radius: 100px;
-      background: rgba(212,168,85,0.08); border: 1px solid rgba(212,168,85,0.22);
-      font-size: 0.85rem; font-weight: 500; color: var(--gold2);
-    }
-
-    /* ─── EQUIPMENT ─── */
-    .equip-row {
-      display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.25rem;
-    }
-    .equip-badge {
-      padding: 0.35rem 1rem; border-radius: 100px;
-      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7);
-      letter-spacing: 0.04em;
-    }
-
-    /* ─── DIGITAL STRATEGY ─── */
-    .strat-card {
-      background: linear-gradient(135deg, rgba(212,168,85,0.1) 0%, rgba(212,168,85,0.03) 100%);
-      border: 1px solid rgba(212,168,85,0.2);
-      border-radius: 20px; padding: 2.5rem;
-      display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem;
-    }
-    .strat-item { display: flex; flex-direction: column; gap: 0.5rem; }
-    .strat-icon { font-size: 1.6rem; margin-bottom: 0.35rem; }
-    .strat-item h4 {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: 0.95rem; color: var(--white);
-    }
-    .strat-item p { color: var(--muted); font-size: 0.8rem; line-height: 1.55; }
-
-    /* ─── CONTACT PAGE ─── */
-    .contact-layout {
-      display: grid; grid-template-columns: 1fr 1.1fr;
-      gap: 4rem; padding: 4rem 2.5rem; max-width: 1000px; margin: 0 auto;
-    }
-    .contact-info .section-label { margin-bottom: 1rem; }
-    .contact-info h1 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
-    .contact-info p { color: var(--muted); font-size: 1rem; line-height: 1.7; margin-bottom: 2.5rem; }
-    .contact-item {
-      display: flex; align-items: center; gap: 1rem;
-      padding: 1rem 0; border-bottom: 1px solid var(--border);
-    }
-    .contact-item:first-of-type { border-top: 1px solid var(--border); }
-    .c-icon {
-      width: 40px; height: 40px; border-radius: 10px;
-      background: rgba(90,90,255,0.1); border: 1px solid rgba(90,90,255,0.2);
-      display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
-    }
-    .c-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
-    .c-value { font-size: 0.95rem; color: var(--white); margin-top: 0.15rem; }
-    .c-value a { color: var(--white); text-decoration: none; transition: color 0.2s; }
-    .c-value a:hover { color: var(--accent2); }
-
-    /* ─── CAL.COM EMBED ─── */
-    .cal-block {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 20px; overflow: hidden; min-height: 680px;
-      display: flex; flex-direction: column;
-    }
-    .cal-header {
-      padding: 1.75rem 2rem 1.25rem; border-bottom: 1px solid var(--border);
-      display: flex; align-items: center; gap: 0.75rem;
-    }
-    .cal-header .cal-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
-    .cal-header h2 { font-size: 1.2rem; }
-    .cal-header p { color: var(--muted); font-size: 0.8rem; margin-top: 0.15rem; }
-    .cal-embed { flex: 1; }
-    .cal-embed iframe { width: 100%; height: 100%; min-height: 600px; border: none; background: var(--surface); }
-
-    /* ─── FOOTER ─── */
-    footer {
-      border-top: 1px solid var(--border); padding: 2rem 2.5rem;
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
-    }
-    .footer-logo {
-      font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
-      color: var(--white); letter-spacing: -0.01em;
-    }
-    .footer-logo .dot { color: var(--accent); }
-    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .footer-links a { color: var(--muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--white); }
-    .footer-copy { color: rgba(255,255,255,0.18); font-size: 0.75rem; }
-
-    /* ════════════════════════════════════
-       SCROLL REVEALS
-    ════════════════════════════════════ */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.08s; }
-    .reveal-delay-2 { transition-delay: 0.18s; }
-    .reveal-delay-3 { transition-delay: 0.28s; }
-    .reveal-delay-4 { transition-delay: 0.38s; }
-
-    /* ─── ANIMATIONS ─── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    .fade-up { animation: fadeUp 0.6s ease forwards; }
-    .delay-1 { animation-delay: 0.1s; opacity: 0; }
-    .delay-2 { animation-delay: 0.22s; opacity: 0; }
-    .delay-3 { animation-delay: 0.35s; opacity: 0; }
-    .delay-4 { animation-delay: 0.5s; opacity: 0; }
-
-    /* ════════════════════════════════════
-       RESPONSIVE — MOBILE FIRST
-    ════════════════════════════════════ */
-    @media (max-width: 768px) {
-      nav {
-        display: flex; justify-content: center; align-items: center;
-        padding: 0.85rem 1.25rem; position: relative;
-      }
-      .nav-left, .nav-right { display: none; }
-      .nav-center { justify-content: center; }
-      .nav-hamburger { display: flex; }
-
-      .hero { padding: 3rem 1.25rem 2.5rem; min-height: auto; }
-      section { padding: 3rem 1.25rem; }
-
-      .activity-split { grid-template-columns: 1fr; padding: 0 1.25rem 3rem; }
-      .activity-card h3 { font-size: 1.35rem; }
-
-      .cta-band { margin: 0 1.25rem 3rem; padding: 2.5rem 1.5rem; }
-      .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; padding: 2.5rem 1.25rem; }
-      .process-steps { grid-template-columns: 1fr; }
-      .dj-profile { grid-template-columns: 1fr; padding: 2rem 1.25rem; }
-      .strat-card { grid-template-columns: 1fr; }
-      footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
-
-      .dj-stats { gap: 1.25rem; }
-      .dj-stat-num { font-size: 1.35rem; }
-
-      h1 { font-size: clamp(2rem, 8vw, 3rem); }
-      h2 { font-size: clamp(1.5rem, 5.5vw, 2.2rem); }
-
-      .hero-events-bg::after {
-        background: linear-gradient(
-          to bottom,
-          rgba(8,8,8,0.92) 0%,
-          rgba(8,8,8,0.75) 50%,
-          rgba(8,8,8,0.85) 100%
-        );
-      }
-    }
-
-    @media (max-width: 480px) {
-      .hero-actions { flex-direction: column; align-items: stretch; }
-      .hero-actions .btn-primary,
-      .hero-actions .btn-ghost { text-align: center; justify-content: center; }
-      .venues-row { gap: 0.5rem; }
-      .venue-chip { font-size: 0.78rem; padding: 0.45rem 0.9rem; }
-    }
-
-    /* ════════════════════════════════════
-       HERO VIDEO BACKGROUND
-    ════════════════════════════════════ */
-    .hero-video-bg {
-      position: absolute; inset: 0; z-index: 0;
-      width: 100%; height: 100%;
-      object-fit: cover; pointer-events: none;
-    }
-    .hero-video-overlay {
-      position: absolute; inset: 0; z-index: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(8,8,8,0.88) 0%,
-        rgba(8,8,8,0.68) 55%,
-        rgba(8,8,8,0.42) 100%
-      );
-    }
-
-    /* ════════════════════════════════════
-       ZOOM FOCUS EFFECT (hover group)
-    ════════════════════════════════════ */
-    .activity-card {
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, opacity 0.28s !important;
-    }
-    .activity-split:hover .activity-card:not(:hover) {
-      transform: scale(0.97) !important;
-      opacity: 0.80;
-    }
-    .activity-split:hover .activity-card:hover {
-      transform: scale(1.04) translateY(-5px) !important;
-      opacity: 1;
-    }
-    .service-card {
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, opacity 0.28s !important;
-    }
-    .services-grid:hover .service-card:not(:hover) {
-      transform: scale(0.97) !important;
-      opacity: 0.80;
-    }
-    .services-grid:hover .service-card:hover {
-      transform: scale(1.045) translateY(-4px) !important;
-      opacity: 1;
-    }
-    .dj-card {
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), border-color 0.25s, opacity 0.28s !important;
-    }
-    .dj-profile:hover .dj-card:not(:hover) {
-      transform: scale(0.97) !important;
-      opacity: 0.80;
-    }
-    .dj-profile:hover .dj-card:hover {
-      transform: scale(1.04) translateY(-4px) !important;
-      opacity: 1;
-    }
-
-    /* Zoom focus — process-steps (Approche / Comment ça marche) */
-    .process-steps .process-step {
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.28s, border-color 0.25s, box-shadow 0.28s;
-    }
-    .process-steps:hover .process-step:not(:hover) {
-      transform: scale(0.97);
-      opacity: 0.78;
-    }
-    .process-steps:hover .process-step:hover {
-      transform: scale(1.04) translateY(-4px);
-      opacity: 1;
-      border-color: rgba(90,90,255,0.3);
-      box-shadow: 0 0 18px rgba(90,90,255,0.14), 0 8px 28px rgba(0,0,0,0.4);
-    }
-
-    /* Zoom focus — strat-items (Stratégie digitale événement) */
-    .strat-card .strat-item {
-      transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), opacity 0.28s;
-      border-radius: 14px;
-      padding: 1.25rem;
-      margin: -1.25rem;
-    }
-    .strat-card:hover .strat-item:not(:hover) {
-      transform: scale(0.96);
-      opacity: 0.72;
-    }
-    .strat-card:hover .strat-item:hover {
-      transform: scale(1.04);
-      opacity: 1;
-    }
-
-    /* ════════════════════════════════════
-       CONTACT PAGE TABS
-    ════════════════════════════════════ */
-    .contact-tabs-bar {
-      display: flex; border-bottom: 1px solid var(--border);
-    }
-    .contact-tab {
-      flex: 1; padding: 1.1rem 1.25rem; cursor: pointer;
-      font-size: 0.88rem; font-weight: 500; color: var(--muted);
-      border: none; border-bottom: 2px solid transparent; margin-bottom: -1px;
-      background: none; font-family: 'DM Sans', sans-serif;
-      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-      transition: color 0.2s, border-color 0.2s;
-    }
-    .contact-tab.active { color: var(--white); border-bottom-color: var(--accent); }
-    .contact-tab-content { display: none; }
-    .contact-tab-content.active { display: block; }
-
-    /* ════════════════════════════════════
-       CONTACT FORM
-    ════════════════════════════════════ */
-    .contact-form { display: flex; flex-direction: column; gap: 1.1rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
-    .form-group label {
-      font-size: 0.82rem; font-weight: 500;
-      color: rgba(255,255,255,0.72); letter-spacing: 0.01em;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 12px; padding: 0.78rem 1rem;
-      color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
-      transition: border-color 0.2s, background 0.2s; outline: none;
-      -webkit-appearance: none; appearance: none;
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: rgba(255,255,255,0.22); }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: rgba(90,90,255,0.5); background: rgba(90,90,255,0.05);
-    }
-    .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(255,255,255,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 1rem center;
-      padding-right: 2.5rem;
-    }
-    .form-group select option { background: #1a1a2e; color: var(--white); }
-    .form-group textarea { min-height: 120px; resize: vertical; }
-    .form-submit-btn {
-      background: var(--accent); color: #fff; border: none;
-      padding: 0.88rem 2rem; border-radius: 100px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 500;
-      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
-      transition: all 0.2s; width: 100%; margin-top: 0.25rem;
-    }
-    .form-submit-btn:hover:not(:disabled) { background: var(--accent2); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(90,90,255,0.35); }
-    .form-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .form-success {
-      display: none; background: rgba(90,90,255,0.08); border: 1px solid rgba(90,90,255,0.25);
-      border-radius: 14px; padding: 2.5rem 1.5rem; text-align: center;
-      color: var(--white); line-height: 1.65;
-    }
-    .form-success.show { display: block; }
-    .form-error {
-      display: none; background: rgba(255,80,80,0.08); border: 1px solid rgba(255,80,80,0.25);
-      border-radius: 10px; padding: 0.85rem 1rem;
-      color: #ff8888; font-size: 0.85rem;
-    }
-    .form-error.show { display: block; }
-    @media (max-width: 480px) { .form-row { grid-template-columns: 1fr; } }
-
-    /* ════════════════════════════════════
-       QUI SUIS-JE PAGE
-    ════════════════════════════════════ */
-    .qsn-section { padding: 3rem 2.5rem 5rem; }
-    .qsn-layout {
-      display: grid;
-      grid-template-columns: 380px 1fr;
-      gap: 4rem;
-      max-width: 1080px;
-      margin: 0 auto;
-      align-items: start;
-    }
-    .qsn-photo-wrapper { position: relative; display: block; }
-    .qsn-photo {
-      width: 100%; height: auto;
-      border-radius: 20px; display: block; object-fit: cover;
-    }
-    /* Pin pulsant sur le médaillon */
-    @keyframes pinPulse {
-      0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.8); }
-      70%  { box-shadow: 0 0 0 14px rgba(255,255,255,0); }
-      100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
-    }
-    .pin-overlay {
-      position: absolute;
-      top: 40%; left: 66%;
-      transform: translate(-50%, -50%);
-      z-index: 3; cursor: pointer; text-decoration: none;
-    }
-    .pin-dot {
-      width: 14px; height: 14px;
-      background: rgba(255,255,255,0.95);
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.9);
-      animation: pinPulse 2s ease-in-out infinite;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .pin-overlay:hover .pin-dot {
-      background: var(--accent);
-      border-color: var(--accent2);
-      transform: scale(1.3);
-    }
-    .pin-tooltip {
-      position: absolute;
-      bottom: 145%; left: 50%;
-      transform: translateX(-50%);
-      background: rgba(8,8,8,0.92);
-      color: #fff;
-      font-size: 0.72rem; font-weight: 600;
-      padding: 0.38rem 0.9rem;
-      border-radius: 100px;
-      white-space: nowrap;
-      opacity: 0; pointer-events: none;
-      transition: opacity 0.2s;
-      letter-spacing: 0.03em;
-      border: 1px solid rgba(90,90,255,0.3);
-    }
-    .pin-tooltip::after {
-      content: '';
-      position: absolute; top: 100%; left: 50%;
-      transform: translateX(-50%);
-      border: 5px solid transparent;
-      border-top-color: rgba(8,8,8,0.92);
-    }
-    .pin-overlay:hover .pin-tooltip { opacity: 1; }
-    .qsn-social-links {
-      display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.5rem;
-    }
-    .qsn-social-link {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.55rem 1.1rem; border-radius: 100px;
-      background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-      color: var(--white); text-decoration: none;
-      font-size: 0.82rem; font-weight: 500; transition: all 0.2s;
-    }
-    .qsn-social-link:hover {
-      background: rgba(90,90,255,0.12); border-color: rgba(90,90,255,0.35); color: var(--accent2);
-    }
-    .qsn-social-link.linkedin:hover {
-      background: rgba(10,102,194,0.15); border-color: rgba(10,102,194,0.4); color: #4a9fd4;
-    }
-    .qsn-bio-side h2 {
-      font-family: 'Syne', sans-serif; font-weight: 700;
-      font-size: clamp(1.6rem, 3vw, 2.3rem);
-      letter-spacing: -0.02em; color: var(--white); margin-bottom: 0.65rem; line-height: 1.2;
-    }
-    .qsn-bio-intro {
-      font-size: 1rem; color: var(--muted); line-height: 1.75; margin-bottom: 2rem;
-    }
-    .qsn-block {
-      margin-bottom: 1.75rem; padding-bottom: 1.75rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .qsn-block:last-of-type { border-bottom: none; margin-bottom: 0; }
-    .qsn-block-label {
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem;
-    }
-    .qsn-block p {
-      color: var(--muted); font-size: 0.9rem; line-height: 1.75;
-    }
-    .qsn-block p strong { color: rgba(255,255,255,0.85); font-weight: 500; }
-    .qsn-block p a { color: var(--accent2); text-decoration: none; }
-    .qsn-block p a:hover { text-decoration: underline; }
-    .qsn-chips {
-      display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.85rem;
-    }
-    .qsn-chip {
-      font-size: 0.73rem; color: rgba(255,255,255,0.55);
-      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-      padding: 0.22rem 0.7rem; border-radius: 100px;
-    }
-    .qsn-philosophy {
-      background: linear-gradient(135deg, rgba(90,90,255,0.08) 0%, rgba(90,90,255,0.02) 100%);
-      border: 1px solid rgba(90,90,255,0.18);
-      border-radius: 16px; padding: 1.5rem 1.75rem; margin-top: 1.5rem;
-    }
-    .qsn-philosophy p {
-      color: var(--white) !important; font-size: 1.05rem !important;
-      line-height: 1.65 !important; font-style: italic;
-    }
-    @media (max-width: 768px) {
-      .qsn-layout { grid-template-columns: 1fr; gap: 2.5rem; }
-      .qsn-section { padding: 2rem 1.25rem 3rem; }
-    }
-  </style>
+/* ===== Animations UX ===== */
+.progress{position:fixed;left:0;top:env(safe-area-inset-top,0px);height:2px;width:100%;z-index:70;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--accent),var(--neon));pointer-events:none}
+header{transition:box-shadow .3s,background .3s}
+header.scrolled{box-shadow:0 10px 30px -18px rgba(0,0,0,.9);background:rgba(5,7,15,.92)}
+.pre{opacity:0;transform:translateY(26px)}
+.in{opacity:1;transform:none;transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.spot{position:relative;isolation:isolate}
+.spot::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;opacity:0;transition:opacity .3s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(56,225,255,.12),transparent 60%);pointer-events:none}
+.spot:hover::after{opacity:1}
+.fact,.skill{transition:transform .3s cubic-bezier(.2,.8,.2,1),border-color .3s}
+.fact:hover,.skill:hover{transform:translateY(-3px);border-color:rgba(150,170,255,.28)}
+.chips span{transition:transform .2s,background .2s,color .2s}
+.chips span:hover{transform:translateY(-2px);background:rgba(79,107,255,.25);color:#fff}
+.btn-primary{position:relative;overflow:hidden}
+.btn-primary::before{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);transition:left .6s ease}
+.btn-primary:hover::before{left:130%}
+.badge{animation:float 5s ease-in-out infinite}
+.badge.b2{animation-delay:-1.6s}.badge.b3{animation-delay:-3.2s}
+@keyframes float{50%{transform:translateY(-8px)}}
+.sum.armed span:not(.end){opacity:.25;transform:translateY(6px);transition:opacity .4s,transform .4s,box-shadow .4s}
+.sum.armed i{opacity:.2;transition:opacity .4s}
+.sum.armed .lit{opacity:1!important;transform:none!important}
+.sum.armed .res.lit{box-shadow:0 0 28px rgba(56,225,255,.6);animation:pop .5s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{0%{transform:scale(.7)}100%{transform:scale(1)}}
+.nda{display:flex;gap:12px;align-items:flex-start;margin-top:16px;padding:14px 16px;border-radius:14px;border:1px solid rgba(56,225,255,.25);background:rgba(56,225,255,.05);max-width:640px;font-size:.92rem;color:#c3cae0}
+.nda svg{flex:none;width:20px;height:20px;stroke:var(--neon);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.nda b{color:var(--fg);font-weight:600}
+@media (min-width:860px){
+  nav.links{display:flex}
+  .hero-grid{grid-template-columns:1.15fr .85fr;align-items:end;gap:40px;padding-top:72px}
+  .hero-text{padding-bottom:80px}
+  .portrait{width:100%;max-width:380px;margin-top:0}
+  section{padding-block:96px}
+  .philo{padding-block:110px}
+  .facts{grid-template-columns:repeat(3,1fr)}
+  .apps{grid-template-columns:repeat(3,1fr)}
+  .conv-grid{grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .skills{grid-template-columns:repeat(2,1fr)}
+  .stack-grid{grid-template-columns:repeat(4,1fr)}
+  .claude-code{grid-template-columns:1fr 1fr;align-items:center;padding:32px}
+  .contact-card{grid-template-columns:1fr 1fr;padding:48px;gap:48px}
+  .mobile-cta{display:none}
+  footer{padding-block:40px}
+}
+</style>
 </head>
 <body>
 
-  <!-- ════════════════════════════════════
-       SPLASH SCREEN
-  ════════════════════════════════════ -->
-  <div id="splash" onclick="exitSplash()">
-    <img src="./logo.jpeg" alt="TH DIGITAL" class="splash-logo" />
-    <div class="splash-hint">Toucher pour entrer</div>
+
+<div class="progress" id="progress"></div>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCACAAIADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDk4Ivar8EPtSW8Valnb7iOK/TZzSPPbG2tsWIAFbVhpzSEYWrmkaY0jD5a9G8M+FwY0muQUTqBj5m/wFeRjMfCitWZLmm7ROX0Xw3NcMFSIsfYV2Wm+D4kUG5cL/sqMn866JfslhCqALEp4VQMlj7DqTUki3oTzJfI06E9HujlyPZBz+Zr5utmFas/d0Rv7GnBXqMqW2h6XDj/AEYOR3ck1fjsbNRhbKAD/rmKx73U9Dgz9o1HUbxvRHECf+O81kzeJ/DcbcaLHJ7yzu5/U1h7OvPV3M5Y3Dw2X9fidkbCycfNZQEf9cxVefw9pM4INqIye6MR/OuRXxV4ZY4bREi94Z3Q/mDWlp+vaHKR9m1jU7Fj0WWQXEf5Nz+VHsq8NVcSx2Hm7Nf1+A7UvA0UqlrSZSf7sgwfzritc8L3No5WaBoz2yOD9D3r1O0v73Z5ipb6pbjrLZHEij1MTc/kfwrQt57DVLZlRo7iPOHRhyp9Cp5B+tbUsfWpP3tTX2VOprTZ85ahpjRkgrWJdWpUnivffFPgxJI3n09SwxkxHlh9PX+deW61pLQs3ykfhX0GEx8aq0Zk+aDtI4O4g61nzRdjXS3tsVJ4rJuYvavXhK5omTWcO4ium0Ww8xl4rL0yDc44r0vwPo6zE3MqZih5x/fbrivOx+LVGDbMXecuVG34R8PpDEl1cxj1jQ/zNdTiaZmitgm5BmSR+EiHq3v7VwNt8WPCMuqHS7nUYtMkDbJJbm4iCxEdcgOTn2x1p3iX4meFFthYaVr+mG2XoRdoS5/vNzya+SfPiKl5s3lUjShanqdNquv2Oj7vsJ8+6Iw93KMsfZR/CK4LWvEdzdSMzzsxJ6k5rltR8WaRM7H+2bA5/wCnlP8AGsmXxFoxP/IYsP8AwIX/ABr28NhqEFdyX3o4XRqVHeZvT37u2d361Ve5LfxVhP4g0UddXsP/AAIX/GlGpW01uZ7a4inj6bo3DD8xXqU4UpaRaZosOktjWe4CnlhntToJxMN1tOsoxndGcgY6j6j/ADxXnGqeJb1dQeKKylntQu2aaMZaLPov8XHXHOK6/TtasNLsYbfR3S++1KryTJyhB9+x/UV4mOx6pVvZwSdtzojgISjea3Oq0vxDqWlyq8U7jaeCDgivRPDnjCx1iSM6jIbW/A2pfQgBx7OOjr7GvKg9jNHmO6WNiMmObjH0bofxxT9RsNQ0e6RbmJraYqHUEg5X14PtVSpUMSr03r+J588NVw75of8AAPo7T9QcTR2l/wCWs8g3QSxn91cr6oex9VPP1rJ8Z+G4tRhe6towLgDLoB9/3Hv/ADrgvAPi2K4h/sfWNz2zEEc4aJuzoexFep6VeSGU2F3IslwiCSOZeBcRHo49+xHY/WvJlGeGndHfh8RHEx5Zbngevaa0UjDbXKXkG0niveviNoCMhv7eP5XP7wAfdb1+hrx7WbQxuwxX1OAxSrQTJs4S5WSeHrZpZkRVyzEAD1Jr2C0hTTdJ8mPkRxnJA+8xHX864H4dWokvPOYcQru/E8D+v5V6bpSoZjcTjMFqpncHuR90fnj8q8HM6zq1uTsVh/dpyqs/P/4g2c2lePNdsLvBuIL6RJO/zA81jK4PJxXa/GTQ9Zl+JHiDVXgWSK9vpbhGV85DHNcLNDdwf6y2cY+lefKjUvsdNGvTlBWZa+UjoKjcDHQVFFMGA7ZqZcurbBuKozYHcAZP8qyOgqyqPSvSvAVy0HgtI41JZ5nCqO5zXm8YuLmZIobKdndtqgAcmvXvClmvg7RI31krPes2YIF52secAV1UMVLBT57e800l3bKhR9tp06m68Nt4W8Mi7ul8++uV3LH3DHtiuK+EepSnxVfaTqDcXge5hXGAko5ZR7Fcn6r71qapqCb/ALdrVz+9mOI4hltg9h/M1zz2d/aeJLTVtLBDJlkkA7MpHf2NdNHKpRpyc3erLVrsGIxCk1GPwo9h02KzttThudQYLDEwlMWeXx0z/s/z6Vp61qkus6lLqEoI34CKf4VHQf1/GvNrO+isDFca3eEvNKqKOWJYnAz3NdJH4i0hVwboj/tm3+FejgsNSwWteSUn07I46rdRWWxtxO0UqyRnDA9a9e8BaxLrGkpZo4/tC0Jms2Y9WA+aM+zDIrxPTdUstQd1tZS5QAtlSMfnXV+DNSl03V4Zo2KkMDn0NPGUoVoc8HdHjVoyw9RTXzPfY3t9V0oNg+TcR8g9V9QfcH9RXjHjTSmtbqWN1+ZGINes6XKqX8yR4EF4gvYB/dLcSL+DYP8AwKua+JtiHEd0q/fXa31H/wBb+VeZl9V0q3L3PVqtVKaqI5r4fRCPSpJccu+PwAH+JrvLgCDwdO/Rrh8fgBn+Zrh/BjbdBhA7s5/8eP8AhXceJv3fhO0Qd1Y1h8eId+5E1y4VLyPnjxlpkVxdSuyg5JryfxnpccMbFVxXtviJcyucV5X49UeQ+K+ndKPsbnJRgorQ8ZL7XZc9CRWloM6f2nAsrAIxKnJ9QRWcsE1xdmG3jaSRmOFH1rZs7S30W8t579DO+7LhVyEHsPrXytOjNp1IrRHtpq6TZ6NpENro0UmsNCpuEX9ypHAzwMD1NYWu699hla6um+1alIMrGTlYQfX/ADzWvNqNjf6NbGymknWMs8juhX5+w5/H6V5jrE7S6rcl8ljjmtqSqQpvG1F78nZX6Ly/Q2rzirUobI3LCW41C5N1cyNJK38R/l7CvVLaBU0q2YqM+Uv8q8x0ySCytU8xl8wjJXPSuhHjfbax2/2SNlRQufMOTjv0royvGww9WU6reqOWpBtWRleL7l21uxQt8q3KHH41ofae+awtUvbPUJ0uHt3SVGDIVmyAR6jFRm8Y/wAVc+YYiOIrOcdiqcXFWZ6f8NpRJc3gB6Iv8zXe2hKzKw7GvL/g7MZb3UAT0jT+Zr1C3BLLXs4CN8GvmeZj481z2nw3dmbQ9Hus5a3ujbOf9iRTj/x4CtHxlGJtDkyMlGDf0/rXO+CH/wCKQvM/8spreUfhIK6jXhu0m6U/3P614cvcrr1Kwb5sK0/6/qx5t4MfdoMPP3Wcf+PE/wBa9B8SjzvClm46bCK8u+HNx5+lyxZ5Rw2PYj/FTXq0AF54L2dWgbB+nT/Cl8Fd37mj9/Cxa7HhviJCJGrzjxVpMl6CobaD1OK9Z8TWxW4fI71wniCaO1haRyABX19FxnT1OanaxwNroemeHrOSUkKMbpJXPJ/z6VyzXQ1fxDbpDEFt9+PmHL+59PpSa9ql5rN23mnZbqx2RA8fU+pqfw5AE1S3OOjV4OIzBTnGjRVo3XzPShTsrs6zVbaO109oo1CqB0Fech0i+2ybVMhfCkjoMV6h4kGLd/pXkl42J7hf9rNd+fK1NE0tyiQSu5SQe9CTOvUmkjbDGujj8Mm4s47pQdsiBhz7V87hsNPEScYdDeUlHcxI7gnvUyzcdap6tZNZTquWHzjueaFeorUZUpcshxdz1b4Fvv1HUxn/AJZJ/wChGvYLRcsK8a+AB3apqg/6YJ/6Ea9w0yHfIv1r6PL5Wwa+Z5eNdmz0nwZEV8I33/TSW3jH4yCuj16TZpVyc/w4/M1n6Lbm38P6Zb4wbi6M7f7ka/8AxRFL4vnEWkMM/fYCvCl7+ISXcrCLkwzbPGfhZqKx6iLZ2wJlKfj1H9R+Ne5+DpVJmspT8kynr6/5xXy1oV41nqEcqvtIYEH0IOQfzr6H8Lakl9Z22owcbh8y5+6w4Za2zGk6dXmDAzvGVJ9PyMbx5pjwXEoK4IJzXh/xBVlt5BX1X4s09NX0r7bEMuFxIO/1r5f+NiTWFm6xKAxkVSSOxNd+GxiVF36HO4uFTk7niymFJGDOAQT2rR0OaM6tbIhLEuAMA0nh5Y712SWJRP1IViVIxnv0I/lmtTwrKy+JHicBY0QkKB7VyYfC05SjLme9j0favY6HxGP9Gf6V4/qg2X0uc8+1dp4x8Q3p1J4LIxpbRYEjP0JI7n0rNmVJtD+3Rxx+ZkqSrbxn2Nepj61PGSdJdP0FB8vvHHBZHfCRyMfQKea9l0C3P/CK6fvjZW+zrlWGCPrXGaR9oPhpb+BUFwSyh9v3SO/NaHhTWfEWs6k9o91bqluAZf3RJZfbnrWWXxhhJxkrvnWm3+ZU5c2j6GB46tz9pBRScODwM1zqxTFsLDKT/uGu08d3EkWowwWce+Z2J2AZLAduK1dKWGbwxBqUUSicgrICPuuOD/j+Nc+LoU6+JlHms0ifaSpwvY0P2ebW6TU9Tea2njRoECs8ZVWO7oCa+i/CWmSXd5FGiZLMAK8m/Z1ub7XdFvTey+ZJBdCNOMHG3NfS3hmwOj6Z9tKAXUuY7YH1PV/oBR7aFLDKMWcOI5qtTkNCTYb9kjx5NnGLWI+pHLn8+PwrkfH9+ABAD9wc/U10k0kdlZFv4Y179WP+JNeV+LdRM0zktkkkmufLaLq1ubsdVdqFNU0eSnPavR/hT4pSzufsN3Jtt5SASeiN0DfTsfw9K84zTraZ7edZEOCP1r3cwwiqRZxTUqc1Ujuj670e78g7Hw0TDDKehrhPjH8NoPENmZLdn8h2DbozhlI5xWN8MvG8U8Eem6jLt2gLFKx6eisfT0P4GvV7DUfIzHIN8TcFTyMV8t71CXKzslGGLgpRdmvwPmBvh1Bo3nSRrJJcOCDJIcnH8qwLPwibS9mvXZzIylQO31r611rwzZarCZrHaWPPlk8/h6151rfhOaCRlMRHPTFe1hcTQkkmrWOV+0pv3j5yuvB0097I3myRiQbXKn7y+h9as3PhFItLTT7RSkQ655JJ6k16/c6A6E/u/wBKqPpDg8xn8q9KnDDpuSWrKjV0tc8ytPCiWOhLp1uXZQSxLnJyaPDXhBNJe5vI3kM9wu1gfuge1emrpDn+CrVvocj4AjP5Vo3QjbTbYbreZ4vqPgR9R1M3kpZmxtCn7uPpXSeG/h7Ja6dJbQNKyzSbyjdFPTivYdH8IyzyKohJJPTFd9pPhnT9HRZNRUPL1W3Ujcfr6CvJxFehTk5JamTnUq+7E8r+FPwW0/RJItdu9T1e2toLhZzDFc4SaQEEJtx82cYx6V7LPM91P58qCM7dqRjpGvoP61HPO9xKsjhVVBiKNOFjHsPX3rmvFGvxQQvb28gJ6O4P6D/GvFSlXnywR3U4KhDmqO7KXjPWl5hicbE7jufWvLtYvDI7c9av65qRldvmrl7ufcTk19fl+DVGCRz3dSXNIxFORT8VVierCtnpXq1KakjWSuTW88lvIHiYg16V4H+IMlrGlnqJaaAcLz88f0J6j2P4HtXmQxS85yDivDxmXxqdDkcJ0pc9Nn07o+uQ3UQutOu1kTvtPQ+hHY/WtuPX4ZlEeoWqSjpuxk/418t6XrV9YyrJDPIjL0ZWww/H+ldrpfxCudoS7jjuPVvuN+nB/IV8/VwFWm/d1OmONhJWqq35Htr2Xhu+5SfyWPZsH/A1DJ4S01+Y7yDB9QRXnFt4w0uYDf50J903D/x3NXE8Q6U54v41/wB4Ff5isPaVody/Z4eezX3ncr4T0yM5kvYAPYE1Klr4bsfvStcMOygAVwh17SwM/bo2+gLfyFQzeJ9OQfL50p9k2j/x7FP2leeiuP2WHhq2vvO/l1wIpj06CO2Q91HzH8etZV3qEUCGa6mCZOck8sfbua4O78XTEFbdY4R6/fb9eB+RrAvdZlmdneRmY9WY5NdNHLa1V+9oDxNOOlNXOy13xUXjaGDMUfQ8/M319B7Vw+q6o0hPzVmXd+Wzz+tZdxcZJ5r6TB5dCitEYWlUlzTJbu5LEkmsyeXOeaSab3qnNLXrwhZGsVY//9k=" alt="">TH DIGITAL</a>
+    <nav class="links" aria-label="Sections">
+      <a href="#profil">Profil</a>
+      <a href="#applications">Applications</a>
+      <a href="#ia">IA &amp; automatisation</a>
+      <a href="#expertise">Expertise</a>
+    </nav>
+    <a class="btn btn-primary btn-sm" href="#contact">Me contacter</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow rise">Léo Santi · TH DIGITAL · La Réunion</p>
+        <h1>Utilisez la technologie pour booster le <em>business de demain.</em></h1>
+        <p class="lead rise d2" id="typed">J'aide les dirigeants de TPE et PME à <strong>vendre mieux</strong> et à <strong>gagner du temps</strong>. Méthodes commerciales éprouvées, applications sur mesure et agents IA qui prennent en charge les tâches répétitives.</p>
+        <div class="cta-row rise d3">
+          <a class="btn btn-primary" href="https://cal.com/th-digital-re/30min" target="_blank" rel="noopener">Réserver 30 min offertes</a>
+          <a class="btn btn-ghost" href="#applications">Voir mes réalisations</a>
+        </div>
+        <div class="pillars rise d3">
+          <a href="#profil"><b>Business</b><span>Vente &amp; organisation</span></a>
+          <a href="#applications"><b>Apps</b><span>Outils sur mesure</span></a>
+          <a href="#ia"><b>IA</b><span>Agents &amp; automatisation</span></a>
+        </div>
+      </div>
+      <div class="portrait rise d2" aria-label="Portrait de Léo Santi">
+        <div class="ring"></div>
+        <img src="data:image/webp;base64,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" alt="Léo Santi, fondateur de TH DIGITAL">
+        <span class="badge b1"><b>●</b> Business</span>
+        <span class="badge b2"><b>●</b> Agents IA</span>
+        <span class="badge b3"><b>●</b> Claude Code</span>
+      </div>
+    </div>
   </div>
 
-  <!-- ════════════════════════════════════
-       NAV
-  ════════════════════════════════════ -->
-  <nav>
-    <!-- Left links -->
-    <ul class="nav-left">
-      <li><a href="#" onclick="showPage('home'); return false;" id="nav-home" class="active">Accueil</a></li>
-      <li><a href="#" onclick="showPage('conseil'); return false;" id="nav-conseil">Conseil Digital</a></li>
-    </ul>
-    <!-- Center logo -->
-    <div class="nav-center">
-      <img src="./logo.jpeg" alt="TH DIGITAL" class="nav-logo-img" onclick="showPage('home')" />
+  <section id="profil">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Qui je suis</p>
+        <h2>Un couteau suisse au service de votre entreprise.</h2>
+        <p>Commerce, marketing, outils digitaux, développement d'applications : je fais le lien entre le terrain, la vente et la technologie.</p>
+      </div>
+      <div class="facts">
+        <div class="fact">
+          <div class="k"><span class="count" data-to="10">10</span> ans<small>Entrepreneur</small></div>
+          <h3>Créer, lancer, faire tourner</h3>
+          <p>Réunionnais, j'ai monté et piloté plusieurs activités. Aujourd'hui dirigeant de Zanimokèr et de TH DIGITAL.</p>
+        </div>
+        <div class="fact">
+          <div class="k"><span class="count" data-to="4">4</span> M€<small>CA annuel piloté</small></div>
+          <h3>Commerce B2B et B2C</h3>
+          <p>Des activités pilotées jusqu'à 4 millions d'euros de chiffre d'affaires par an.</p>
+          <div class="brands"><span>Decathlon</span><span>GBH</span><span>Momentum Electric</span><span>Scott</span><span>KTM</span><span>TM Racing</span></div>
+        </div>
+        <div class="fact">
+          <div class="k">Audit<small>Point de départ</small></div>
+          <h3>Optimiser un business</h3>
+          <p>Je repère ce qui freine vos ventes et votre organisation, puis je mets en place les process et les outils qui règlent le problème.</p>
+        </div>
+      </div>
     </div>
-    <!-- Right links -->
-    <ul class="nav-right">
-      <li><a href="#" onclick="showPage('events'); return false;" id="nav-events" class="nav-events-link">Événementiel</a></li>
-      <li><a href="#" onclick="showPage('contact'); return false;" id="nav-contact">Contact</a></li>
-    </ul>
-    <!-- Hamburger (mobile) -->
-    <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  </section>
 
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#" onclick="showPage('home'); toggleMenu(); return false;">Accueil</a>
-    <a href="#" onclick="showPage('conseil'); toggleMenu(); return false;">Conseil Digital</a>
-    <a href="#" onclick="showPage('events'); toggleMenu(); return false;">Événementiel</a>
-    <a href="#" onclick="showPage('contact'); toggleMenu(); return false;" class="mobile-cta">Contact →</a>
+  <div class="philo">
+    <div class="wrap">
+      <p class="eyebrow">Ma philosophie</p>
+      <p class="philo-statement">Positionner l'humain là où il a <mark>le plus de valeur ajoutée.</mark></p>
+      <div class="philo-body">
+        <p>J'aime m'intéresser aux métiers. Chaque entreprise a ses habitudes, ses contraintes et ses tâches qui prennent trop de temps.</p>
+        <p>Avec un regard extérieur, j'observe comment vous travaillez au quotidien, je repère ce qui peut être simplifié ou automatisé, et je rends ce temps à vos équipes pour ce qui compte : le client, la vente, la décision.</p>
+      </div>
+      <div class="global">
+        <h3>Une vision globale du projet</h3>
+        <p>Je m'intéresse à votre projet dans son ensemble et je suis force de proposition sur tous les axes. Je suis convaincu que c'est un ensemble de petites actions qui amène au résultat final.</p>
+        <p>Mon analyse porte aussi sur les chiffres : chiffre d'affaires, marges, coûts, indicateurs de vente. Les données financières sont un point clé pour comprendre où agir en priorité.</p>
+        <div class="nda"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><p><b>Accord de confidentialité signé.</b> Avant tout échange de données, je signe un accord qui m'engage au secret professionnel. Vous pouvez refuser de partager vos chiffres. Dans ce cas, mon audit s'appuie sur les données publiques de votre entreprise, qui en font de toute façon partie.</p></div>
+        <div class="sum" aria-label="Audit du projet, positionnement, analyse financière, vente, marque, digital, outils et organisation mènent au résultat">
+          <span>Audit du projet</span><i>+</i><span>Positionnement</span><i>+</i><span>Analyse financière</span><i>+</i><span>Vente</span><i>+</i><span>Marque</span><i>+</i><span>Digital</span><i>+</i><span>Outils</span><i>+</i><span class="end"><span>Organisation</span><i>=</i><span class="res">Résultat</span></span>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════
-       PAGE : ACCUEIL
-  ═══════════════════════════════════════════ -->
-  <div class="page active" id="page-home">
-
-    <!-- HERO -->
-    <div class="hero">
-      <video class="hero-video-bg" autoplay muted loop playsinline>
-        <source src="./video accueil 3.mp4" type="video/mp4">
-      </video>
-      <div class="hero-video-overlay"></div>
-      <div class="hero-content">
-        <div class="hero-badge blue fade-up">Aide au lancement · Conseil Digital · Événementiel</div>
-        <h1 class="fade-up delay-1" style="line-height: 1.1;">
-          Bienvenu,<br/><em class="blue">c'est ici que nous commençons.</em>
-        </h1>
-        <p class="hero-sub fade-up delay-2">
-          Ici commence peut-être une nouvelle aventure. Profitez de l'expérience de <a href="#" onclick="showPage('qui-suis-je'); return false;" style="color:#fff; font-weight:700; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.45); padding-bottom:1px;">Léo</a> pour vous accompagner dans votre projet entrepreneurial — en toute <strong style="color: rgba(255,255,255,0.75); font-weight: 400;">confidentialité</strong>.
-        </p>
-        <div class="hero-actions fade-up delay-3">
-          <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Nous contacter
-          </a>
-          <a class="btn-ghost" href="#" onclick="showPage('conseil'); return false;">Conseil Digital →</a>
-          <a class="btn-ghost" href="#" onclick="showPage('events'); return false;">Événementiel →</a>
-        </div>
+  <section id="applications">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Technologie &amp; applications</p>
+        <h2>Ce que j'ai déjà construit.</h2>
+        <p>Des applications conçues et développées avec Claude Code, du concept jusqu'aux premiers clients.</p>
       </div>
-    </div>
-
-    <!-- AIDE AU LANCEMENT -->
-    <section style="padding: 3rem 2.5rem 1rem;">
-      <div class="reveal" style="background: linear-gradient(135deg, rgba(90,90,255,0.09) 0%, rgba(90,90,255,0.02) 100%); border: 1px solid rgba(90,90,255,0.2); border-radius: 24px; padding: 2.8rem 3rem; max-width: 760px; margin: 0 auto; text-align: center;">
-        <p class="section-label blue" style="justify-content: center; margin-bottom: 0.75rem; font-size: 0.75rem; letter-spacing: 0.1em;">Axe 1 · Aide au lancement</p>
-        <h2 style="margin-bottom: 0.85rem; font-size: clamp(1.45rem, 2.8vw, 1.9rem);">Vous avez un projet ?<br/><em style="color: var(--accent2); font-style: normal;">On en parle.</em></h2>
-        <p style="color: var(--muted); font-size: 0.97rem; line-height: 1.75; max-width: 490px; margin: 0 auto 1.8rem;">
-          Idée, concept ou activité naissante — bénéficiez d'un regard expert pour structurer, valider et lancer votre projet. Accompagnement personnalisé, confidentiel et sans engagement.
-        </p>
-        <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem;">
-          <span class="card-chip">💡 Idéation</span>
-          <span class="card-chip">📋 Business plan</span>
-          <span class="card-chip">🎯 Stratégie commerciale</span>
-          <span class="card-chip">🚀 Lancement</span>
-          <span class="card-chip">🔒 Confidentiel</span>
-        </div>
-        <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">Discutons de votre projet →</a>
-      </div>
-    </section>
-
-    <!-- ACTIVITÉS -->
-    <div class="activity-split">
-
-      <!-- CONSEIL DIGITAL -->
-      <a class="activity-card conseil reveal" href="#" onclick="showPage('conseil'); return false;">
-        <div class="card-glow"></div>
-        <div class="activity-card-inner">
-          <div class="activity-tag blue">Conseil Digital</div>
-          <h3>Booster votre<br/>business avec le<br/>numérique.</h3>
-          <p>Audit complet de votre entreprise, mise en place des bons outils digitaux et accompagnement opérationnel pour TPE/PME.</p>
-          <div class="card-services">
-            <span class="card-chip">IA & Automatisation</span>
-            <span class="card-chip">Chatbot</span>
-            <span class="card-chip">Site web</span>
-            <span class="card-chip">Ads</span>
-            <span class="card-chip">Branding</span>
-            <span class="card-chip">Accompagnement</span>
+      <div class="apps">
+        <article class="app link" tabindex="0" role="button" data-detail="d-zanimoker" aria-label="Voir le projet Zanimokèr">
+          <div class="app-top">
+            <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M9 12h.01M15 12h.01M10 15.5c1.2.8 2.8.8 4 0"/><path d="M6.5 8 5 4l4 2M17.5 8 19 4l-4 2"/></svg></div>
+            <span class="tag live">En ligne</span>
           </div>
-          <div class="card-arrow">Découvrir <span>→</span></div>
-        </div>
-      </a>
-
-      <!-- ÉVÉNEMENTIEL -->
-      <a class="activity-card events reveal reveal-delay-2" href="#" onclick="showPage('events'); return false;">
-        <div class="card-glow"></div>
-        <div class="activity-card-inner">
-          <div class="activity-tag gold">Événementiel</div>
-          <h3>Des événements<br/>qui marquent<br/>les esprits.</h3>
-          <p>Nuit, soirée, festival — DJ professionnel, photos & vidéos 4K, stratégie digitale. Une expérience complète, clé en main.</p>
-          <div class="card-services">
-            <span class="card-chip">DJ</span>
-            <span class="card-chip">Photos & Vidéos</span>
-            <span class="card-chip">Stratégie digitale</span>
-            <span class="card-chip">Clé en main</span>
-          </div>
-          <div class="card-arrow">Découvrir <span>→</span></div>
-        </div>
-      </a>
-
-    </div>
-
-    <!-- PROCESSUS -->
-    <section style="padding-top: 1rem;">
-      <p class="section-label blue reveal">Comment ça marche</p>
-      <h2 class="reveal">Simple & sans engagement</h2>
-      <p class="section-desc reveal">Toutes les prestations commencent par un échange de 30 minutes gratuit pour définir ensemble votre projet.</p>
-      <div class="process-steps">
-        <div class="process-step reveal">
-          <div class="step-num">01</div>
-          <div class="service-icon blue" style="margin-bottom:1rem;">📅</div>
-          <h3>RDV découverte</h3>
-          <p>30 minutes d'échange gratuit pour comprendre votre projet et vos objectifs.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-1">
-          <div class="step-num">02</div>
-          <div class="service-icon blue" style="margin-bottom:1rem;">📋</div>
-          <h3>Devis sur mesure</h3>
-          <p>Un devis personnalisé établi selon vos besoins réels. Pas de package préconçu.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-2">
-          <div class="step-num">03</div>
-          <div class="service-icon blue" style="margin-bottom:1rem;">🚀</div>
-          <h3>Mise en œuvre</h3>
-          <p>Réalisation complète du projet avec suivi régulier et points d'étape.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-3">
-          <div class="step-num">04</div>
-          <div class="service-icon blue" style="margin-bottom:1rem;">✅</div>
-          <h3>Résultats concrets</h3>
-          <p>Livraison et accompagnement post-projet pour assurer la prise en main.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <div class="cta-band blue reveal">
-      <h2>Prêt à passer à l'action ?</h2>
-      <p>Quel que soit votre projet — digital ou événementiel — tout commence par un échange.</p>
-      <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">Réserver mon RDV gratuit →</a>
-      <div class="cta-note">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Sans engagement · 30 minutes · 100% gratuit
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       PAGE : CONSEIL DIGITAL
-  ═══════════════════════════════════════════ -->
-  <div class="page" id="page-conseil">
-
-    <div class="hero" style="min-height: 60vh;">
-      <div class="hero-conseil-bg"></div>
-      <div class="hero-content">
-        <div class="hero-badge blue fade-up">Conseil Digital</div>
-        <h1 class="fade-up delay-1">
-          Votre entreprise,<br/>
-          <em class="blue">optimisée.</em>
-        </h1>
-        <p class="hero-sub fade-up delay-2">
-          Audit de votre structure, déploiement des bons outils numériques et accompagnement commercial global pour les TPE/PME de La Réunion.
-        </p>
-        <div class="hero-actions fade-up delay-3">
-          <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">Demander un devis gratuit →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- TICKER CONSEIL -->
-    <div class="ticker-section blue">
-      <div class="ticker-outer">
-        <div class="ticker-track">
-          <span class="ticker-tag blue">IA & Automatisation</span>
-          <span class="ticker-tag blue">Chatbot</span>
-          <span class="ticker-tag blue">Site web</span>
-          <span class="ticker-tag blue">Publicité digitale</span>
-          <span class="ticker-tag blue">Branding</span>
-          <span class="ticker-tag blue">CRM</span>
-          <span class="ticker-tag blue">SEO</span>
-          <span class="ticker-tag blue">Audit Digital</span>
-          <span class="ticker-tag blue">E-commerce</span>
-          <span class="ticker-tag blue">Réseaux sociaux</span>
-          <span class="ticker-tag blue">Stratégie numérique</span>
-          <span class="ticker-tag blue">Formation</span>
-          <span class="ticker-tag blue">IA & Automatisation</span>
-          <span class="ticker-tag blue">Chatbot</span>
-          <span class="ticker-tag blue">Site web</span>
-          <span class="ticker-tag blue">Publicité digitale</span>
-          <span class="ticker-tag blue">Branding</span>
-          <span class="ticker-tag blue">CRM</span>
-          <span class="ticker-tag blue">SEO</span>
-          <span class="ticker-tag blue">Audit Digital</span>
-          <span class="ticker-tag blue">E-commerce</span>
-          <span class="ticker-tag blue">Réseaux sociaux</span>
-          <span class="ticker-tag blue">Stratégie numérique</span>
-          <span class="ticker-tag blue">Formation</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- SERVICES -->
-    <section>
-      <p class="section-label blue reveal">Ce que je propose</p>
-      <h2 class="reveal">Mes services<br/>Conseil Digital</h2>
-      <p class="section-desc reveal">Des interventions sur mesure, pensées pour les besoins réels de votre entreprise — pas des packages préconçus.</p>
-
-      <div class="services-grid">
-        <div class="service-card blue reveal">
-          <div class="service-icon blue">🔍</div>
-          <h3>Audit d'entreprise</h3>
-          <p>Analyse complète de votre présence numérique, de vos process et de vos opportunités de croissance. Point de départ de toute intervention.</p>
-        </div>
-        <div class="service-card blue reveal reveal-delay-1">
-          <div class="service-icon blue">🤖</div>
-          <h3>IA & Automatisation</h3>
-          <p>Identification et mise en place des outils d'intelligence artificielle adaptés à votre activité pour gagner du temps et optimiser vos opérations.</p>
-        </div>
-        <div class="service-card blue reveal reveal-delay-2">
-          <div class="service-icon blue">💬</div>
-          <h3>Chatbot & Assistants</h3>
-          <p>Création et déploiement de chatbots personnalisés pour votre service client, vos prises de rendez-vous ou votre communication interne.</p>
-        </div>
-        <div class="service-card blue reveal">
-          <div class="service-icon blue">🌐</div>
-          <h3>Site web</h3>
-          <p>Conception et réalisation de sites vitrines modernes, rapides et orientés conversion. De la maquette à la mise en ligne.</p>
-        </div>
-        <div class="service-card blue reveal reveal-delay-1">
-          <div class="service-icon blue">🎯</div>
-          <h3>Publicité digitale</h3>
-          <p>Stratégie et gestion de campagnes Meta Ads, Google Ads pour générer des prospects qualifiés et des ventes concrètes.</p>
-        </div>
-        <div class="service-card blue reveal reveal-delay-2">
-          <div class="service-icon blue">✏️</div>
-          <h3>Identité visuelle</h3>
-          <p>Création de logo, charte graphique et supports de communication. Une identité forte et cohérente pour vous différencier.</p>
-        </div>
-        <div class="service-card blue reveal">
-          <div class="service-icon blue">📈</div>
-          <h3>Accompagnement commercial</h3>
-          <p>Structuration de votre démarche commerciale, scripts de vente, outils CRM et formation équipe pour booster vos résultats.</p>
-        </div>
-        <div class="service-card blue reveal reveal-delay-1">
-          <div class="service-icon blue">🛠️</div>
-          <h3>Ingénierie projet</h3>
-          <p>Pilotage opérationnel de vos projets numériques de A à Z : cadrage, planification, coordination et livraison.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- APPROCHE -->
-    <section style="padding-top: 1rem;">
-      <p class="section-label blue reveal">L'approche</p>
-      <h2 class="reveal">Sur mesure,<br/>pas en package.</h2>
-      <p class="section-desc reveal">Chaque entreprise est unique. C'est pourquoi toutes mes prestations sont construites après un audit de votre situation réelle.</p>
-      <div class="process-steps">
-        <div class="process-step reveal">
-          <div class="step-num">✦</div>
-          <h3>Diagnostic complet</h3>
-          <p>On commence toujours par comprendre votre business, vos forces et vos points de friction avant de proposer quoi que ce soit.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-1">
-          <div class="step-num">✦</div>
-          <h3>Plan d'action ciblé</h3>
-          <p>Un plan d'action réaliste et priorisé, calibré sur votre budget et vos objectifs — sans sur-vente.</p>
-        </div>
-        <div class="process-step reveal reveal-delay-2">
-          <div class="step-num">✦</div>
-          <h3>Réalisation ou formation</h3>
-          <p>Je peux réaliser moi-même ou vous former à utiliser les outils pour que vous soyez autonomes à terme.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <div class="cta-band blue reveal">
-      <h2>Discutons de votre<br/>projet digital.</h2>
-      <p>Premier échange de 30 minutes offert. Sans engagement, sans frais.</p>
-      <a class="btn-primary" href="#" onclick="showPage('contact'); return false;">Réserver mon RDV gratuit →</a>
-      <div class="cta-note">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Toutes les prestations font l'objet d'un devis personnalisé
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       PAGE : ÉVÉNEMENTIEL
-  ═══════════════════════════════════════════ -->
-  <div class="page" id="page-events">
-
-    <!-- HERO AVEC PHOTO DJ SANTI -->
-    <div class="hero" style="min-height: 65vh;">
-      <div class="hero-events-bg"></div>
-      <div class="hero-content">
-        <div class="hero-badge gold fade-up">Événementiel · La Réunion</div>
-        <h1 class="fade-up delay-1">
-          Le temps d'un instant,<br/>
-          <em class="gold">inoubliable.</em>
-        </h1>
-        <p class="hero-sub fade-up delay-2">
-          Night-clubs, bars, restaurants, associations, entreprises — DJ professionnel, matériel haut de gamme et stratégie digitale pour des événements qui marquent.
-        </p>
-        <div class="hero-actions fade-up delay-3">
-          <a class="btn-primary gold" href="#" onclick="showPage('contact'); return false;">Demander un devis →</a>
-          <a class="btn-ghost" href="https://www.instagram.com/djsanti_musicrew/" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            Suivre l'actualité
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- MUSIC TICKER -->
-    <div class="ticker-section">
-      <div class="ticker-outer">
-        <div class="ticker-track">
-          <!-- Set 1 -->
-          <span class="ticker-tag">House</span>
-          <span class="ticker-tag">Afro-House</span>
-          <span class="ticker-tag">Deep House</span>
-          <span class="ticker-tag">Électro</span>
-          <span class="ticker-tag">Melodic Techno</span>
-          <span class="ticker-tag">Techno</span>
-          <span class="ticker-tag">House</span>
-          <span class="ticker-tag">Afro-House</span>
-          <span class="ticker-tag">Deep House</span>
-          <span class="ticker-tag">Électro</span>
-          <span class="ticker-tag">Melodic Techno</span>
-          <span class="ticker-tag">Techno</span>
-          <!-- Set 2 (duplicate for infinite loop) -->
-          <span class="ticker-tag">House</span>
-          <span class="ticker-tag">Afro-House</span>
-          <span class="ticker-tag">Deep House</span>
-          <span class="ticker-tag">Électro</span>
-          <span class="ticker-tag">Melodic Techno</span>
-          <span class="ticker-tag">Techno</span>
-          <span class="ticker-tag">House</span>
-          <span class="ticker-tag">Afro-House</span>
-          <span class="ticker-tag">Deep House</span>
-          <span class="ticker-tag">Électro</span>
-          <span class="ticker-tag">Melodic Techno</span>
-          <span class="ticker-tag">Techno</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- DJ SANTI + OTK -->
-    <div class="dj-profile">
-
-      <!-- DJ SANTI -->
-      <div class="dj-card reveal">
-        <div class="dj-card-accent"></div>
-        <div class="dj-tag">DJ résidant</div>
-        <h3>DJ SANTI</h3>
-        <div class="dj-role">DJ · Producteur · Organisateur</div>
-        <p>
-          Sets construits avec précision, énergie maîtrisée et lecture de la foule.
-          House, Afro-House, Deep, Électro, Melodic Techno — chaque set est une expérience.
-          Disponible pour soirées privées, résidences, festivals et événements professionnels.
-        </p>
-        <div class="dj-stats">
-          <div>
-            <div class="dj-stat-num">30+</div>
-            <div class="dj-stat-label">dates jouées</div>
-          </div>
-          <div>
-            <div class="dj-stat-num">1000s</div>
-            <div class="dj-stat-label">personnes animées</div>
-          </div>
-        </div>
-        <div style="display: flex; flex-wrap: wrap; gap: 0.65rem;">
-          <a href="https://www.instagram.com/djsanti_musicrew/" target="_blank" rel="noopener" class="dj-ig-link">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-            Instagram
-          </a>
-          <a href="https://www.facebook.com/djsantimusicrew" target="_blank" rel="noopener" class="dj-ig-link" style="--hover-bg: rgba(24,119,242,0.15);">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            Facebook
-          </a>
-          <a href="https://linktr.ee/DJSANTI_musicrew?utm_source=linktree_profile_share&ltsid=79040d04-6c72-4e24-8453-a2370c5b6373" target="_blank" rel="noopener" class="dj-ig-link">
-            🔗 Sorties musicales
-          </a>
-        </div>
-      </div>
-
-      <!-- OTK COLLECTIF -->
-      <div class="dj-card reveal reveal-delay-2">
-        <div class="dj-card-accent" style="background: linear-gradient(to right, #7c7cff, transparent);"></div>
-        <div class="dj-tag" style="background: rgba(90,90,255,0.1); border-color: rgba(90,90,255,0.25); color: var(--accent2);">Collectif</div>
-        <h3>O.T.K</h3>
-        <div class="dj-role" style="color: var(--accent2);">Fondé en 2024 · La Réunion</div>
-        <p>
-          Le collectif O.T.K réunit des DJs sélectionnés selon des critères artistiques rigoureux.
-          Fondé à La Réunion en 2024, le collectif a déjà fait vibrer des milliers de personnes
-          à travers plus de 30 dates sur l'île. Chaque artiste apporte sa sensibilité,
-          une énergie commune les réunit.
-        </p>
-        <div class="dj-stats">
-          <div>
-            <div class="dj-stat-num">2024</div>
-            <div class="dj-stat-label">année de création</div>
-          </div>
-          <div>
-            <div class="dj-stat-num">🇷🇪</div>
-            <div class="dj-stat-label">La Réunion</div>
-          </div>
-        </div>
-        <a href="https://www.instagram.com/otkmusicrecords/" target="_blank" rel="noopener" class="dj-ig-link">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          @otkmusicrecords
-        </a>
-      </div>
-
-    </div>
-
-    <!-- POUR QUI -->
-    <section style="padding-top: 0;">
-      <p class="section-label gold reveal">Pour qui</p>
-      <h2 class="reveal">Lieux & établissements</h2>
-      <p class="section-desc reveal">Nous intervenons dans tous les lieux accueillant du public, avec une approche adaptée à chaque contexte.</p>
-      <div class="venues-row reveal">
-        <div class="venue-chip">🏟️ Night-Club</div>
-        <div class="venue-chip">🍸 Bar</div>
-        <div class="venue-chip">🍽️ Restaurant</div>
-        <div class="venue-chip">🤝 Association</div>
-        <div class="venue-chip">🏢 Entreprise</div>
-        <div class="venue-chip">🥂 Soirées privées</div>
-        <div class="venue-chip">🏖️ Villa</div>
-      </div>
-    </section>
-
-    <!-- DIRECTION ARTISTIQUE -->
-    <div class="reveal" style="max-width: 760px; margin: 0 auto; padding: 0 2.5rem 2rem;">
-      <div style="padding: 1.1rem 1.5rem; border-radius: 14px; background: rgba(212,168,85,0.05); border: 1px solid rgba(212,168,85,0.2); display: flex; align-items: flex-start; gap: 0.85rem;">
-        <span style="font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem;">🎨</span>
-        <p style="color: var(--muted); font-size: 0.84rem; line-height: 1.65; margin: 0;">
-          <strong style="color: rgba(255,255,255,0.75);">Direction artistique</strong> — Chaque prestation est conçue dans le respect de l'univers musical et de l'identité artistique de DJ SANTI. Les événements doivent s'inscrire dans cette direction pour être réalisés.
-        </p>
-      </div>
-    </div>
-
-    <!-- SERVICES -->
-    <section style="padding-top: 2rem;">
-      <p class="section-label gold reveal">Ce que j'offre</p>
-      <h2 class="reveal">Prestations<br/>événementielles</h2>
-      <p class="section-desc reveal">Du son au visuel, tout est géré avec des professionnels et du matériel de scène.</p>
-
-      <div class="services-grid">
-        <div class="service-card gold reveal">
-          <div class="service-icon gold">🎧</div>
-          <h3>DJ & Ambiance</h3>
-          <p>Sets House, Afro-House, Deep, Électro, Melodic Techno & Techno. Lecture de la foule, énergie progressive, expérience sonore de A à Z.</p>
-        </div>
-        <div class="service-card gold reveal reveal-delay-1">
-          <div class="service-icon gold">📸</div>
-          <h3>Photos & Vidéos</h3>
-          <p>Captation photo et vidéo 4K de vos événements. Montage sur mesure, formats réseaux sociaux inclus. Un souvenir professionnel qui donne envie de revenir.</p>
-        </div>
-        <div class="service-card gold reveal reveal-delay-2">
-          <div class="service-icon gold">🏆</div>
-          <h3>Clé en main</h3>
-          <p>Prise en charge complète : son, lumières, coordination des intervenants. Un seul contact pour un événement sans stress.</p>
-        </div>
-        <div class="service-card gold reveal">
-          <div class="service-icon gold">📋</div>
-          <h3>Conseil & Planification</h3>
-          <p>Conception du programme, sélection du lieu, coordination logistique et suivi pré-événement pour garantir le bon déroulé.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- MATÉRIEL PRO -->
-    <section style="padding-top: 0;">
-      <p class="section-label gold reveal">Équipement</p>
-      <h2 class="reveal">Matériel<br/>professionnel</h2>
-      <p class="section-desc reveal">Nous travaillons exclusivement avec des marques reconnues dans l'industrie du son et du live.</p>
-      <div class="equip-row reveal">
-        <div class="equip-badge">Pioneer DJ</div>
-        <div class="equip-badge">RCF</div>
-        <div class="equip-badge">Sennheiser</div>
-        <div class="equip-badge">DB Technologies</div>
-      </div>
-    </section>
-
-    <!-- STRATÉGIE DIGITALE -->
-    <section style="padding-top: 0;">
-      <p class="section-label gold reveal">En option</p>
-      <h2 class="reveal">Stratégie digitale<br/>pour votre événement</h2>
-      <p class="section-desc reveal">En complément de la prestation live, une offre digitale complète est disponible sur demande.</p>
-
-      <div class="strat-card reveal">
-        <div class="strat-item">
-          <div class="strat-icon">🎨</div>
-          <h4>Création d'affiche</h4>
-          <p>Affiche événementielle professionnelle déclinée en tous formats — print, stories, post, bannière.</p>
-        </div>
-        <div class="strat-item">
-          <div class="strat-icon">🎬</div>
-          <h4>Vidéo de teasing</h4>
-          <p>Courte vidéo de teasing pour créer l'attente et booster la communication avant l'événement.</p>
-        </div>
-        <div class="strat-item">
-          <div class="strat-icon">🎟️</div>
-          <h4>Billetterie en ligne</h4>
-          <p>Mise en place d'une billetterie digitale simple et efficace pour vendre vos places en ligne.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <div class="cta-band gold reveal">
-      <h2>Votre événement<br/>mérite le meilleur.</h2>
-      <p>Parlez-moi de votre projet et recevez un devis personnalisé sous 48h.</p>
-      <a class="btn-primary gold" href="#" onclick="showPage('contact'); return false;">Réserver mon RDV gratuit →</a>
-      <div class="cta-note" style="color: rgba(212,168,85,0.4);">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        Toutes les prestations font l'objet d'un devis personnalisé
-      </div>
-    </div>
-
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       PAGE : CONTACT
-  ═══════════════════════════════════════════ -->
-  <div class="page" id="page-contact">
-    <div class="contact-layout">
-
-      <!-- INFO -->
-      <div class="contact-info">
-        <p class="section-label blue">Premier contact</p>
-        <h1>Parlons de<br/><em class="blue">votre projet.</em></h1>
-        <p>
-          Envoyez-nous un message ou réservez un créneau de 30 minutes. Gratuit, sans engagement.
-          Je reviens vers vous avec un devis sur mesure.
-        </p>
-
-        <div class="contact-item">
-          <div class="c-icon">✉️</div>
-          <div>
-            <div class="c-label">Email</div>
-            <div class="c-value"><a href="mailto:th.solutionsdigitales@gmail.com">th.solutionsdigitales@gmail.com</a></div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="c-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="color:#E1306C">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </div>
-          <div>
-            <div class="c-label">Instagram</div>
-            <div class="c-value"><a href="https://instagram.com/thdigital.re" target="_blank">@thdigital.re</a></div>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="c-icon">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" style="color:#1877F2">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </div>
-          <div>
-            <div class="c-label">Facebook</div>
-            <div class="c-value"><a href="https://facebook.com/thdigital.re" target="_blank">thdigital.re</a></div>
-          </div>
-        </div>
-
-        <div style="margin-top: 2.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem;">
-          <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;">Ce qu'on verra ensemble</div>
-          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem;">
-            <li style="display: flex; gap: 0.65rem; color: var(--white); font-size: 0.9rem; align-items: flex-start;">
-              <span style="color: var(--accent); flex-shrink:0;">✦</span> Comprendre votre activité et vos objectifs
-            </li>
-            <li style="display: flex; gap: 0.65rem; color: var(--white); font-size: 0.9rem; align-items: flex-start;">
-              <span style="color: var(--accent); flex-shrink:0;">✦</span> Identifier les leviers prioritaires
-            </li>
-            <li style="display: flex; gap: 0.65rem; color: var(--white); font-size: 0.9rem; align-items: flex-start;">
-              <span style="color: var(--accent); flex-shrink:0;">✦</span> Vous proposer une approche sur mesure
-            </li>
+          <h3>App et site e-commerce · Zanimokèr</h3>
+          <p>Un médaillon QR code relié à la fiche en ligne de l'animal. Un animal perdu est identifié en un scan et son maître est prévenu tout de suite.</p>
+          <ul>
+            <li>Fiche animal, contacts et infos santé</li>
+            <li>Clients en Réunion, France, Belgique et Suisse</li>
+            <li>Réseau d'ambassadeurs et revendeurs</li>
           </ul>
-        </div>
-      </div>
-
-      <!-- DROITE : ONGLETS Message / RDV -->
-      <div class="cal-block" id="contact-block">
-
-        <!-- ONGLETS -->
-        <div class="contact-tabs-bar">
-          <button class="contact-tab active" id="tab-btn-form" onclick="switchContactTab('form')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Envoyer un message
-          </button>
-          <button class="contact-tab" id="tab-btn-cal" onclick="switchContactTab('cal')">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            RDV Gratuit
-          </button>
-        </div>
-
-        <!-- ONGLET FORMULAIRE -->
-        <div class="contact-tab-content active" id="tab-form" style="padding: 1.75rem 2rem 2rem; overflow-y: auto; max-height: 720px;">
-          <!--
-            ═══════════════════════════════════════════
-            ACTIVATION DU FORMULAIRE (2 min)
-            ───────────────────────────────────────────
-            1. Allez sur https://web3forms.com
-               → Entrez th.solutionsdigitales@gmail.com
-               → Copiez votre clé et remplacez dc0a43b8-7a42-444b-84bb-228f5fffcd33 ci-dessous
-            2. (Optionnel) Anti-bot Cloudflare Turnstile :
-               → https://dash.cloudflare.com/turnstile
-               → Créez un site → remplacez VOTRE_CLE_TURNSTILE ci-dessous
-               → Décommentez le script Turnstile dans <head>
-            ═══════════════════════════════════════════
-          -->
-          <form id="contact-form" class="contact-form" novalidate>
-            <!-- Honeypot anti-spam (ne pas supprimer) -->
-            <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
-            <!-- Web3Forms -->
-            <input type="hidden" name="access_key" value="dc0a43b8-7a42-444b-84bb-228f5fffcd33">
-            <input type="hidden" name="subject" value="Nouveau message depuis thdigital.re">
-            <input type="hidden" name="from_name" value="T.H Digital Website">
-            <input type="hidden" name="replyto" id="replyto-field" value="">
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" name="prenom" placeholder="Jean" required>
-              </div>
-              <div class="form-group">
-                <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" placeholder="Dupont" required>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email-field" name="email" placeholder="jean.dupont@exemple.fr" required>
-            </div>
-            <div class="form-group">
-              <label for="sujet">Sujet</label>
-              <select id="sujet" name="sujet" required>
-                <option value="" disabled selected>Sélectionnez un sujet</option>
-                <option value="Conseil Digital">Conseil Digital</option>
-                <option value="Événementiel">Événementiel</option>
-                <option value="Demande de devis">Demande de devis</option>
-                <option value="Autre">Autre</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Décrivez votre demande..." required></textarea>
-            </div>
-
-            <!-- Cloudflare Turnstile (décommenter le script dans <head> après avoir configuré la clé) -->
-            <div class="cf-turnstile" data-sitekey="VOTRE_CLE_TURNSTILE" data-theme="dark" data-size="flexible"></div>
-
-            <div id="form-error" class="form-error"></div>
-
-            <button type="submit" class="form-submit-btn" id="form-submit-btn">
-              Envoyer le message
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
-          </form>
-
-          <div id="form-success" class="form-success">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">✉️</div>
-            <strong style="font-size: 1.1rem; display: block; color: var(--white); margin-bottom: 0.5rem;">Message envoyé !</strong>
-            Merci pour votre message. Je vous répondrai dans les meilleurs délais.
+          <div class="open">Voir le projet →<b>outils &amp; fonctionnement</b></div>
+        </article>
+        <article class="app link" tabindex="0" role="button" data-detail="d-invest" aria-label="Voir le projet App pour investisseur">
+          <div class="app-top">
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M5 16l4-5 3 3 4-6 3 4"/><circle cx="19" cy="6" r="2"/></svg></div>
+            <span class="tag beta">Phase bêta</span>
           </div>
-        </div>
-
-        <!-- ONGLET CAL.COM -->
-        <div class="contact-tab-content" id="tab-cal">
-          <div style="padding: 1.25rem 2rem 0.75rem; border-bottom: 1px solid var(--border);">
-            <p style="font-size: 0.83rem; color: var(--muted);">Consultation découverte · 30 min · Visio ou téléphone · Gratuit</p>
+          <h3>App pour investisseur</h3>
+          <p>Une application pour suivre un portefeuille et analyser le marché de l'or et des actifs, avec des indicateurs lisibles en un coup d'œil.</p>
+          <ul>
+            <li>Tableau de bord du portefeuille</li>
+            <li>Analyse des cours et alertes</li>
+            <li>Aide à la décision, pas de conseil financier</li>
+          </ul>
+          <div class="open">Voir le projet →<b>outils &amp; fonctionnement</b></div>
+        </article>
+        <article class="app custom">
+          <div class="app-top">
+            <div class="ico"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+            <span class="tag">Sur mesure</span>
           </div>
-          <div class="cal-embed">
-            <iframe src="https://cal.com/th-digital-re/30min?embed=true&theme=dark" allowfullscreen></iframe>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ═══════════════════════════════════════════
-       PAGE : QUI SUIS-JE
-  ═══════════════════════════════════════════ -->
-  <div class="page" id="page-qui-suis-je">
-
-    <!-- HERO -->
-    <div class="hero" style="min-height: 36vh; padding-bottom: 2rem;">
-      <div class="hero-bg blue"></div>
-      <div class="hero-grid"></div>
-      <div class="hero-content">
-        <div class="hero-badge blue fade-up">À propos</div>
-        <h1 class="fade-up delay-1">Léo <em class="blue">SANTI</em></h1>
-        <p class="hero-sub fade-up delay-2">Entrepreneur · Stratège commercial · Créateur de projets · La Réunion</p>
+          <h3>Votre application</h3>
+          <p>Un CRM simple, une prise de rendez-vous, un outil terrain sur mobile ou un tableau de bord pour piloter votre activité.</p>
+          <a class="more" href="#contact">Parler de votre projet →</a>
+        </article>
       </div>
     </div>
+  </section>
 
-    <!-- BIO -->
-    <section class="qsn-section">
-      <div class="qsn-layout">
-
-        <!-- COLONNE GAUCHE : Photo + liens -->
+  <section id="ia" class="conv">
+    <div class="wrap">
+      <div class="conv-grid">
         <div>
-          <div class="qsn-photo-wrapper">
-            <img src="./photo2 qsn.png" alt="Léo Santi — TH DIGITAL" class="qsn-photo" />
-            <!-- Pin cliquable sur le médaillon Zanimokèr -->
-            <a href="https://www.zanimoker.re" target="_blank" rel="noopener" class="pin-overlay">
-              <div class="pin-dot"></div>
-              <div class="pin-tooltip">🐾 Découvrir Zanimokèr →</div>
-            </a>
+          <div class="sec-head">
+            <p class="eyebrow">Mes convictions</p>
+            <h2>Automatiser tout ce qui peut l'être.</h2>
+            <p>L'IA et les agents IA ne remplacent pas vos équipes. Ils leur retirent les tâches sans valeur pour qu'elles se concentrent sur le client.</p>
           </div>
-          <div class="qsn-social-links">
-            <a href="https://www.linkedin.com/in/léosanti" target="_blank" rel="noopener" class="qsn-social-link linkedin">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-              LinkedIn
-            </a>
-            <a href="https://linktr.ee/zanimoker?utm_source=linktree_profile_share&ltsid=505089fd-f488-403c-a6c2-34a642152f61" target="_blank" rel="noopener" class="qsn-social-link">
-              🐾 Zanimokèr
-            </a>
-            <a href="https://www.instagram.com/leoridewithme/" target="_blank" rel="noopener" class="qsn-social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              VTT 🚵
-            </a>
+          <div class="beliefs">
+            <div class="belief"><h3>Pour les équipes terrain</h3><p>Moins de saisie, des infos accessibles depuis le téléphone, des rapports qui se remplissent seuls.</p></div>
+            <div class="belief"><h3>Pour le chef d'entreprise</h3><p>Relances, devis, rendez-vous et suivi client tournent en continu. Vous gardez la main sur les décisions. CRM, tableau de bord, facturation, planning, outil métier : tout outil que vous pouvez imaginer et qui sert votre business peut être créé.</p></div>
+            <div class="belief"><h3>Concret et mesurable</h3><p>On commence par une tâche, on mesure le temps gagné avec des KPI clairs, puis on étend.</p></div>
           </div>
         </div>
-
-        <!-- COLONNE DROITE : Bio -->
-        <div class="qsn-bio-side">
-          <h2>Réunionnais, <em class="blue">entrepreneur</em><br/>depuis plus de 10 ans.</h2>
-          <p class="qsn-bio-intro">
-            Entrepreneur passionné par l'innovation, le commerce et la création, j'évolue depuis plus de 10 ans dans des environnements où vision, performance et exécution font la différence.
-          </p>
-
-          <div class="qsn-block">
-            <div class="qsn-block-label">Parcours commercial</div>
-            <p>Mon expérience en commerce B2B et B2C m'a amené à collaborer avec des acteurs de référence — <strong>Decathlon, GBH / Comptoir Océan Indien, Momentum Electric</strong> — et des marques internationales comme <strong>SCOTT, KTM, MALOSSI, POLINI, MOTUL, MOTOREX</strong>. J'ai piloté des activités représentant des chiffres d'affaires pouvant dépasser <strong>6 millions d'euros annuels</strong>, en mettant en place des méthodes commerciales et opérationnelles orientées performance.</p>
-          </div>
-
-          <div class="qsn-block">
-            <div class="qsn-block-label">TH DIGITAL</div>
-            <p>À travers TH DIGITAL, j'accompagne des porteurs de projets dans la structuration, le développement et la concrétisation de leurs ambitions — digitales, entrepreneuriales ou événementielles.<br/><br/>Son nom s'inspire du proverbe créole <em>« Ti ash i koup gro bwa »</em> : ne jamais sous-estimer ce qu'un seul homme déterminé peut accomplir.</p>
-          </div>
-
-          <div class="qsn-block">
-            <div class="qsn-block-label">Zanimokèr — Startup réunionnaise</div>
-            <p>Je suis directeur et cofondateur de <a href="https://www.zanimoker.re" target="_blank" rel="noopener">Zanimokèr</a>, startup réunionnaise créée en 2025, spécialisée dans des solutions innovantes pour les animaux de compagnie — avec déjà plusieurs centaines de clients à travers l'Europe.</p>
-            <div style="margin-top: 0.9rem;">
-              <a href="https://linktr.ee/zanimoker?utm_source=linktree_profile_share&ltsid=505089fd-f488-403c-a6c2-34a642152f61" target="_blank" rel="noopener" class="dj-ig-link" style="font-size: 0.8rem;">
-                🔗 Suivre l'actualité Zanimokèr
-              </a>
-            </div>
-          </div>
-
-          <div class="qsn-block">
-            <div class="qsn-block-label">DJ SANTI</div>
-            <p>Je produis et mixe depuis plus de <strong>15 ans</strong> sous le nom DJ SANTI, avec une approche exigeante et créative de la musique électronique.</p>
-          </div>
-
-          <div class="qsn-block">
-            <div class="qsn-block-label">Sport & Discipline</div>
-            <p>Moniteur de VTT diplômé d'État et ancien sportif de haut niveau en VTT enduro et descente — avec de nombreux podiums en compétitions nationales. Le sport m'a transmis des valeurs qui guident encore chacune de mes actions.</p>
-            <div class="qsn-chips">
-              <span class="qsn-chip">🚵 VTT Enduro</span>
-              <span class="qsn-chip">⛰️ Descente</span>
-              <span class="qsn-chip">🏆 Podiums nationaux</span>
-              <span class="qsn-chip">📜 Moniteur diplômé d'État</span>
-            </div>
-            <div style="margin-top: 0.9rem;">
-              <a href="https://www.instagram.com/leoridewithme/" target="_blank" rel="noopener" class="dj-ig-link" style="font-size: 0.8rem;">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                @leoridewithme
-              </a>
-            </div>
-          </div>
-
-          <div class="qsn-philosophy">
-            <p>« Comprendre vite, structurer efficacement et exécuter avec exigence. »</p>
-          </div>
+        <div class="flow" aria-label="Exemple d'automatisation">
+          <div class="flow-title"><span>Exemple · demande de devis</span><b>agent IA actif</b></div>
+          <ol class="steps">
+            <li class="step"><time>08:02</time><span>Un prospect remplit le formulaire du site</span></li>
+            <li class="step ai"><time>08:02</time><span>L'agent qualifie la demande et prépare le devis</span></li>
+            <li class="step ai"><time>08:03</time><span>Le CRM est mis à jour, le commercial est notifié</span></li>
+            <li class="step"><time>08:15</time><span>Le commercial valide et envoie</span></li>
+            <li class="step ai"><time>J+3</time><span>Relance automatique si pas de réponse</span></li>
+          </ol>
+          <p class="flow-foot">Avant : une demi-journée de délai. <strong>Après : 13 minutes.</strong></p>
         </div>
-
       </div>
-    </section>
+      <div class="quote">
+        <blockquote>« Utilisez la technologie pour booster le <span>business de demain.</span> »</blockquote>
+        <cite>Léo Santi</cite>
+      </div>
+    </div>
+  </section>
 
+  <section id="competences">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Compétences</p>
+        <h2>Ce que je fais pour vous.</h2>
+      </div>
+      <div class="skills">
+        <div class="skill"><h3><i></i>Business &amp; vente</h3>
+          <div class="chips"><span>Audit d'entreprise</span><span>Stratégie commerciale</span><span>Process de vente</span><span>Formation équipe</span><span>Lancement de projet</span></div></div>
+        <div class="skill"><h3><i></i>Digital &amp; visibilité</h3>
+          <div class="chips"><span>Site web</span><span>SEO</span><span>Meta &amp; Google Ads</span><span>Réseaux sociaux</span><span>Fiche Google</span></div></div>
+        <div class="skill"><h3><i></i>Image de marque</h3>
+          <div class="chips"><span>Création de logo</span><span>Charte graphique</span><span>Identité visuelle</span><span>Ton &amp; messages</span><span>Supports print &amp; digitaux</span></div></div>
+        <div class="skill"><h3><i></i>Tech &amp; IA</h3>
+          <div class="chips"><span>Agents IA</span><span>Automatisation</span><span>Chatbot</span><span>CRM</span><span>Applications web</span></div></div>
+      </div>
+      <div class="sectors"><b>Secteurs</b><span>Commerce &amp; retail</span><span>Cycle &amp; moto</span><span>Services aux pros</span><span>Startups</span><span>Animalier</span></div>
+    </div>
+  </section>
+
+  <section id="expertise" class="stack">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Expertise</p>
+        <h2>Ma boîte à outils.</h2>
+        <p>Les méthodes et indicateurs que j'utilise pour piloter un projet de bout en bout.</p>
+      </div>
+      <div class="stack-grid">
+        <div class="spec"><h3>Pilotage</h3><ul>
+          <li><span>KPI &amp; tableaux de bord</span><span>suivi</span></li>
+          <li><span>ROI · ROAS</span><span>rentabilité</span></li>
+          <li><span>Taux de conversion</span><span>vente</span></li>
+          <li><span>Coût d'acquisition</span><span>CAC</span></li>
+          <li><span>Pipeline commercial</span><span>CRM</span></li>
+        </ul></div>
+        <div class="spec"><h3>Web &amp; marketing</h3><ul>
+          <li><span>SEO · référencement local</span><span>visibilité</span></li>
+          <li><span>SEA · Meta Ads</span><span>acquisition</span></li>
+          <li><span>Tunnel de conversion</span><span>parcours</span></li>
+          <li><span>A/B testing</span><span>optimisation</span></li>
+          <li><span>Performance web</span><span>vitesse</span></li>
+        </ul></div>
+        <div class="spec"><h3>Marque, produit &amp; UX</h3><ul>
+          <li><span>UX · UI design</span><span>expérience</span></li>
+          <li><span>Parcours utilisateur</span><span>mobile first</span></li>
+          <li><span>Maquettes &amp; prototypes</span><span>Figma</span></li>
+          <li><span>MVP</span><span>tester vite</span></li>
+          <li><span>Logo &amp; charte graphique</span><span>branding</span></li>
+        </ul></div>
+        <div class="spec"><h3>Ingénierie projet</h3><ul>
+          <li><span>Cahier des charges</span><span>cadrage</span></li>
+          <li><span>Rétroplanning</span><span>délais</span></li>
+          <li><span>Méthode agile</span><span>sprints</span></li>
+          <li><span>API &amp; intégrations</span><span>connecter</span></li>
+          <li><span>RGPD</span><span>conformité</span></li>
+        </ul></div>
+      </div>
+      <div class="claude-code">
+        <div>
+          <p class="eyebrow">Développement assisté par IA</p>
+          <h3 style="margin-top:12px">Je développe avec Claude Code.</h3>
+          <p style="margin-top:10px">Claude Code est l'outil de développement par IA d'Anthropic. Je l'utilise au quotidien pour concevoir mes applications, automatiser des tâches et passer plus vite d'une idée à un outil qui fonctionne.</p>
+        </div>
+        <div class="term" aria-label="Exemple de session Claude Code"><span class="p">›</span> crée un tableau de bord KPI pour le suivi des ventes
+<span class="ok">✓</span> structure de la base de données
+<span class="ok">✓</span> interface mobile
+<span class="ok">✓</span> connexion au CRM
+<span class="ok">✓</span> déployé en ligne</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="padding-top:0">
+    <div class="wrap">
+      <div class="contact-card">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2 style="margin-top:12px">Parlons de votre business.</h2>
+          <p class="lead">30 minutes offertes pour faire le point. Sans engagement, en visio ou par téléphone.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://cal.com/th-digital-re/30min" target="_blank" rel="noopener">Choisir un créneau</a>
+          </div>
+          <div class="direct">
+            <div><span>Email</span><a href="mailto:th.solutionsdigitales@gmail.com">th.solutionsdigitales@gmail.com</a></div>
+            <div><span>Réseaux</span><a href="https://instagram.com/thdigital.re" target="_blank" rel="noopener">Instagram</a><a href="https://facebook.com/thdigital.re" target="_blank" rel="noopener">Facebook</a><a href="https://www.linkedin.com/in/léosanti" target="_blank" rel="noopener">LinkedIn</a></div>
+          </div>
+        </div>
+        <form id="contact-form" novalidate>
+          <input type="hidden" name="access_key" value="dc0a43b8-7a42-444b-84bb-228f5fffcd33">
+          <input type="hidden" name="subject" value="Nouveau contact depuis thdigital.re">
+          <input type="hidden" name="from_name" value="Site TH DIGITAL">
+          <input type="hidden" name="replyto" id="f-replyto" value="">
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+          <label for="f-nom">Nom et entreprise<input id="f-nom" name="nom" placeholder="Marie Payet, Boulangerie du Port" autocomplete="name"></label>
+          <label for="f-mail">Email ou téléphone<input id="f-mail" name="contact" placeholder="marie@exemple.re" autocomplete="email"></label>
+          <label for="f-sujet">Votre besoin<select id="f-sujet" name="sujet"><option>Développer mes ventes</option><option>Automatiser avec l'IA</option><option>Créer une application</option><option>Site web / visibilité</option><option>Autre</option></select></label>
+          <label for="f-source">Comment m'avez-vous connu ?<select id="f-source" name="source"><option value="" selected disabled>Choisir dans la liste</option><option>Instagram</option><option>Facebook</option><option>LinkedIn</option><option>TikTok</option><option>Recherche Google</option><option>Amis ou connaissances</option><option>Événement</option><option>Zanimokèr</option><option>Autre</option></select></label>
+          <label for="f-ref" class="referral" id="f-ref-wrap" hidden>De la part de qui ?<input id="f-ref" name="recommande_par" placeholder="Nom et prénom de la personne"></label>
+          <label for="f-msg">Message<textarea id="f-msg" name="message" placeholder="Quelques mots sur votre activité"></textarea></label>
+          <button class="btn btn-primary" type="submit">Envoyer</button>
+          <p class="form-note" id="f-note">Réponse sous 24 h ouvrées.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="detail" id="d-zanimoker" role="dialog" aria-modal="true" aria-labelledby="dz-title" hidden>
+  <div class="d-bar"><div class="wrap"><button class="d-back" type="button" data-close>← Retour aux réalisations</button><span class="tag live">En ligne</span></div></div>
+  <div class="d-hero"><div class="wrap">
+    <p class="eyebrow">Réalisation · App &amp; e-commerce</p>
+    <h2 id="dz-title">Zanimokèr</h2>
+    <p class="lead">Un médaillon QR code pour chiens et chats, relié à une fiche en ligne. Si l'animal se perd, la personne qui le trouve scanne le médaillon et contacte le maître en quelques secondes, sans application à installer.</p>
+    <div class="d-meta"><span><b>●</b> Marchés : Réunion, France, Belgique, Suisse</span><span>Médaillon à vie</span><span>Vente directe &amp; revendeurs</span></div>
+  </div></div>
+  <div class="wrap d-body">
+    <div class="d-block">
+      <h3>Comment ça marche</h3>
+      <ol class="how">
+        <li><div><b>Commande du médaillon</b><span>Sur le site ou chez un revendeur partenaire.</span></div></li>
+        <li><div><b>Activation du QR code</b><span>Le maître crée son compte et relie le médaillon à son animal.</span></div></li>
+        <li><div><b>Fiche de l'animal</b><span>Photo, contacts, infos santé et consignes, modifiables à tout moment.</span></div></li>
+        <li><div><b>Scan en cas de perte</b><span>Celui qui trouve l'animal scanne le QR code avec son téléphone et voit la fiche.</span></div></li>
+        <li><div><b>Maître prévenu</b><span>Contact direct et retour de l'animal à la maison.</span></div></li>
+      </ol>
+    </div>
+    <div class="d-block">
+      <h3>Fonctionnalités</h3>
+      <div class="feats">
+        <div class="feat"><b>Fiche animal en ligne</b><span>Accessible par simple scan, sans application.</span></div>
+        <div class="feat"><b>Espace propriétaire</b><span>Gestion des animaux et des informations.</span></div>
+        <div class="feat"><b>Paiement en ligne</b><span>Commande et paiement sécurisés.</span></div>
+        <div class="feat"><b>Programme ambassadeurs</b><span>Réseau de revendeurs et d'ambassadeurs.</span></div>
+        <div class="feat"><b>Suivi client &amp; CRM</b><span>Commandes, clients et statistiques.</span></div>
+        <div class="feat"><b>Contenus réseaux sociaux</b><span>Instagram, Facebook et TikTok, avec campagnes Meta Ads.</span></div>
+      </div>
+    </div>
+    <div class="d-block full">
+      <h3>Outils utilisés</h3>
+      <div class="tools">
+        <div class="tool"><b>Claude Code</b><span>Développement</span></div>
+        <div class="tool"><b>Stripe</b><span>Paiement</span></div>
+        <div class="tool"><b>Vercel</b><span>Hébergement</span></div>
+        <div class="tool"><b>Cloudflare</b><span>Domaine &amp; sécurité</span></div>
+        <div class="tool"><b>OVH</b><span>Serveur</span></div>
+        <div class="tool"><b>Figma</b><span>Design &amp; visuels</span></div>
+        <div class="tool"><b>Meta Ads</b><span>Acquisition</span></div>
+        <div class="tool"><b>Google Business</b><span>Visibilité locale</span></div>
+      </div>
+    </div>
+    <div class="d-block full">
+      <div class="d-cta"><p>Un projet du même type ?</p><div class="cta-row" style="margin:0"><a class="btn btn-ghost" href="https://www.zanimoker.re" target="_blank" rel="noopener">Visiter zanimoker.re</a><a class="btn btn-primary" href="#contact" data-close>Parlons-en</a></div></div>
+    </div>
   </div>
+</div>
 
-  <!-- ─── FOOTER ─── -->
-  <footer>
-    <div class="footer-logo">T<span class="dot">.</span>H DIGITAL</div>
-    <div class="footer-links">
-      <a href="#" onclick="showPage('home'); return false;">Accueil</a>
-      <a href="#" onclick="showPage('conseil'); return false;">Conseil Digital</a>
-      <a href="#" onclick="showPage('events'); return false;">Événementiel</a>
-      <a href="#" onclick="showPage('contact'); return false;">Contact</a>
+<div class="detail" id="d-invest" role="dialog" aria-modal="true" aria-labelledby="di-title" hidden>
+  <div class="d-bar"><div class="wrap"><button class="d-back" type="button" data-close>← Retour aux réalisations</button><span class="tag beta">Phase bêta</span></div></div>
+  <div class="d-hero"><div class="wrap">
+    <p class="eyebrow">Réalisation · Finance</p>
+    <h2 id="di-title">App pour investisseur</h2>
+    <p class="lead">Une application pour suivre un portefeuille d'investissement et analyser le marché de l'or et des autres actifs. Les données utiles sont réunies sur un seul écran, avec des indicateurs clairs pour décider plus sereinement.</p>
+    <div class="d-meta"><span><b>●</b> Phase bêta</span><span>Mobile &amp; ordinateur</span><span>Or, métaux, actifs</span></div>
+  </div></div>
+  <div class="wrap d-body">
+    <div class="d-block">
+      <h3>Comment ça marche</h3>
+      <ol class="how">
+        <li><div><b>Saisie du portefeuille</b><span>L'utilisateur ajoute ses positions et ses actifs.</span></div></li>
+        <li><div><b>Récupération des cours</b><span>Les prix sont mis à jour automatiquement depuis des sources de marché.</span></div></li>
+        <li><div><b>Analyse</b><span>Performance, répartition et évolution calculées en continu.</span></div></li>
+        <li><div><b>Alertes</b><span>Notification quand un seuil défini est atteint.</span></div></li>
+      </ol>
     </div>
-    <div style="margin: 1.5rem 0;">
-      <a href="#" onclick="showPage('qui-suis-je'); return false;" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent2); font-weight: 600; font-size: 0.9rem; text-decoration: none; border: 1px solid rgba(90,90,255,0.35); padding: 0.55rem 1.4rem; border-radius: 100px; transition: background 0.2s, border-color 0.2s; letter-spacing: 0.02em;">
-        <span style="font-size: 0.7rem;">✦</span> Qui suis-je ?
-      </a>
+    <div class="d-block">
+      <h3>Fonctionnalités</h3>
+      <div class="feats">
+        <div class="feat"><b>Tableau de bord</b><span>Valeur totale, performance et répartition.</span></div>
+        <div class="feat"><b>Suivi de l'or</b><span>Cours, historique et indicateurs clés.</span></div>
+        <div class="feat"><b>Graphiques</b><span>Évolution des actifs sur plusieurs périodes.</span></div>
+        <div class="feat"><b>Alertes de prix</b><span>Seuils personnalisés par actif.</span></div>
+      </div>
+      <p style="margin-top:14px;font-size:.85rem">Outil d'aide à la décision. Ne constitue pas un conseil en investissement.</p>
     </div>
-    <div class="footer-copy">© 2026 T.H Digital · La Réunion</div>
-  </footer>
+    <div class="d-block full">
+      <h3>Outils utilisés</h3>
+      <div class="tools">
+        <div class="tool"><b>Claude Code</b><span>Développement</span></div>
+        <div class="tool"><b>Vercel</b><span>Hébergement</span></div>
+        <div class="tool"><b>Supabase</b><span>Base de données</span></div>
+        <div class="tool"><b>API de marché</b><span>Cours en temps réel</span></div>
+      </div>
+    </div>
+    <div class="d-block full">
+      <div class="d-cta"><p>Besoin d'un tableau de bord sur mesure ?</p><div class="cta-row" style="margin:0"><a class="btn btn-primary" href="#contact" data-close>Parlons-en</a></div></div>
+    </div>
+  </div>
+</div>
 
-  <script>
-    /* ─── SPLASH ─── */
-    function exitSplash() {
-      const splash = document.getElementById('splash');
-      splash.classList.add('exit');
-      setTimeout(() => { splash.style.display = 'none'; }, 800);
-    }
 
-    /* ─── PAGE ROUTING ─── */
-    function showPage(id) {
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-left a, .nav-right a').forEach(a => a.classList.remove('active'));
-      const page = document.getElementById('page-' + id);
-      if (page) page.classList.add('active');
-      const navLink = document.getElementById('nav-' + id);
-      if (navLink) navLink.classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      document.getElementById('mobile-menu').classList.remove('open');
-      // Trigger reveals for the newly shown page
-      setTimeout(checkReveals, 80);
-    }
+<footer>
+  <div class="wrap foot">
+    <div>© 2026 TH DIGITAL · La Réunion<br><em>« Ti ash i koup gro bwa »</em></div>
+    <nav aria-label="Pied de page"><a href="#profil">Profil</a><a href="#applications">Applications</a><a href="#ia">IA</a><a href="#expertise">Expertise</a><a href="#contact">Contact</a></nav>
+  </div>
+</footer>
 
-    /* ─── MOBILE MENU ─── */
-    function toggleMenu() {
-      document.getElementById('mobile-menu').classList.toggle('open');
-    }
-    document.addEventListener('click', function(e) {
-      const menu = document.getElementById('mobile-menu');
-      const hamburger = document.querySelector('.nav-hamburger');
-      if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
-        menu.classList.remove('open');
-      }
+<div class="mobile-cta">
+  <a class="btn btn-primary" href="https://cal.com/th-digital-re/30min" target="_blank" rel="noopener">Réserver 30 min</a>
+  <a class="btn btn-ghost" href="#contact">Écrire</a>
+</div>
+
+<script>
+document.getElementById('contact-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var f=e.target,n=document.getElementById('f-note'),btn=f.querySelector('button[type=submit]');
+  if(!f.nom.value.trim()||!f.contact.value.trim()||!f.message.value.trim()){n.textContent='Merci de remplir votre nom, votre contact et votre message.';n.className='form-note';return;}
+  var c=f.contact.value.trim();document.getElementById('f-replyto').value=c.indexOf('@')>-1?c:'';
+  btn.disabled=true;btn.textContent='Envoi…';
+  try{
+    var r=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)});
+    var j=await r.json();
+    if(j.success){f.reset();document.getElementById('f-ref-wrap').hidden=true;n.textContent='Message envoyé. Je reviens vers vous sous 24 h ouvrées.';n.className='form-ok';}
+    else{throw new Error(j.message);}
+  }catch(err){n.textContent='L\'envoi a échoué. Écrivez-moi directement à th.solutionsdigitales@gmail.com.';n.className='form-note';}
+  btn.disabled=false;btn.textContent='Envoyer';
+});
+
+(function(){
+  var last=null;
+  function open(id){var d=document.getElementById(id);if(!d)return;last=document.activeElement;d.hidden=false;d.scrollTop=0;document.body.style.overflow='hidden';var b=d.querySelector('.d-back');if(b)b.focus();}
+  function closeAll(){document.querySelectorAll('.detail').forEach(function(d){d.hidden=true});document.body.style.overflow='';if(last&&last.focus)last.focus();}
+  document.querySelectorAll('.app.link').forEach(function(c){
+    c.addEventListener('click',function(){open(c.dataset.detail)});
+    c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open(c.dataset.detail)}});
+  });
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(){closeAll()})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeAll()});
+})();
+
+(function(){
+  /* champ "de la part de qui" */
+  var wrap=document.getElementById('f-ref-wrap');
+  document.getElementById('f-source').addEventListener('change',function(e){var on=e.target.value==='Amis ou connaissances';wrap.hidden=!on;if(on)document.getElementById('f-ref').focus();});
+  /* texte tapé lettre par lettre */
+  var p=document.getElementById('typed');
+  if(!p||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var chars=[];
+  (function walk(node){
+    Array.prototype.slice.call(node.childNodes).forEach(function(n){
+      if(n.nodeType===3){
+        var f=document.createDocumentFragment();
+        n.textContent.split('').forEach(function(c){var sp=document.createElement('span');sp.className='ch';sp.textContent=c;f.appendChild(sp);chars.push(sp);});
+        node.replaceChild(f,n);
+      } else if(n.nodeType===1){walk(n);}
     });
+  })(p);
+  p.classList.add('typed');p.setAttribute('aria-label',p.textContent);
+  var caret=document.createElement('span');caret.className='caret';caret.setAttribute('aria-hidden','true');
+  var i=0;
+  function step(){
+    if(i<chars.length){chars[i].classList.add('on');chars[i].after(caret);i++;setTimeout(step,chars[i-1].textContent===' '?10:22);}
+    else{setTimeout(function(){caret.remove()},2200);}
+  }
+  setTimeout(step,900);
+})();
 
-    /* ─── CONTACT TABS ─── */
-    function switchContactTab(tab) {
-      document.querySelectorAll('.contact-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.contact-tab-content').forEach(c => c.classList.remove('active'));
-      const btn = document.getElementById('tab-btn-' + tab);
-      const content = document.getElementById('tab-' + tab);
-      if (btn) btn.classList.add('active');
-      if (content) content.classList.add('active');
-    }
-
-    /* ─── CONTACT FORM ─── */
-    (function() {
-      const form = document.getElementById('contact-form');
-      if (!form) return;
-
-      // Sync replyto field with email input
-      const emailField = document.getElementById('email-field');
-      if (emailField) {
-        emailField.addEventListener('input', function() {
-          const rf = document.getElementById('replyto-field');
-          if (rf) rf.value = emailField.value;
-        });
-      }
-
-      form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        const btn = document.getElementById('form-submit-btn');
-        const successDiv = document.getElementById('form-success');
-        const errorDiv = document.getElementById('form-error');
-
-        // Reset
-        errorDiv.classList.remove('show');
-        errorDiv.textContent = '';
-
-        // Validate required
-        const fields = form.querySelectorAll('[required]');
-        let valid = true;
-        fields.forEach(function(f) {
-          if (!f.value.trim()) {
-            valid = false;
-            f.style.borderColor = 'rgba(255,80,80,0.6)';
-          } else {
-            f.style.borderColor = '';
-          }
-        });
-        if (!valid) {
-          errorDiv.textContent = 'Veuillez remplir tous les champs obligatoires.';
-          errorDiv.classList.add('show');
-          return;
-        }
-
-        btn.disabled = true;
-        btn.innerHTML = 'Envoi en cours… <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
-
-        try {
-          const data = new FormData(form);
-          const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
-          const json = await res.json();
-
-          if (json.success) {
-            form.style.display = 'none';
-            successDiv.classList.add('show');
-          } else {
-            let msg = json.message || 'Une erreur est survenue. Veuillez réessayer.';
-            if (msg.toLowerCase().includes('access_key') || msg.toLowerCase().includes('key')) {
-              msg = '⚠️ Formulaire non configuré. Remplacez dc0a43b8-7a42-444b-84bb-228f5fffcd33 dans le code (voir commentaire dans index.html).';
-            }
-            errorDiv.textContent = msg;
-            errorDiv.classList.add('show');
-            btn.disabled = false;
-            btn.innerHTML = 'Envoyer le message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
-          }
-        } catch (err) {
-          errorDiv.textContent = 'Erreur réseau. Vérifiez votre connexion et réessayez.';
-          errorDiv.classList.add('show');
-          btn.disabled = false;
-          btn.innerHTML = 'Envoyer le message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';
-        }
-      });
-    })();
-
-    /* ─── SCROLL REVEALS ─── */
-    function checkReveals() {
-      const threshold = window.innerHeight * 0.92;
-      document.querySelectorAll('.page.active .reveal').forEach(el => {
-        if (el.getBoundingClientRect().top < threshold) {
-          el.classList.add('visible');
-        }
-      });
-    }
-    window.addEventListener('scroll', checkReveals, { passive: true });
-    // On load, trigger for initial active page
-    window.addEventListener('load', checkReveals);
-    setTimeout(checkReveals, 200);
-  </script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var header=document.querySelector('header'),bar=document.getElementById('progress');
+  function onScroll(){var h=document.documentElement;var p=h.scrollTop/((h.scrollHeight-h.clientHeight)||1);bar.style.transform='scaleX('+p+')';header.classList.toggle('scrolled',h.scrollTop>10);}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  /* reflet qui suit la souris sur les cartes */
+  document.querySelectorAll('.app,.fact,.skill,.spec,.feat').forEach(function(c){
+    c.classList.add('spot');
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});
+  });
+  if(reduce||!('IntersectionObserver' in window))return;
+  /* apparition au scroll, en cascade */
+  var groups=['.sec-head','.facts > *','.philo-statement','.philo-body','.global','.apps > *','.beliefs > *','.flow','.steps > *','.quote','.skills > *','.sectors','.stack-grid > *','.claude-code','.contact-card'];
+  var vh=window.innerHeight;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');e.target.classList.remove('pre');io.unobserve(e.target);}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  groups.forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(el,i){
+      if(el.getBoundingClientRect().top<vh*.9)return;
+      var idx=Array.prototype.indexOf.call(el.parentNode.children,el);
+      el.classList.add('pre');el.style.transitionDelay=(sel.indexOf('>')>-1?Math.min(idx,6)*90:0)+'ms';io.observe(el);
+    });
+  });
+  /* compteurs */
+  var co=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;co.unobserve(e.target);var el=e.target,to=+el.dataset.to,t0=null;
+    function f(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/1400);el.textContent=Math.round(to*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(f);}requestAnimationFrame(f);});},{threshold:.6});
+  document.querySelectorAll('.count').forEach(function(c){c.textContent='0';co.observe(c);});
+  /* formule qui s'allume étape par étape */
+  var sum=document.querySelector('.sum');
+  if(sum&&sum.getBoundingClientRect().top>vh*.9){
+    sum.classList.add('armed');
+    var items=sum.querySelectorAll('span:not(.end), i');
+    var so=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;so.disconnect();
+      items.forEach(function(it,k){setTimeout(function(){it.classList.add('lit');it.style.opacity=1;},k*140);});},{threshold:.5});
+    so.observe(sum);
+  }
+})();
+</script>
 
 </body>
 </html>
